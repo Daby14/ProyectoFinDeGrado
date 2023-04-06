@@ -1,17 +1,20 @@
 <?php
 
-class ProductModel {
-    private $products = [
-        ['name' => 'Product A', 'price' => 10],
-        ['name' => 'Product B', 'price' => 20],
-        ['name' => 'Product C', 'price' => 30],
-        ['name' => 'Product D', 'price' => 40],
-        ['name' => 'Product E', 'price' => 50]
-    ];
-    
-    public function getAllProducts() {
-        return $this->products;
+require_once "LibreriaPDO.php";
+
+$db = new DB("hotel");
+
+class ProductModel
+{
+    public function datosBBDD($db)
+    {
+        $param = array();
+
+        $consulta = "select * from habitaciones";
+
+        $db->ConsultaDatos($consulta, $param);
+
+        return $db;
+
     }
 }
-
-?>

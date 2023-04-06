@@ -2,7 +2,9 @@
 
 require_once 'modelo.php';
 $productsModel = new ProductModel();
-$products = $productsModel->getAllProducts();
+
+$datos = $productsModel->datosBBDD($db);
+
 require_once 'vista.php';
 
 ?>
