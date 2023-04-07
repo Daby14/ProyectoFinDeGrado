@@ -1,11 +1,23 @@
-console.log("hola mundo");
+document.getElementById("formContacto").addEventListener("submit", function (event) {
+    // Prevenir que el formulario se envíe automáticamente
+    event.preventDefault();
 
-let id = document.getElementById("enviar");
+    // Validar el formulario
+    if (this.checkValidity() === false) {
+        event.stopPropagation();
+        this.classList.add('was-validated');
+    } else {
+        // Si el formulario es válido, abrir el modal
+        $('#miModal').modal('show');
 
-if(id !== null){
-    
-    id.addEventListener("click", function(){
-        console.log("Has pulsado el botón!!!!");
-    })
+        let cerrar = document.getElementById("cerrar");
 
-}
+        cerrar.addEventListener("click", function () {
+
+            window.location.href = "http://127.0.0.1:5500/index.html";
+
+        })
+
+    }
+}, false);
+
