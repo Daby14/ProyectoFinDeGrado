@@ -16,6 +16,13 @@
     background-position: center top;
 }
 
+.formuContacto{
+    background-image: url("../images/imagen8.JPEG"); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+}
+
 .card {
     border: none;
     border-radius: 15px;
@@ -55,5 +62,11 @@
 @media (min-width: 768px) {
     .card-columns2 {
         column-count: 1;
+    }
+}
+
+@media (min-width: 768px) {
+    .card-columns3 {
+        column-count: 2;
     }
 }
