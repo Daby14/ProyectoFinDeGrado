@@ -32,8 +32,6 @@
     //Página principal
     $controller->mostrarCabecera();
 
-    // $controller->mostrarBoton();
-
     echo "<main id='main'>";
 
     $controller->mostrarIntroduccion();
@@ -85,21 +83,6 @@
 
         //Añadimos al main las habitaciones disponibles
         $controller->disponibles($db);
-
-        echo "<script>
-
-            let prueba = $('#habitacionesDisponibles');
-
-            prueba.find('a').click((event) => {
-                var type = $(event.target).closest($('a')).get(0).dataset.type;
-
-                console.log(type);
-
-                location.href = 'http://localhost/DWES/ProyectoFinDeGrado/ProyectoFinDeGrado-1/php/inicio.php?id=' + type;
-
-            });
-
-        </script>";
 
         if (isset($_SESSION['usuario'])) {
             // La sesión está activa
@@ -225,6 +208,7 @@
         $controller->modalRegistro();
     }
 
+    // $controller->escribirHola($db, $nombre);
 
 
     ?>

@@ -95,9 +95,14 @@ if (formRegistro !== null) {
     }, false);
 }
 
+let prueba = $('#habitacionesDisponibles');
 
+prueba.find('a').click((event) => {
 
+    var type = $(event.target).closest($('a')).get(0).dataset.type;
 
+    console.log(type);
 
+    location.href = 'http://localhost/DWES/ProyectoFinDeGrado/ProyectoFinDeGrado-1/php/inicio.php?id=' + type;
 
-
+});

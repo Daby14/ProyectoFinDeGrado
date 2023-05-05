@@ -50,7 +50,14 @@ class DB
         $sta = $this->con->prepare($consulta);
 
         if (!$sta->execute($param)) {
-            echo "<b>Error en la consulta</b>";
+
+            // echo "<script>
+            
+            //     console.log()
+
+            // </script>";
+
+            // echo "<b>Error en la consulta</b>";
         }
 
         $this->Cerrar();

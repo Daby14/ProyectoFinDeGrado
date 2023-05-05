@@ -16,11 +16,6 @@ class Controller
         $this->db = new DB("hotelgd");
     }
 
-    public function escribirHola()
-    {
-        $this->model->datosBBDD();
-    }
-
     public function disponibles($db)
     {
         $this->model->habitacionesDisponibles($db);
@@ -137,13 +132,3 @@ class Controller
         $this->view->cerrarSesion();
     }
 }
-
-
-// class Controller
-// {
-
-//     public function prueba(){
-//         echo "hola mundo!!!!";
-//     }
-
-// }
