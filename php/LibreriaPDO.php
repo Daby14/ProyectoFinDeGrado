@@ -6,11 +6,11 @@ class DB
 
     private $con;  //Propiedad que retorna el objeto PDO resultante de la conexión
 
-    private $host = "localhost";
+    private $host = "sql106.epizy.com";
 
-    private $user = "root";
+    private $user = "epiz_34160839";
 
-    private $pass = "";
+    private $pass = "N9FbFe4PcPfSQz";
 
     protected $dbname;
 

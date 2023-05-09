@@ -13,7 +13,7 @@ class Controller
     {
         $this->model = new Model();
         $this->view = new View();
-        $this->db = new DB("hotelgd");
+        $this->db = new DB("epiz_34160839_hotelgd");
     }
 
     public function disponibles($db)

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel GD</title>
 
-    <link rel="stylesheet" href="../css/estilos.css">
+    
 
     <!-- Carga los archivos CSS de Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
@@ -23,7 +23,7 @@
 
     require_once "LibreriaPDO.php";
 
-    $db = new DB("hotelgd");
+    $db = new DB("epiz_34160839_hotelgd");
     class Model
     {
 
@@ -174,15 +174,7 @@
             } else {
                 echo '<script>
 
-                main = $("#main");
-
-                main.append(`
-
-                    <h1>Login Correcto</h1>
-
-                    `);
-
-                    window.location.href = "http://localhost/DWES/ProyectoFinDeGrado/ProyectoFinDeGrado-1/php/inicio.php?usuario=' . $usuario . '";
+                    window.location.href = "https://hotelgdfree.epizy.com/?usuario=' . $usuario . '";
 
                 </script>';
             }
