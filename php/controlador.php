@@ -137,4 +137,9 @@ class Controller
         $this->view->modalNoRegistro();
     }
 
+    public function datosUsuarioLogin($db, $usuario)
+    {
+        $this->model->datosUsuarioLogin($db, $usuario);
+    }
+
 }

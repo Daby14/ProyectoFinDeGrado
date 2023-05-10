@@ -97,3 +97,4 @@ prueba.find('a').click((event) => {
     location.href = 'https://hotelgdfree.epizy.com/?id=' + type;
 
 });
+

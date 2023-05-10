@@ -63,9 +63,11 @@
 
                             </ul>
 
-                            <div class="text-end">
+                            <div class="text-end d-flex justify-content-center align-items-center gap-5 mr-2">
                                 <a id="' . $id . '" href="' . $url . '" class="nav-link px-2 text-light">' . $sesionUsuario . '</a>
-                            </div>
+                                <button id="carrito" class="button-image">
+                                    <img src="../images/carrito.png" alt="Carrito">
+                                </button>
                         </div>
                     </div>
                 </nav>
@@ -676,38 +678,6 @@
             </script>';
         }
 
-        // public function modalRegistro()
-        // {
-
-        //     echo '<script>
-
-        //         main = $("#main");
-
-        //         main.append(`<div class="modal fade" id="modalRegistro" tabindex="-1" role="dialog" aria-labelledby="miModalLabel"
-        //         aria-hidden="true">
-        //         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        //             <div class="modal-content">
-        //                 <div class="modal-header">
-        //                     <h5 class="modal-title" id="miModalLabel">Mensaje de confirmación</h5>
-        //                     <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-        //                         <span aria-hidden="true">&times;</span>
-        //                     </button>
-        //                 </div>
-        //                 <div class="modal-body">
-        //                     <p>Te has registrado correctamente</p>
-        //                 </div>
-        //                 <div class="modal-footer">
-        //                     <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     </div>`);
-
-            
-
-        //     </script>';
-        // }
-
         public function modalRegistro(){
 
             echo '<script>
@@ -736,36 +706,6 @@
             </script>';
         }
 
-        // public function modalNoRegistro()
-        // {
-
-        //     echo '<script>
-
-        //         main = $("#main");
-
-        //         main.append(`<div class="modal fade" id="modalNoRegistro" tabindex="-1" role="dialog" aria-labelledby="miModalLabel"
-        //         aria-hidden="true">
-        //         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        //             <div class="modal-content">
-        //                 <div class="modal-header">
-        //                     <h5 class="modal-title" id="miModalLabel">Mensaje de confirmación</h5>
-        //                     <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-        //                         <span aria-hidden="true">&times;</span>
-        //                     </button>
-        //                 </div>
-        //                 <div class="modal-body">
-        //                     <p>No te has podido registrar correctamente. Ese usuario ya está registrado!!!</p>
-        //                 </div>
-        //                 <div class="modal-footer">
-        //                     <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     </div>`);
-
-        //     </script>';
-        // }
-
         public function modalNoRegistro(){
 
             echo '<script>
@@ -782,7 +722,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            No te has podido registrar. El usuario es incorrecto
+                            No te has podido registrar. El usuario ya está registrado
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>

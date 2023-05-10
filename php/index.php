@@ -192,11 +192,9 @@
             //Lo obtenemos de la url
             $usuario = $_GET['usuario'];
 
-            //Obtenemos los datos para ese usuario
-
-
             //Creamos la sesión con los datos de ese usuario
             $controller->crearSesion($usuario);
+
         }
     }
 
@@ -215,13 +213,11 @@
     if (isset($_SESSION['cliente'])) {
 
         // Recuperar el valor de la variable de sesión
-        $nombre_usuario = $_SESSION['cliente']['usuario'];
+        $usuario = $_SESSION['cliente']['usuario'];
 
-        $email = $_SESSION['cliente']['email'];
+        //Obtenemos los datos para ese usuario
+        $controller->datosUsuarioLogin($db, $usuario);
 
-        echo $nombre_usuario; // Esto imprimirá "Juan"
-
-        echo $email;
     }
     //  else {
     //     echo 'La sesión no está iniciada.';
@@ -272,6 +268,7 @@
 
         </script>";
         }
+
     }
 
     ?>

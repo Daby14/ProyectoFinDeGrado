@@ -199,8 +199,9 @@
                 $param['Apellido'] = $apellido;
                 $param['Email'] = $email;
                 $param['Telefono'] = $telefono;
+                $param['Usuario'] = $usuario;
 
-                $consulta = "insert into clientes values (NULL, :Nombre, :Apellido, :Email, :Telefono)";
+                $consulta = "insert into clientes values (NULL, :Nombre, :Apellido, :Email, :Telefono, :Usuario)";
 
                 $db->ConsultaSimple($consulta, $param);
 
@@ -222,31 +223,87 @@
                 
             }
 
+            $param = array();
+            $param['Usuario'] = $usuario;
+            $consulta = "select id_usuario as id_usuario from usuarios where usuario = :Usuario";
+
+            $db->ConsultaDatos($consulta, $param);
+
+            $id_usuario = $db->filas[0]['id_usuario'];
+
+            $param = array();
+            $param['Nombre'] = $nombre;
+            $param['Apellido'] = $apellido;
+            $param['Usuario'] = $id_usuario;
+            $consulta = "update clientes set id_usuario=:Usuario where nombre=:Nombre and apellido=:Apellido";
+
+            $db->ConsultaSimple($consulta, $param);
+
             echo '<script>
 
-                    window.location.href = "https://hotelgdfree.epizy.com/?esta=' . $esta . '";
+                window.location.href = "https://hotelgdfree.epizy.com/?esta=' . $esta . '";
 
-                </script>';
+            </script>';
 
         }
 
-        public function datosUsuarioLogin($usuario)
+        public function datosUsuarioLogin($db, $usuario)
         {
 
             $param = array();
             $param['Usuario'] = $usuario;
 
-            $consulta = "insert into clientes values (NULL, :Nombre, :Apellido, :Email, :Telefono)";
+            $consulta = "select id_usuario as id_usuario from usuarios where usuario = :Usuario";
 
-            // $db->ConsultaSimple($consulta, $param);
+            $db->ConsultaDatos($consulta, $param);
 
-            // $param = array();
-            // $param['Usuario'] = $usuario;
-            // $param['Password'] = $password;
+            $id_usuario = $db->filas[0]['id_usuario'];
 
-            // $consulta = "insert into usuarios values (NULL, :Usuario, :Password)";
+            $param = array();
+            $param['Cliente'] = $id_usuario;
 
-            // $db->ConsultaSimple($consulta, $param);
+            $consulta = "select id_cliente as id_cliente from clientes where id_usuario = :Cliente";
+
+            $db->ConsultaDatos($consulta, $param);
+
+            $id_cliente = $db->filas[0]['id_cliente'];
+
+            $param = array();
+            $param['Cliente'] = $id_cliente;
+
+            $consulta = "select * from reservas where id_cliente = :Cliente";
+
+            $db->ConsultaDatos($consulta, $param);
+
+            echo "<table border=3>";
+
+            echo "<th>Reserva ID</th>";
+            echo "<th>Habitacion ID</th>";
+            echo "<th>Fecha Inicio</th>";
+            echo "<th>Fecha Fin</th>";
+            echo "<th>Cliente ID</th>";
+
+            foreach ($db->filas as $fila) {
+
+                echo "<tr>";
+
+                echo "<td>". $fila['id_reserva'] ."</td>";
+
+                echo "<td>". $fila['id_habitacion'] ."</td>";
+
+                echo "<td>". $fila['fecha_inicio'] ."</td>";
+
+                echo "<td>". $fila['fecha_fin'] ."</td>";
+
+                echo "<td>". $fila['id_cliente'] ."</td>";
+
+                echo "</tr>";
+
+            }
+
+            echo "</table>";
+
+
         }
     }
 
