@@ -69,16 +69,18 @@ if (formRegistro !== null) {
             let email = document.getElementById("email").value;
             let telefono = document.getElementById("telefono").value;
 
+            window.location.href = "https://hotelgdfree.epizy.com/?nombre=" + nombre + "&apellido=" + apellido + "&usuario=" + usuario + "&password=" + password + "&email=" + email + "&telefono=" + telefono + "";
+
             // Si el formulario es válido, abrir el modal
-            $('#modalRegistro').modal('show');
+            // $('#modalRegistro').modal('show');
 
-            let cerrar = document.getElementById("cerrar");
+            // let cerrar = document.getElementById("cerrar");
 
-            cerrar.addEventListener("click", function () {
+            // cerrar.addEventListener("click", function () {
 
-                window.location.href = "https://hotelgdfree.epizy.com/?nombre=" + nombre + "&apellido=" + apellido + "&usuario=" + usuario + "&password=" + password + "&email=" + email + "&telefono=" + telefono + "";
+            // window.location.href = "https://hotelgdfree.epizy.com/?nombre=" + nombre + "&apellido=" + apellido + "&usuario=" + usuario + "&password=" + password + "&email=" + email + "&telefono=" + telefono + "";
 
-            })
+            // })
 
         }
     }, false);

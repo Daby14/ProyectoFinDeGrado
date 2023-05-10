@@ -13,7 +13,7 @@
 
     <link rel="icon" type="image/png" href="../images/logo.jpg">
 
-    
+
 </head>
 
 <body class="pruebaDavid">
@@ -73,7 +73,7 @@
                 <div class='row'>
                     <div class='col-md-12'>
                         <h1 class='d-flex justify-content-center'>Habitaciones</h1>
-                        <p class='d-flex justify-content-center'>En esta sección se pueden observar las habitaciones disponibles de nuestro hotel</p>
+                        <p class='d-flex justify-content-center centered-text'>En esta sección se pueden observar las habitaciones disponibles de nuestro hotel</p>
                     </div>
                 </div>
             </div>
@@ -170,6 +170,12 @@
         //COMPROBAR SI EL USUARIO A REGISTRAR YA EXISTE. EN EL CASO DE QUE EXISTA DAMOS UN MENSAJE DE ERROR, Y SI NO EXISTE LO REGISTRAMOS
 
         $controller->registroClienteUsuario($nombre, $apellido, $usuario, $password, $email, $telefono, $db);
+
+        // echo "<script>
+
+        //     window.location.href = 'https://hotelgdfree.epizy.com';
+
+        // </script>";
     } else if (isset($_GET['usuario']) && isset($_GET['password'])) {
 
         $usuario = $_GET['usuario'];
@@ -180,11 +186,16 @@
         $controller->existeUsuario($usuario, $password, $db);
     } else {
 
+        //Si se ha hecho login correctamente, recibimos el usuario
         if (isset($_GET['usuario'])) {
 
+            //Lo obtenemos de la url
             $usuario = $_GET['usuario'];
 
-            //Creamos la sesión
+            //Obtenemos los datos para ese usuario
+
+
+            //Creamos la sesión con los datos de ese usuario
             $controller->crearSesion($usuario);
         }
     }
@@ -201,8 +212,67 @@
         $controller->modalRegistro();
     }
 
-    // $controller->escribirHola($db, $nombre);
+    if (isset($_SESSION['cliente'])) {
 
+        // Recuperar el valor de la variable de sesión
+        $nombre_usuario = $_SESSION['cliente']['usuario'];
+
+        $email = $_SESSION['cliente']['email'];
+
+        echo $nombre_usuario; // Esto imprimirá "Juan"
+
+        echo $email;
+    }
+    //  else {
+    //     echo 'La sesión no está iniciada.';
+    // }
+
+    //Si se recibe la variable esta
+    if (isset($_GET['esta'])) {
+
+        $esta = $_GET['esta'];
+
+        if ($esta == 'registrado') {
+            //Modal de registrado correctamente
+            $controller->modalRegistro();
+
+            echo "<script>
+
+            $(document).ready(function() {
+                $('#modalRegistro').modal('show');
+
+                let cerrar = document.getElementById('cerrar');
+
+                cerrar.addEventListener('click', function () {
+
+                window.location.href = 'https://hotelgdfree.epizy.com/';
+
+                })
+            });
+
+        </script>";
+
+        } else {
+            //Modal de no registrado
+            $controller->modalNoRegistro();
+
+            echo "<script>
+
+            $(document).ready(function() {
+                $('#modalNoRegistro').modal('show');
+
+                let cerrar = document.getElementById('cerrar');
+
+                cerrar.addEventListener('click', function () {
+
+                window.location.href = 'https://hotelgdfree.epizy.com/?registrar';
+
+                })
+            });
+
+        </script>";
+        }
+    }
 
     ?>
 

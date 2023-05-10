@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel GD</title>
 
-    
+
 
     <!-- Carga los archivos CSS de Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
@@ -184,22 +184,69 @@
         {
 
             $param = array();
-            $param['Nombre'] = $nombre;
-            $param['Apellido'] = $apellido;
-            $param['Email'] = $email;
-            $param['Telefono'] = $telefono;
+            $param['Usuario'] = $usuario;
+            $consulta = "select count(*) as total from usuarios where usuario = :Usuario";
 
-            $consulta = "insert into clientes values (NULL, :Nombre, :Apellido, :Email, :Telefono)";
+            $db->ConsultaDatos($consulta, $param);
 
-            $db->ConsultaSimple($consulta, $param);
+            $total = $db->filas[0]['total'];
+
+            $esta = '';
+
+            if ($total == 0) {
+                $param = array();
+                $param['Nombre'] = $nombre;
+                $param['Apellido'] = $apellido;
+                $param['Email'] = $email;
+                $param['Telefono'] = $telefono;
+
+                $consulta = "insert into clientes values (NULL, :Nombre, :Apellido, :Email, :Telefono)";
+
+                $db->ConsultaSimple($consulta, $param);
+
+                $param = array();
+                $param['Usuario'] = $usuario;
+                $param['Password'] = $password;
+
+                $consulta = "insert into usuarios values (NULL, :Usuario, :Password)";
+
+                $db->ConsultaSimple($consulta, $param);
+
+                $esta = 'registrado';
+
+                
+
+            } else {
+                echo "ESE USUARIO YA ESTÁ REGISTRADO";
+                $esta = 'no registrado';
+                
+            }
+
+            echo '<script>
+
+                    window.location.href = "https://hotelgdfree.epizy.com/?esta=' . $esta . '";
+
+                </script>';
+
+        }
+
+        public function datosUsuarioLogin($usuario)
+        {
 
             $param = array();
             $param['Usuario'] = $usuario;
-            $param['Password'] = $password;
 
-            $consulta = "insert into usuarios values (NULL, :Usuario, :Password)";
+            $consulta = "insert into clientes values (NULL, :Nombre, :Apellido, :Email, :Telefono)";
 
-            $db->ConsultaSimple($consulta, $param);
+            // $db->ConsultaSimple($consulta, $param);
+
+            // $param = array();
+            // $param['Usuario'] = $usuario;
+            // $param['Password'] = $password;
+
+            // $consulta = "insert into usuarios values (NULL, :Usuario, :Password)";
+
+            // $db->ConsultaSimple($consulta, $param);
         }
     }
 

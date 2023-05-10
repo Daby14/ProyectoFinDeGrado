@@ -4,6 +4,8 @@
 
 <body>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <?php
 
     //Página Web
@@ -14,7 +16,7 @@
         public function cabecera()
         {
 
-            if (isset($_SESSION['usuario'])) {
+            if (isset($_SESSION['cliente'])) {
                 $sesionUsuario = "Cerrar Sesion";
                 $id = "cerrarSesion";
                 $url = "https://hotelgdfree.epizy.com/?cerrarSesion";
@@ -416,7 +418,7 @@
 
             </script>';
         }
-        
+
 
         //Método que muestra el modal de contacto
         public function modalContacto()
@@ -674,39 +676,128 @@
             </script>';
         }
 
-        public function modalRegistro()
-        {
+        // public function modalRegistro()
+        // {
+
+        //     echo '<script>
+
+        //         main = $("#main");
+
+        //         main.append(`<div class="modal fade" id="modalRegistro" tabindex="-1" role="dialog" aria-labelledby="miModalLabel"
+        //         aria-hidden="true">
+        //         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        //             <div class="modal-content">
+        //                 <div class="modal-header">
+        //                     <h5 class="modal-title" id="miModalLabel">Mensaje de confirmación</h5>
+        //                     <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+        //                         <span aria-hidden="true">&times;</span>
+        //                     </button>
+        //                 </div>
+        //                 <div class="modal-body">
+        //                     <p>Te has registrado correctamente</p>
+        //                 </div>
+        //                 <div class="modal-footer">
+        //                     <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
+        //                 </div>
+        //             </div>
+        //         </div>
+        //     </div>`);
+
+            
+
+        //     </script>';
+        // }
+
+        public function modalRegistro(){
 
             echo '<script>
+            
+                let main = $("#main");
 
-                main = $("#main");
-
-                main.append(`<div class="modal fade" id="modalRegistro" tabindex="-1" role="dialog" aria-labelledby="miModalLabel"
-                aria-hidden="true">
+                main.append(`<div class="modal fade show" id="modalRegistro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="miModalLabel">Mensaje de confirmación</h5>
+                            <h5 class="modal-title" id="myModalLabel">Registro</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p>Te has registrado correctamente</p>
+                            Te has registrado correctamente
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
                         </div>
                     </div>
                 </div>
-            </div>`);
+            </div>`)
+            
+            </script>';
+        }
 
+        // public function modalNoRegistro()
+        // {
+
+        //     echo '<script>
+
+        //         main = $("#main");
+
+        //         main.append(`<div class="modal fade" id="modalNoRegistro" tabindex="-1" role="dialog" aria-labelledby="miModalLabel"
+        //         aria-hidden="true">
+        //         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        //             <div class="modal-content">
+        //                 <div class="modal-header">
+        //                     <h5 class="modal-title" id="miModalLabel">Mensaje de confirmación</h5>
+        //                     <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+        //                         <span aria-hidden="true">&times;</span>
+        //                     </button>
+        //                 </div>
+        //                 <div class="modal-body">
+        //                     <p>No te has podido registrar correctamente. Ese usuario ya está registrado!!!</p>
+        //                 </div>
+        //                 <div class="modal-footer">
+        //                     <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
+        //                 </div>
+        //             </div>
+        //         </div>
+        //     </div>`);
+
+        //     </script>';
+        // }
+
+        public function modalNoRegistro(){
+
+            echo '<script>
+            
+                let main = $("#main");
+
+                main.append(`<div class="modal fade show" id="modalNoRegistro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="myModalLabel">Registro</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            No te has podido registrar. El usuario es incorrecto
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>`)
+            
             </script>';
         }
 
         public function crearSesion($usuario)
         {
-            $_SESSION['usuario'] = $usuario;
+            $_SESSION['cliente']['usuario'] = $usuario;
+            $_SESSION['cliente']['email'] = "prueba@gmail.com";
 
             echo '<script>
 

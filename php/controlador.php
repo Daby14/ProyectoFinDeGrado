@@ -131,4 +131,10 @@ class Controller
     {
         $this->view->cerrarSesion();
     }
+
+    public function modalNoRegistro()
+    {
+        $this->view->modalNoRegistro();
+    }
+
 }
