@@ -142,4 +142,29 @@ class Controller
         $this->model->datosUsuarioLogin($db, $usuario);
     }
 
+    public function modalCarrito()
+    {
+        $this->view->modalCarrito();
+    }
+
+    public function pruebaJSON($db, $type)
+    {
+        $this->model->pruebaJSON($db, $type);
+    }
+
+    public function formularioReserva()
+    {
+        $this->view->formularioReserva();
+    }
+
+    public function reservaHabitacion($db, $fechaInicio, $fechaFin, $usuario, $id_habitacion)
+    {
+        $this->model->reservaHabitacion($db, $fechaInicio, $fechaFin, $usuario, $id_habitacion);
+    }
+
+    public function modalReservaConfirmacion()
+    {
+        $this->view->modalReservaConfirmacion();
+    }
+
 }

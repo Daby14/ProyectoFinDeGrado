@@ -94,7 +94,62 @@ prueba.find('a').click((event) => {
 
     console.log(type);
 
+    // const data = {
+    //     type: type
+    // };
+
+    // // Hacer la petición HTTP POST al archivo PHP
+    // fetch('index.php', {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify(data)
+    // })
+    //     .then(response => {
+    //         // Manejar la respuesta del servidor
+    //         console.log('Respuesta del servidor:', response);
+    //     })
+    //     .catch(error => {
+    //         // Manejar los errores de la petición
+    //         console.error('Error al hacer la petición:', error);
+    //     });
+
     location.href = 'https://hotelgdfree.epizy.com/?id=' + type;
 
+
 });
+
+let carrito = $('#carrito');
+
+carrito.click(() => {
+
+    location.href = 'https://hotelgdfree.epizy.com/?carrito';
+
+});
+
+let formReserva = document.getElementById("formReserva");
+
+if (formReserva !== null) {
+    formReserva.addEventListener("submit", function (event) {
+        // Prevenir que el formulario se envíe automáticamente
+        event.preventDefault();
+
+        // Validar el formulario
+        if (this.checkValidity() === false) {
+            event.stopPropagation();
+            this.classList.add('was-validated');
+        } else {
+
+            let fechaInicio = document.getElementById("fechaInicio").value;
+
+            let fechaFin = document.getElementById("fechaFin").value;
+
+            let id = document.getElementById("id").value;
+
+            window.location.href = "https://hotelgdfree.epizy.com/?fechaInicio=" + fechaInicio + "&fechaFin=" + fechaFin + "&id_habitacion=" + id;
+
+        }
+    }, false);
+}
 

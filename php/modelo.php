@@ -24,8 +24,35 @@
     require_once "LibreriaPDO.php";
 
     $db = new DB("epiz_34160839_hotelgd");
+
     class Model
     {
+
+        public function pruebaJSON($db, $type)
+        {
+
+            // // Obtener los datos JSON enviados por la petición HTTP POST
+            // $data = json_decode(file_get_contents('php://input'), true);
+
+            // // Hacer lo que necesites con los datos recibidos
+            // $type = $data['type'];
+
+            // $param = array();
+            // $param['Type'] = $type;
+            // $param['Password'] = 'hola';
+
+            $param = array();
+            $param['Usuario'] = $type;
+
+            // $consulta = "insert into usuarios values (NULL, :Type, :Password)";
+            $consulta = "select id_usuario as id_usuario from usuarios where usuario=:Usuario";
+
+            $db->ConsultaDatos($consulta, $param);
+
+            $id_usuario = $db->filas[0]['id_usuario'];
+
+            echo $id_usuario;
+        }
 
         public function habitacionesDisponibles($db)
         {
@@ -214,13 +241,9 @@
                 $db->ConsultaSimple($consulta, $param);
 
                 $esta = 'registrado';
-
-                
-
             } else {
                 echo "ESE USUARIO YA ESTÁ REGISTRADO";
                 $esta = 'no registrado';
-                
             }
 
             $param = array();
@@ -244,7 +267,6 @@
                 window.location.href = "https://hotelgdfree.epizy.com/?esta=' . $esta . '";
 
             </script>';
-
         }
 
         public function datosUsuarioLogin($db, $usuario)
@@ -268,42 +290,197 @@
 
             $id_cliente = $db->filas[0]['id_cliente'];
 
+            //Comprobamos si el cliente tiene reservas
             $param = array();
             $param['Cliente'] = $id_cliente;
 
-            $consulta = "select * from reservas where id_cliente = :Cliente";
+            $consulta = "select count(*) as total from reservas where id_cliente = :Cliente ";
 
             $db->ConsultaDatos($consulta, $param);
 
-            echo "<table border=3>";
+            $total = $db->filas[0]['total'];
 
-            echo "<th>Reserva ID</th>";
-            echo "<th>Habitacion ID</th>";
-            echo "<th>Fecha Inicio</th>";
-            echo "<th>Fecha Fin</th>";
-            echo "<th>Cliente ID</th>";
+            if ($total == 0) {
+                echo '<script>
 
-            foreach ($db->filas as $fila) {
+                main = $("#main");
 
-                echo "<tr>";
+                main.append(`
+                    <div class="container py-5">
 
-                echo "<td>". $fila['id_reserva'] ."</td>";
+                    <div class="card noReserva" style="width: 18rem;">
+                        <img src="../images/reserva.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Carrito Vacío</h5>
+                            <p class="card-text">Te animamos a que reserves nuestras lujosas habitaciones.</p>
+                            <a href="https://hotelgdfree.epizy.com/?habitaciones" class="btn btn-primary">Reservar</a>
+                        </div>
+                    </div>
+                            
+                        
+                    </div>`);
 
-                echo "<td>". $fila['id_habitacion'] ."</td>";
+                let footer = document.getElementById("footer");
+                footer.style.bottom = "0";
+                footer.style.left = "0";
+                footer.style.right = "0";
 
-                echo "<td>". $fila['fecha_inicio'] ."</td>";
+                </script>';
+            } else if ($total == 1) {
+                $param = array();
+                $param['Cliente'] = $id_cliente;
 
-                echo "<td>". $fila['fecha_fin'] ."</td>";
+                $consulta = "select * from reservas where id_cliente = :Cliente";
 
-                echo "<td>". $fila['id_cliente'] ."</td>";
+                $db->ConsultaDatos($consulta, $param);
 
-                echo "</tr>";
+                echo '<script>
 
+                main = $("#main");
+
+                main.append(`
+
+                    <h1 class="d-flex justify-content-center centered-text mt-5 mb-5">Carrito</h1>
+                    <div class="container py-5">
+                            
+                            <div id="reservas" class="card-columns2">
+                                
+                            </div>
+                        
+                    </div>`);
+
+                </script>';
+
+                foreach ($db->filas as $fila) {
+
+                    $param = array();
+                    $param['Habitacion'] = $fila['id_habitacion'];
+
+                    $consulta = "select imagen as 'imagen', tipo_habitacion as 'tipo' from habitaciones where id_habitacion = :Habitacion";
+
+                    $db->ConsultaDatos($consulta, $param);
+
+                    $imagen = $db->filas[0]['imagen'];
+                    $tipo = $db->filas[0]['tipo'];
+
+                    echo '<script>
+
+                    reservas = $("#reservas");
+
+                    reservas.append(`
+
+                    <div class="card mb-5">
+                            <img src="data:image/jpg;base64,' . base64_encode($imagen) . '" class="card-img-top" alt="Imagen Habitacion">
+                            <div class="card-body">
+                                <h5 class="card-title">' . $tipo . '</h5>
+                                <br>
+                                <p class="card-text">Fecha de Inicio: ' . $fila['fecha_inicio'] . '</p>
+                                <p class="card-text">Fecha de Fin: ' . $fila['fecha_fin'] . '</p>
+                                <button id="reservar" class="btn btn-primary">Cancelar Reserva</button>
+                            </div>
+                        </div>
+
+                        `);
+
+                    </script>';
+                }
+            } else {
+                $param = array();
+                $param['Cliente'] = $id_cliente;
+
+                $consulta = "select * from reservas where id_cliente = :Cliente";
+
+                $db->ConsultaDatos($consulta, $param);
+
+                echo '<script>
+
+                main = $("#main");
+
+                main.append(`
+
+                    <h1 class="d-flex justify-content-center centered-text mt-5 mb-5">Carrito</h1>
+                    <div class="container py-5">
+                            
+                            <div id="reservas" class="card-columns3">
+                                
+                            </div>
+                        
+                    </div>`);
+
+                </script>';
+
+                foreach ($db->filas as $fila) {
+
+                    $param = array();
+                    $param['Habitacion'] = $fila['id_habitacion'];
+
+                    $consulta = "select imagen as 'imagen', tipo_habitacion as 'tipo' from habitaciones where id_habitacion = :Habitacion";
+
+                    $db->ConsultaDatos($consulta, $param);
+
+                    $imagen = $db->filas[0]['imagen'];
+                    $tipo = $db->filas[0]['tipo'];
+
+                    echo '<script>
+
+                    reservas = $("#reservas");
+
+                    reservas.append(`
+
+                    <div class="card mb-5">
+                            <img src="data:image/jpg;base64,' . base64_encode($imagen) . '" class="card-img-top" alt="Imagen Habitacion">
+                            <div class="card-body">
+                                <h5 class="card-title">' . $tipo . '</h5>
+                                <br>
+                                <p class="card-text">Fecha de Inicio: ' . $fila['fecha_inicio'] . '</p>
+                                <p class="card-text">Fecha de Fin: ' . $fila['fecha_fin'] . '</p>
+                                <button id="reservar" class="btn btn-primary">Cancelar Reserva</button>
+                            </div>
+                        </div>
+
+                        `);
+
+                    </script>';
+                }
             }
+        }
 
-            echo "</table>";
+        public function reservaHabitacion($db, $fechaInicio, $fechaFin, $usuario, $id_habitacion)
+        {
 
+            //Necesito el id del usuario, con ese id del usuario saco el id del cliente, y con el id del cliente saco las habitaciones que tiene reservadas
 
+            $param = array();
+            $param['Usuario'] = $usuario;
+
+            $consulta = "select id_usuario as id_usuario from usuarios where usuario = :Usuario";
+
+            $db->ConsultaDatos($consulta, $param);
+
+            $id_usuario = $db->filas[0]['id_usuario'];
+
+            // echo $id_usuario;
+
+            $param = array();
+            $param['Usuario'] = $id_usuario;
+
+            $consulta = "select id_cliente as id_cliente from clientes where id_usuario = :Usuario";
+
+            $db->ConsultaDatos($consulta, $param);
+
+            $id_cliente = $db->filas[0]['id_cliente'];
+
+            // echo $id_cliente;
+
+            $param = array();
+            $param['Habitacion'] = $id_habitacion;
+            $param['Inicio'] = $fechaInicio;
+            $param['Fin'] = $fechaFin;
+            $param['Cliente'] = $id_cliente;
+
+            $consulta = "insert into reservas values (NULL, :Habitacion, :Inicio, :Fin, :Cliente)";
+
+            $db->ConsultaSimple($consulta, $param);
         }
     }
 

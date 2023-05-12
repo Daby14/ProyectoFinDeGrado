@@ -65,10 +65,13 @@
 
                             <div class="text-end d-flex justify-content-center align-items-center gap-5 mr-2">
                                 <a id="' . $id . '" href="' . $url . '" class="nav-link px-2 text-light">' . $sesionUsuario . '</a>
-                                <button id="carrito" class="button-image">
+                                
+                                <button id="carrito" class="button-image" type="button">
                                     <img src="../images/carrito.png" alt="Carrito">
                                 </button>
+                                
                         </div>
+                        
                     </div>
                 </nav>
             </header>
@@ -299,7 +302,8 @@
                         </div>
                     </div>
                 </div>
-            </section>';
+            </section>
+            ';
         }
 
         //Método que borra el main de la página web
@@ -682,7 +686,7 @@
 
             echo '<script>
             
-                let main = $("#main");
+                main = $("#main");
 
                 main.append(`<div class="modal fade show" id="modalRegistro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -710,7 +714,7 @@
 
             echo '<script>
             
-                let main = $("#main");
+                main = $("#main");
 
                 main.append(`<div class="modal fade show" id="modalNoRegistro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -756,6 +760,114 @@
             
             </script>';
         }
+
+        public function modalCarrito(){
+
+            echo '<script>
+            
+                main = $("#main");
+
+                main.append(`<div class="modal fade show" id="modalCarrito" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="myModalLabel">Carrito No Disponible</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Debes iniciar sesión para consultar tu carrito
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>`)
+            
+            </script>';
+        }
+
+        public function formularioReserva()
+        {
+
+            echo '<script>
+
+                let body = document.body;
+
+                body.classList.add("formuContacto");
+
+                main = $("#main");
+
+                main.append(`<div class="container-fluid bg-image">
+                <div class="container bg2-form">
+                    <form id="formReserva" class="needs-validation" novalidate>
+
+                        <div class="card-header">
+                            <h4>Formulario de Reserva</h4>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fechaInicio">Fecha de Inicio:</label>
+                            <input type="date" class="form-control" id="fechaInicio" placeholder="Ingrese la fecha de inicio" required>
+                            <div class="valid-feedback">
+                                ¡Correcto!
+                            </div>
+                            <div class="invalid-feedback">
+                                La fecha de inicio es obligatoria
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="fechaFin">Fecha de Fin:</label>
+                            <input type="date" class="form-control" id="fechaFin" placeholder="Ingrese la fecha de fin" required>
+                            <div class="valid-feedback">
+                                ¡Correcto!
+                            </div>
+                            <div class="invalid-feedback">
+                                La fecha de fin es obligatoria
+                            </div>
+
+                        </div>
+                    
+                        <button id="confirmarReserva" type="submit" class="btn btn-primary mt-2" id="iniciar" data-toggle="modal" data-target="#exampleModal">Confirmar Reserva</button>
+                        <a href="https://hotelgdfree.epizy.com/" class="btn btn-primary mt-2">Volver</a>
+                    </form>
+                </div>
+                </div>`);
+
+            </script>';
+        }
+
+        public function modalReservaConfirmacion(){
+
+            echo '<script>
+            
+                main = $("#main");
+
+                main.append(`<div class="modal fade show" id="modalReservaConfirmacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="myModalLabel">Confirmación de Reserva</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Se ha reservado correctamente la habitación. Muchas gracias por confiar en nuestro magnifico hotel
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>`)
+            
+            </script>';
+        }
+
     }
 
     ?>

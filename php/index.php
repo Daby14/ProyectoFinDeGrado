@@ -87,7 +87,7 @@
     }
 
     //Si recibimos el id específico de la habitación que se quiera reservar, mostramos sus datos
-    if (isset($_GET['id'])) {
+    if (isset($_GET['id']) && isset($_SESSION['cliente'])) {
 
         $id = $_GET['id'];
 
@@ -95,7 +95,7 @@
 
         $controller->habitacionEspecifica($db, $id);
 
-        $controller->mostrarModalReserva();
+        // $controller->mostrarModalReserva();
 
         echo "<script>
 
@@ -103,24 +103,98 @@
 
             boton.click(function(){
             
-                $('#modalReserva').modal('show');
+                // $('#modalReserva').modal('show');
 
-                let cerrar = document.getElementById('cerrar');
+                // let cerrar = document.getElementById('cerrar');
 
-                cerrar.addEventListener('click', function () {
+                // cerrar.addEventListener('click', function () {
 
-                window.location.href = 'https://hotelgdfree.epizy.com/?habitaciones';
+                window.location.href = 'https://hotelgdfree.epizy.com/?reservar&id_habitacion=$id';
 
-                })
+                // })
                 
             });
 
         </script>";
+    } else {
+        if (isset($_GET['id'])) {
+
+            $controller->borrarMain();
+
+            echo '<script>
+
+            main = $("#main");
+
+            main.append(`<div class="container py-5">
+
+            <div class="card noReserva" style="width: 18rem;">
+                <img src="../images/iniciarSesion.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Iniciar Sesion</h5>
+                    <p class="card-text">Debes iniciar sesión para poder reservar</p>
+                    <a href="https://hotelgdfree.epizy.com/?sesion" class="btn btn-primary">Iniciar Sesion</a>
+                </div>
+            </div>
+                    
+                
+            </div>`);
+
+            let footer = document.getElementById("footer");
+            footer.style.bottom = "0";
+            footer.style.left = "0";
+            footer.style.right = "0";
+
+            </script>';
+        }
     }
 
-    //Si le damos a reservar una habitación
-    if (isset($_POST['reservar'])) {
-        echo "hola mundo";
+    if (isset($_GET['reservar']) && isset($_GET['id_habitacion'])) {
+
+        $id = $_GET['id_habitacion'];
+
+        $controller->borrarHeader();
+        $controller->borrarFooter();
+        $controller->borrarMain();
+
+        $controller->formularioReserva();
+
+        echo "<script>
+
+            main = $('#main');
+
+            main.append(`<input id='id' type='hidden' name='id' value='$id'></input>`);
+
+        </script>";
+    }
+
+
+    if (isset($_GET['fechaInicio']) && isset($_GET['fechaFin']) && isset($_GET['id_habitacion'])) {
+
+        $fechaInicio = $_GET['fechaInicio'];
+        $fechaFin = $_GET['fechaFin'];
+        $id_habitacion = $_GET['id_habitacion'];
+
+        $usuario = $_SESSION['cliente']['usuario'];
+
+        $controller->reservaHabitacion($db, $fechaInicio, $fechaFin, $usuario, $id_habitacion);
+
+        $controller->modalReservaConfirmacion();
+
+        echo "<script>
+
+        $(document).ready(function () {
+            $('#modalReservaConfirmacion').modal('show');
+    
+            let cerrar = document.getElementById('cerrar');
+    
+            cerrar.addEventListener('click', function () {
+    
+                window.location.href = 'https://hotelgdfree.epizy.com/';
+    
+            })
+        });
+
+        </script>";
     }
 
     //Si le damos a iniciar sesión
@@ -194,7 +268,6 @@
 
             //Creamos la sesión con los datos de ese usuario
             $controller->crearSesion($usuario);
-
         }
     }
 
@@ -210,15 +283,15 @@
         $controller->modalRegistro();
     }
 
-    if (isset($_SESSION['cliente'])) {
+    // if (isset($_SESSION['cliente'])) {
 
-        // Recuperar el valor de la variable de sesión
-        $usuario = $_SESSION['cliente']['usuario'];
+    //     // Recuperar el valor de la variable de sesión
+    //     $usuario = $_SESSION['cliente']['usuario'];
 
-        //Obtenemos los datos para ese usuario
-        $controller->datosUsuarioLogin($db, $usuario);
+    //     //Obtenemos los datos para ese usuario
+    //     $controller->datosUsuarioLogin($db, $usuario);
 
-    }
+    // }
     //  else {
     //     echo 'La sesión no está iniciada.';
     // }
@@ -247,7 +320,6 @@
             });
 
         </script>";
-
         } else {
             //Modal de no registrado
             $controller->modalNoRegistro();
@@ -268,8 +340,82 @@
 
         </script>";
         }
-
     }
+
+    if (isset($_GET['carrito']) && isset($_SESSION['cliente'])) {
+
+        $controller->borrarMain();
+
+        $usuario = $_SESSION['cliente']['usuario'];
+
+        //Obtenemos los datos para ese usuario
+        $controller->datosUsuarioLogin($db, $usuario);
+    } else if (isset($_GET['carrito'])) {
+        $controller->modalCarrito();
+
+        echo "<script>
+
+            $(document).ready(function() {
+                $('#modalCarrito').modal('show');
+
+                let cerrar = document.getElementById('cerrar');
+
+                cerrar.addEventListener('click', function () {
+
+                window.location.href = 'https://hotelgdfree.epizy.com/';
+
+                })
+            });
+
+        </script>";
+    }
+
+    // $controller->pruebaJSON($db);
+
+
+
+    // if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_SERVER['CONTENT_TYPE']) && $_SERVER['CONTENT_TYPE'] === 'application/json') {
+
+    // Recibimos datos JSON, decodifícalos
+    // $data = json_decode(file_get_contents('php://input'), true);
+
+    // if ($data !== null) {
+
+    //      $id = $data['type'];
+
+    // $controller->pruebaJSON($db, $type);
+
+    // $param = array();
+    // $param['Usuario'] = $type;
+
+    // $consulta = "insert into usuarios values (NULL, :Type, :Password)";
+    // $consulta = "select * from habitaciones where id_habitacion=:Usuario";
+    // $consulta = "select * from usuarios where usuario=:Usuario";
+
+    // $db->ConsultaDatos($consulta, $param);
+
+    // $id_usuario = $db->filas[0]['id_usuario'];
+
+    // echo $id_usuario;
+
+    // foreach ($db->filas as $fila) {
+
+    //     echo $fila['id_usuario'];
+
+    //     echo $fila['password'];
+    // }
+
+    // $controller->habitacionEspecifica($db, $id);
+
+    // } else {
+    //     // Los datos no son un JSON válido
+    //     echo "Los datos no son un JSON válido";
+    // }
+    // } else {
+    //     // No se recibieron datos JSON
+    //     echo "No se recibieron datos JSON";
+    // }
+
 
     ?>
 
