@@ -57,6 +57,7 @@
         $controller->mostrarFormularioContacto();
 
         $controller->mostrarModalContacto();
+        // $controller->modalPruebaFondo();
     }
 
     //En el caso de que le demos a la sección de habitaciones, borramos todo y mostramos las habitaciones disponibles
@@ -197,6 +198,15 @@
         </script>";
     }
 
+    if (isset($_GET['idReserva'])) {
+
+        $id_reserva = $_GET['idReserva'];
+
+        //Llamar al método de cancelar reserva
+        $controller->cancelarReserva($db, $id_reserva);
+
+    }
+
     //Si le damos a iniciar sesión
     if (isset($_GET['sesion'])) {
 
@@ -258,6 +268,7 @@
 
         //Miramos en la BBDD
         $controller->existeUsuario($usuario, $password, $db);
+
     } else {
 
         //Si se ha hecho login correctamente, recibimos el usuario
@@ -269,6 +280,28 @@
             //Creamos la sesión con los datos de ese usuario
             $controller->crearSesion($usuario);
         }
+    }
+
+    if (isset($_GET['loginIncorrecto'])) {
+
+        //Llamar al modal de login incorrecto
+        $controller->modalLoginIncorrecto();
+
+        echo '<script>
+
+        $(document).ready(function() {
+            $("#modalLoginIncorrecto").modal("show");
+
+            let cerrar = document.getElementById("cerrar");
+
+            cerrar.addEventListener("click", function () {
+
+            window.location.href = "https://hotelgdfree.epizy.com/?sesion";
+
+            })
+        });
+
+        </script>';
     }
 
     //Si le hemos dado a registrarse
@@ -369,6 +402,12 @@
 
         </script>";
     }
+
+    $controller->actualizarReservas($db);
+
+
+
+
 
     // $controller->pruebaJSON($db);
 

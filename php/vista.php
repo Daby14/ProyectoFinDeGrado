@@ -57,10 +57,6 @@
                                     <strong><a id="contacto" href="https://hotelgdfree.epizy.com/?contacto" class="nav-link px-2 text-light">Contacto</a></strong>
                                 </li>
 
-                                <li>
-                                    <strong><a id="servicios" href="#" class="nav-link px-2 text-light">Servicios</a></strong>
-                                </li>
-
                             </ul>
 
                             <div class="text-end d-flex justify-content-center align-items-center gap-5 mr-2">
@@ -204,6 +200,11 @@
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="6" aria-label="Slide 7"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="7" aria-label="Slide 8"></button>
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -215,7 +216,22 @@
                 <div class="carousel-item">
                     <img src="../images/imagen6.JPEG" class="d-block w-100 img-fluid" alt="...">
                 </div>
+                <div class="carousel-item">
+                    <img src="../images/principal2.webp" class="d-block w-100 img-fluid" alt="...">
                 </div>
+                <div class="carousel-item">
+                    <img src="../images/patio.webp" class="d-block w-100 img-fluid" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="../images/salon.webp" class="d-block w-100 img-fluid" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="../images/salon2.webp" class="d-block w-100 img-fluid" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="../images/piscina.webp" class="d-block w-100 img-fluid" alt="...">
+                </div>
+            </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
@@ -866,6 +882,70 @@
             </div>`)
             
             </script>';
+        }
+
+        public function modalLoginIncorrecto(){
+
+            echo '<script>
+            
+                main = $("#main");
+
+                main.append(`<div class="modal fade show" id="modalLoginIncorrecto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="myModalLabel">Login Incorrecto</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Los datos son incorrectos
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>`)
+            
+            </script>';
+        }
+
+        public function modalPruebaFondo(){
+
+            echo '<script>
+            
+                main = $("#main");
+
+                main.append(`<div class="modal fade" id="myModal">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                  
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                      <h4 class="modal-title">Mensaje de Confirmación</h4>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    
+                    <!-- Modal body -->
+                    <div class="modal-body" style="background-color: #fff1e6;">
+                      <img src="../images/mensaje.png" alt="Placeholder Image" style="width:100%;">
+                      <p>El mensaje se ha enviado correctamente</p>
+                    </div>
+                    
+                    <!-- Modal footer -->
+                    <div class="modal-footer" style="background-color: #ffc107;">
+                      <button id="cerrar" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                      <button type="button" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>`)
+            
+            </script>';
+            
         }
 
     }

@@ -167,4 +167,24 @@ class Controller
         $this->view->modalReservaConfirmacion();
     }
 
+    public function actualizarReservas($db)
+    {
+        $this->model->actualizarReservas($db);
+    }
+
+    public function modalLoginIncorrecto()
+    {
+        $this->view->modalLoginIncorrecto();
+    }
+
+    public function modalPruebaFondo()
+    {
+        $this->view->modalPruebaFondo();
+    }
+
+    public function cancelarReserva($db, $id)
+    {
+        $this->model->cancelarReserva($db, $id);
+    }
+
 }

@@ -71,7 +71,7 @@
             main.append(`
             <form id="formulario">
                 <div class="container py-5">
-                    <div id="habitacionesDisponibles" class="card-columns3">
+                    <div id="habitacionesDisponibles" class="card-columns2">
                 
                     </div>
                 </div>
@@ -88,7 +88,7 @@
                 disponibles.append(`
 
                 
-                    <div class="card mb-5">
+                    <div class="card mb-5 w-75 noReserva">
                         <img src="data:image/jpg;base64,' . base64_encode($fila['imagen']) . '" class="card-img-top" alt="asfd">
                         <div class="card-body">
                             <h5 class="card-title">' . $fila['tipo_habitacion'] . '</h5>
@@ -155,11 +155,11 @@
 
                 especifica.append(`
 
-                    <div class="card mb-5">
+                    <div class="card mb-5 w-75 noReserva">
                         <img src="data:image/jpg;base64,' . base64_encode($fila['imagen']) . '" class="card-img-top" alt="Imagen Habitacion">
                         <div class="card-body">
                             <h5 class="card-title">' . $fila['tipo_habitacion'] . '</h5>
-                            <br>
+                            <p class="card-text">' . $fila['precio'] . '€</p>
                             <p class="card-text">' . $fila['descripcion'] . '</p>
                             <p class="card-text">' . $fila['estado'] . '</p>
                             <button id="reservar" class="btn btn-primary">Reservar</button>
@@ -189,13 +189,8 @@
 
                 echo '<script>
 
-                main = $("#main");
+                    window.location.href = "https://hotelgdfree.epizy.com/?loginIncorrecto";
 
-                main.append(`
-
-                    <h1>Login Incorrecto</h1>
-
-                    `);
 
                 </script>';
             } else {
@@ -369,14 +364,14 @@
 
                     reservas.append(`
 
-                    <div class="card mb-5">
+                    <div class="card mb-5 w-75 noReserva">
                             <img src="data:image/jpg;base64,' . base64_encode($imagen) . '" class="card-img-top" alt="Imagen Habitacion">
                             <div class="card-body">
                                 <h5 class="card-title">' . $tipo . '</h5>
                                 <br>
                                 <p class="card-text">Fecha de Inicio: ' . $fila['fecha_inicio'] . '</p>
                                 <p class="card-text">Fecha de Fin: ' . $fila['fecha_fin'] . '</p>
-                                <button id="reservar" class="btn btn-primary">Cancelar Reserva</button>
+                                <a id="cancelar" href="#" class="btn btn-primary" data-type=" ' . $fila['id_reserva'] . ' ">Cancelar Reserva</a>
                             </div>
                         </div>
 
@@ -401,7 +396,7 @@
                     <h1 class="d-flex justify-content-center centered-text mt-5 mb-5">Carrito</h1>
                     <div class="container py-5">
                             
-                            <div id="reservas" class="card-columns3">
+                            <div id="reservas" class="card-columns2">
                                 
                             </div>
                         
@@ -427,14 +422,14 @@
 
                     reservas.append(`
 
-                    <div class="card mb-5">
+                    <div id="reservaHabitacion" class="card mb-5 w-75 noReserva">
                             <img src="data:image/jpg;base64,' . base64_encode($imagen) . '" class="card-img-top" alt="Imagen Habitacion">
                             <div class="card-body">
                                 <h5 class="card-title">' . $tipo . '</h5>
                                 <br>
                                 <p class="card-text">Fecha de Inicio: ' . $fila['fecha_inicio'] . '</p>
                                 <p class="card-text">Fecha de Fin: ' . $fila['fecha_fin'] . '</p>
-                                <button id="reservar" class="btn btn-primary">Cancelar Reserva</button>
+                                <a id="cancelar" href="#" class="btn btn-primary" data-type=" ' . $fila['id_reserva'] . ' ">Cancelar Reserva</a>
                             </div>
                         </div>
 
@@ -479,6 +474,78 @@
             $param['Cliente'] = $id_cliente;
 
             $consulta = "insert into reservas values (NULL, :Habitacion, :Inicio, :Fin, :Cliente)";
+
+            $db->ConsultaSimple($consulta, $param);
+
+            $param = array();
+            $param['Estado'] = "Ocupado";
+            $param['Habitacion'] = $id_habitacion;
+
+            $consulta = "update habitaciones set estado=:Estado where id_habitacion=:Habitacion";
+
+            $db->ConsultaSimple($consulta, $param);
+        }
+
+        public function actualizarReservas($db)
+        {
+
+            $param = array();
+
+            $consulta = "select * from reservas";
+
+            $db->ConsultaDatos($consulta, $param);
+
+            foreach ($db->filas as $fila) {
+
+                $fecha = date('Y-m-d');
+
+                $fecha_fin = $fila['fecha_fin'];
+
+                //Si la fecha de hoy es mayor que la de fin de la reserva, borramos la reserva y volvemos a poner la habitación como disponible
+                if (strtotime($fecha) > strtotime($fecha_fin)) {
+
+                    $param = array();
+                    $param['Habitacion'] = $fila['id_habitacion'];
+                    $param['Estado'] = "Disponible";
+
+                    $consulta = "update habitaciones set estado=:Estado where id_habitacion=:Habitacion";
+
+                    $db->ConsultaSimple($consulta, $param);
+
+                    $param = array();
+                    $param['Reserva'] = $fila['id_reserva'];
+
+                    $consulta = "delete from reservas where id_reserva=:Reserva";
+
+                    $db->ConsultaSimple($consulta, $param);
+                }
+            }
+        }
+
+        public function cancelarReserva($db, $id)
+        {
+
+            $param = array();
+            $param['Reserva'] = $id;
+
+            $consulta = "select id_habitacion as id_habitacion from reservas where id_reserva=:Reserva";
+
+            $db->ConsultaDatos($consulta, $param);
+
+            $id_habitacion = $db->filas[0]['id_habitacion'];
+
+            $param = array();
+            $param['Habitacion'] = $id_habitacion;
+            $param['Estado'] = "Disponible";
+
+            $consulta = "update habitaciones set estado=:Estado where id_habitacion=:Habitacion";
+
+            $db->ConsultaSimple($consulta, $param);
+
+            $param = array();
+            $param['Reserva'] = $id;
+
+            $consulta = "delete from reservas where id_reserva=:Reserva";
 
             $db->ConsultaSimple($consulta, $param);
         }

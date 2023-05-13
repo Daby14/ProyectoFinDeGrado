@@ -12,6 +12,7 @@ if (form !== null) {
         } else {
 
             // Si el formulario es válido, abrir el modal
+            // $('#miModal').modal('show');
             $('#miModal').modal('show');
 
             let cerrar = document.getElementById("cerrar");
@@ -153,3 +154,12 @@ if (formReserva !== null) {
     }, false);
 }
 
+let cancelar = $('#reservas');
+
+cancelar.find('a').click((event) => {
+
+    var type = $(event.target).closest($('a')).get(0).dataset.type;
+
+    location.href = 'https://hotelgdfree.epizy.com/?idReserva=' + type;
+
+});
