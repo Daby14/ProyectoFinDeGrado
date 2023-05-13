@@ -204,7 +204,6 @@
 
         //Llamar al método de cancelar reserva
         $controller->cancelarReserva($db, $id_reserva);
-
     }
 
     //Si le damos a iniciar sesión
@@ -268,7 +267,6 @@
 
         //Miramos en la BBDD
         $controller->existeUsuario($usuario, $password, $db);
-
     } else {
 
         //Si se ha hecho login correctamente, recibimos el usuario
@@ -404,6 +402,9 @@
     }
 
     $controller->actualizarReservas($db);
+
+
+
 
 
 

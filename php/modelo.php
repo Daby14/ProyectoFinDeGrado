@@ -497,6 +497,8 @@
 
             foreach ($db->filas as $fila) {
 
+                date_default_timezone_set('Europe/Madrid');
+
                 $fecha = date('Y-m-d');
 
                 $fecha_fin = $fila['fecha_fin'];
