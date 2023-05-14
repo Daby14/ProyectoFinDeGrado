@@ -991,7 +991,9 @@
                                 <img src="../images/individual.jpg" class="card-img-top" alt="Foto de la piscina">
                                 <div class="card-body">
                                     <h3 class="card-title">Individual</h3>
-                                    <p class="card-text">Habitación Individual
+                                    <p class="card-text">Habitaciones muy luminosas y silenciosas, TV LED SMART 42 pulgadas, minibar, wifi
+                                    gratuito, 1 cama de 1,20 x 1,90 con colchón visco air de máximo confort. Dispone también de baño completo con plato de ducha
+                                    secador de pelo, dispensadores del gel y papel WC y toallas. Además, cuenta con aire acondicionado y calefacción.
                                     </p>
                                 </div>
                             </div>
@@ -1001,7 +1003,10 @@
                                 <img src="../images/dobles.jpg" class="card-img-top" alt="Foto del gimnasio">
                                 <div class="card-body">
                                     <h3 class="card-title">Doble</h3>
-                                    <p class="card-text">Habitación Doble</p>
+                                    <p class="card-text">Habitaciones muy luminosas y confortables, con smart tv 42 pulgadas, minibar y wifi gratuito. Cama de 
+                                    1,50 x 1,90 con colchón visco air de máximo confort, posibilidad de cama supletoria, baño completo con plato de ducha,
+                                    secador de pelo, dispensadores antibacterias para gel y papel higiénico y toallas. Cuenta con aire acondicionado y 
+                                    calefacción.</p>
                                 </div>
                             </div>
                         </div>
@@ -1010,7 +1015,10 @@
                                 <img src="../images/apartamento.jpg" class="card-img-top" alt="Foto del spa">
                                 <div class="card-body">
                                     <h3 class="card-title">Apartamento</h3>
-                                    <p class="card-text">Lujosos apartamentos
+                                    <p class="card-text">Apartamento familiar situado en la planta baja y con puerta independiente del hotel.
+                                    Dormitorio a todo confort con cama grande de 1,90 x 1,50 y cama pequeña de 1.90 x 0.90 con colchones de visco
+                                    air de máximo confort. El salón incluye sofá cama para 2 personas de 1,50 de ancho. Posibilidad de cama supletoria
+                                    o cuna bajo petición.
                                     </p>
                                 </div>
                             </div>
@@ -1020,7 +1028,9 @@
                                 <img src="../images/suites.jpg" class="card-img-top" alt="Foto del spa">
                                 <div class="card-body">
                                     <h3 class="card-title">Suite</h3>
-                                    <p class="card-text">Lujosas Suites
+                                    <p class="card-text">Nuestras suites disponen de cama de 1,60, baño privado con ducha, aire acondicionado,
+                                    zona de comedor con TV de pantalla plana de 60 pulgadas y cocina office con nevera y microondas, sofá cama
+                                    y balcones a la calle principal. Además, cuenta con un aire acondicionado y calefacción.
                                     </p>
                                 </div>
                             </div>
@@ -1035,7 +1045,7 @@
 
             echo '<p class="d-flex justify-content-center centered-text mb-5 mt-5">Se pueden observar las distintas reseñas que han dejado algunos de nuestros clientes:</p>';
 
-            echo '<div class="card mb-5 noReserva" style="max-width: 800px;">
+            echo '<div class="card mb-5 noReserva" style="max-width: 800px; background: #ADD8E6">
                 <div class="row g-0">
                 <div class="col-md-4">
                     <img src="../images/usuario.png" class="img-fluid rounded-start" alt="...">
@@ -1050,7 +1060,7 @@
                 </div>
             </div>
 
-            <div class="card mb-5 noReserva" style="max-width: 800px;">
+            <div class="card mb-5 noReserva" style="max-width: 800px; background: #ADD8E6">
                 <div class="row g-0">
                 <div class="col-md-4">
                     <img src="../images/usuario.png" class="img-fluid rounded-start" alt="...">
@@ -1065,7 +1075,7 @@
                 </div>
             </div>
 
-            <div class="card mb-5 noReserva" style="max-width: 800px;">
+            <div class="card mb-5 noReserva" style="max-width: 800px; background: #ADD8E6">
                 <div class="row g-0">
                 <div class="col-md-4">
                     <img src="../images/usuario.png" class="img-fluid rounded-start" alt="...">
@@ -1080,7 +1090,7 @@
                 </div>
             </div>
 
-            <div class="card mb-5 noReserva" style="max-width: 800px;">
+            <div class="card mb-5 noReserva" style="max-width: 800px; background: #ADD8E6">
                 <div class="row g-0">
                 <div class="col-md-4">
                     <img src="../images/usuario.png" class="img-fluid rounded-start" alt="...">

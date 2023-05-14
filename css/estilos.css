@@ -182,3 +182,17 @@
     }
 }
 
+.noOpiniones{
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+
+@media (max-width: 767px) {
+    .noOpiniones{
+        display: block;
+        margin: auto;
+        text-align: center;
+    }
+}
+
