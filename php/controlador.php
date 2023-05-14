@@ -187,4 +187,19 @@ class Controller
         $this->model->cancelarReserva($db, $id);
     }
 
+    public function mostrarMapa()
+    {
+        $this->view->mostrarMapa();
+    }
+
+    public function mostrarTipoHabitacion()
+    {
+        $this->view->mostrarTipoHabitacion();
+    }
+
+    public function opiniones()
+    {
+        $this->view->opiniones();
+    }
+
 }

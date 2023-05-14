@@ -163,3 +163,20 @@ cancelar.find('a').click((event) => {
     location.href = 'https://hotelgdfree.epizy.com/?idReserva=' + type;
 
 });
+
+// this.main.append($('<div class="container"><div class="m-4" id="mapid"></div></div>'));
+//         let mapContainer = $('#mapid');
+//         mapContainer.css({
+//             height: '350px',
+//             border: '2px solid #faa541'
+//         });
+
+//         let map = L.map('mapid')
+//             .setView([product.locations.latitude, product.locations.longitude], 15);
+
+//         L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+//             attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+//             maxZoom: 18
+//         }).addTo(map);
+
+//         let marker = L.marker([product.locations.latitude, product.locations.longitude]).addTo(map);

@@ -920,32 +920,182 @@
 
                 main.append(`<div class="modal fade" id="myModal">
                 <div class="modal-dialog modal-lg">
-                  <div class="modal-content">
-                  
+                    <div class="modal-content">
+                
                     <!-- Modal Header -->
                     <div class="modal-header">
-                      <h4 class="modal-title">Mensaje de Confirmación</h4>
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Mensaje de Confirmación</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     
                     <!-- Modal body -->
                     <div class="modal-body" style="background-color: #fff1e6;">
-                      <img src="../images/mensaje.png" alt="Placeholder Image" style="width:100%;">
-                      <p>El mensaje se ha enviado correctamente</p>
+                        <img src="../images/mensaje.png" alt="Placeholder Image" style="width:100%;">
+                        <p>El mensaje se ha enviado correctamente</p>
                     </div>
                     
                     <!-- Modal footer -->
                     <div class="modal-footer" style="background-color: #ffc107;">
-                      <button id="cerrar" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                      <button type="button" class="btn btn-primary">Guardar cambios</button>
+                        <button id="cerrar" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary">Guardar cambios</button>
                     </div>
                     
-                  </div>
+                    </div>
                 </div>
-              </div>`)
+                </div>`)
             
             </script>';
             
+        }
+
+        public function mostrarMapa(){
+
+            echo '<p class="d-flex justify-content-center centered-text mb-5">Esta es la ubicación de nuestro magnífico hotel en la famosa localidad de Almagro:</p>';
+
+            echo'<script>
+
+                main = $("#main");
+
+                main.append(`<div class="container"><div class="m-4" id="mapid"></div></div>`);
+
+                let mapContainer = $("#mapid");
+                mapContainer.css({
+                    height: "350px",
+                    border: "2px solid #faa541"
+                });
+
+                let map = L.map("mapid").setView([38.88979498688846, -3.710147340608609], 15);
+
+                L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                    maxZoom: 18
+                }).addTo(map);
+
+                let marker = L.marker([38.88979498688846, -3.710147340608609]).addTo(map);
+
+                marker.bindPopup("<strong>Hotel GD</strong>").openPopup();
+
+            </script>';
+
+        }
+
+        public function mostrarTipoHabitacion(){
+
+            echo '<p class="d-flex justify-content-center centered-text mb-5 mt-5">Estos son los tipos de habitaciones que existen en nuestro hotel:</p>';
+
+            echo '
+            <section class="tipos">
+                <div class="container mb-5 mt-5">
+                    <div class="row">
+                        <div class="col-md-6 mb-5">
+                            <div class="card">
+                                <img src="../images/individual.jpg" class="card-img-top" alt="Foto de la piscina">
+                                <div class="card-body">
+                                    <h3 class="card-title">Individual</h3>
+                                    <p class="card-text">Habitación Individual
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-5">
+                            <div class="card">
+                                <img src="../images/dobles.jpg" class="card-img-top" alt="Foto del gimnasio">
+                                <div class="card-body">
+                                    <h3 class="card-title">Doble</h3>
+                                    <p class="card-text">Habitación Doble</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-5">
+                            <div class="card">
+                                <img src="../images/apartamento.jpg" class="card-img-top" alt="Foto del spa">
+                                <div class="card-body">
+                                    <h3 class="card-title">Apartamento</h3>
+                                    <p class="card-text">Lujosos apartamentos
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-5">
+                            <div class="card">
+                                <img src="../images/suites.jpg" class="card-img-top" alt="Foto del spa">
+                                <div class="card-body">
+                                    <h3 class="card-title">Suite</h3>
+                                    <p class="card-text">Lujosas Suites
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>';
+
+        }
+
+        public function opiniones(){
+
+            echo '<p class="d-flex justify-content-center centered-text mb-5 mt-5">Se pueden observar las distintas reseñas que han dejado algunos de nuestros clientes:</p>';
+
+            echo '<div class="card mb-5 noReserva" style="max-width: 800px;">
+                <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="../images/usuario.png" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                    <h5 class="card-title">Increíble estancia en un hotel excepcional</h5>
+                    <p class="card-text">Increíble estancia en este hotel! El personal fue muy amable y servicial, las habitaciones eran limpias y cómodas, y la ubicación era perfecta. Definitivamente volvería a alojarme aquí.</p>
+                    <p class="card-text"><small class="text-muted">Escrito por BlueRaven87</small></p>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="card mb-5 noReserva" style="max-width: 800px;">
+                <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="../images/usuario.png" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                    <h5 class="card-title">Excelente hotel con una ubicación inmejorable</h5>
+                    <p class="card-text">Excelente hotel, con una ubicación inmejorable en el centro de la ciudad. El personal era muy amable y servicial, y las habitaciones eran cómodas y modernas. La vista desde mi habitación era impresionante. Definitivamente volveré a alojarme aquí</p>
+                    <p class="card-text"><small class="text-muted">Escrito por SunnyDays44</small></p>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="card mb-5 noReserva" style="max-width: 800px;">
+                <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="../images/usuario.png" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                    <h5 class="card-title">El hotel perfecto para familias con niños</h5>
+                    <p class="card-text">El hotel es agradable y tiene una buena relación calidad-precio. La habitación era cómoda y tenía todo lo que necesitaba. El personal era amable y servicial.</p>
+                    <p class="card-text"><small class="text-muted">Escrito por JazzFusion23</small></p>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="card mb-5 noReserva" style="max-width: 800px;">
+                <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="../images/usuario.png" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                    <h5 class="card-title">Experiencia perfecta en este hotel excepcional</h5>
+                    <p class="card-text">Mi estancia en este hotel fue perfecta. La habitación era cómoda y bien equipada, el personal era extremadamente amable y servicial, y la comida en el restaurante era deliciosa. Además, la ubicación era perfecta para explorar la ciudad. Definitivamente volvería a alojarme aquí.</p>
+                    <p class="card-text"><small class="text-muted">Escrito por MountainHiker99</small></p>
+                    </div>
+                </div>
+                </div>
+            </div>
+            ';
+
         }
 
     }

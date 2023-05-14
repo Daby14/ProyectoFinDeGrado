@@ -13,6 +13,11 @@
 
     <link rel="icon" type="image/png" href="../images/logo.jpg">
 
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 
 </head>
 
@@ -39,7 +44,13 @@
 
     $controller->mostrarCarousel();
 
+    $controller->mostrarTipoHabitacion();
+
     $controller->mostrarServicios();
+
+    $controller->opiniones();
+
+    $controller->mostrarMapa();
 
     echo "</main>";
 
@@ -403,7 +414,7 @@
 
     $controller->actualizarReservas($db);
 
-
+    
 
 
 
