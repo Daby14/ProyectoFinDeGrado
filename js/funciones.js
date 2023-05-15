@@ -95,6 +95,20 @@ prueba.find('a').click((event) => {
 
     console.log(type);
 
+    // var formData = new FormData();
+    // formData.append('type', type);
+
+    // fetch('post.php',{
+    //     method: 'POST',
+    //     body: formData
+    // }).then(res => res.json())
+    // .then(data => {
+    //     console.log(data);
+    // })
+
+    // Dato a enviar al servidor
+    // var dato = 5;
+
     // const data = {
     //     type: type
     // };
@@ -162,6 +176,16 @@ cancelar.find('a').click((event) => {
 
     location.href = 'https://hotelgdfree.epizy.com/?idReserva=' + type;
 
+    $('#modalCancelarReserva').modal('show');
+
+    let cerrar = document.getElementById("cerrar");
+
+    cerrar.addEventListener("click", function () {
+
+        window.location.href = "https://hotelgdfree.epizy.com/";
+
+    })
+
 });
 
 // this.main.append($('<div class="container"><div class="m-4" id="mapid"></div></div>'));
@@ -180,3 +204,25 @@ cancelar.find('a').click((event) => {
 //         }).addTo(map);
 
 //         let marker = L.marker([product.locations.latitude, product.locations.longitude]).addTo(map);
+
+// var dato = {
+//     nombre: 'John',
+//     edad: 30,
+//     ciudad: 'New York'
+// };
+
+// fetch('index.php', {
+//     method: 'POST',
+//     headers: {
+//         'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify(dato)
+// })
+//     .then(function (response) {
+//         return response.text();
+//     })
+//     .then(function (resultado) {
+//         console.log(resultado);
+//     });
+
+

@@ -33,7 +33,7 @@
                     <div class="container">
                         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 
-                            <img src="../images/logo.jpg" alt="logotipo" class="header__logo" itemprop="associatedMedia">
+                            <img src="../images/logo2.jpg" alt="logotipo" class="header__logo" itemprop="associatedMedia">
 
                             <ul id="menu" class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 
@@ -462,6 +462,8 @@
                         </div>
                         <div class="modal-body">
                             <p>Tu mensaje ha sido enviado correctamente</p>
+                            <br>
+                            <img src="../images/mensajeCorrecto.avif" class="img-fluid w-50"></img>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -574,6 +576,8 @@
                         </div>
                         <div class="modal-body">
                             <p>Has iniciado sesión correctamente</p>
+                            <br>
+                            <img src="../images/sesionCorrecta.jpg" class="img-fluid w-50"></img>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -715,6 +719,8 @@
                         </div>
                         <div class="modal-body">
                             Te has registrado correctamente
+                            <br>
+                            <img src="../images/registro.png" class="img-fluid w-25"></img>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -743,6 +749,8 @@
                         </div>
                         <div class="modal-body">
                             No te has podido registrar. El usuario ya está registrado
+                            <br>
+                            <img src="../images/prueba1.jpg" class="img-fluid w-50"></img>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -794,6 +802,8 @@
                         </div>
                         <div class="modal-body">
                             Debes iniciar sesión para consultar tu carrito
+                            <br>
+                            <img src="../images/carritoNoDisponible.webp" class="img-fluid w-50"></img>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -873,6 +883,8 @@
                         </div>
                         <div class="modal-body">
                             Se ha reservado correctamente la habitación. Muchas gracias por confiar en nuestro magnifico hotel
+                            <br>
+                            <img src="../images/reservaConfirmada.jpg" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -901,6 +913,9 @@
                         </div>
                         <div class="modal-body">
                             Los datos son incorrectos
+                            <br>
+                            <br>
+                            <img src="../images/loginFallido.jpg" class="img-fluid w-25"></img>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -910,42 +925,6 @@
             </div>`)
             
             </script>';
-        }
-
-        public function modalPruebaFondo(){
-
-            echo '<script>
-            
-                main = $("#main");
-
-                main.append(`<div class="modal fade" id="myModal">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">Mensaje de Confirmación</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    
-                    <!-- Modal body -->
-                    <div class="modal-body" style="background-color: #fff1e6;">
-                        <img src="../images/mensaje.png" alt="Placeholder Image" style="width:100%;">
-                        <p>El mensaje se ha enviado correctamente</p>
-                    </div>
-                    
-                    <!-- Modal footer -->
-                    <div class="modal-footer" style="background-color: #ffc107;">
-                        <button id="cerrar" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary">Guardar cambios</button>
-                    </div>
-                    
-                    </div>
-                </div>
-                </div>`)
-            
-            </script>';
-            
         }
 
         public function mostrarMapa(){
@@ -1106,6 +1085,65 @@
             </div>
             ';
 
+        }
+
+        public function modalCancelarReserva(){
+
+            echo '<script>
+            
+                main = $("#main");
+
+                main.append(`<div class="modal fade show" id="modalCancelarReserva" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="myModalLabel">Reserva Cancelada</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Se ha cancelado la reserva de la habitación correctamente.
+                            <br>
+                            <br>
+                            <img src="../images/reservaCancelada.jpg" class="img-fluid w-50"></img>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>`)
+            
+            </script>';
+        }
+
+        public function modalFalloReserva(){
+
+            echo '<script>
+            
+                main = $("#main");
+
+                main.append(`<div class="modal fade show" id="modalFalloReserva" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="myModalLabel">Fallo Reserva</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            La reserva no se puedo realizar correctamente. La fecha de inicio no puede ser anterior al día de hoy.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>`)
+            
+            </script>';
         }
 
     }

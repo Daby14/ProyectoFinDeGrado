@@ -177,11 +177,6 @@ class Controller
         $this->view->modalLoginIncorrecto();
     }
 
-    public function modalPruebaFondo()
-    {
-        $this->view->modalPruebaFondo();
-    }
-
     public function cancelarReserva($db, $id)
     {
         $this->model->cancelarReserva($db, $id);
@@ -200,6 +195,16 @@ class Controller
     public function opiniones()
     {
         $this->view->opiniones();
+    }
+
+    public function modalCancelarReserva()
+    {
+        $this->view->modalCancelarReserva();
+    }
+
+    public function modalFalloReserva()
+    {
+        $this->view->modalFalloReserva();
     }
 
 }

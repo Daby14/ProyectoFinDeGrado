@@ -11,13 +11,11 @@
     <!-- Carga los archivos CSS de Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
-    <link rel="icon" type="image/png" href="../images/logo.jpg">
+    <link rel="icon" type="image/jpg" href="../images/favicon.jpg">
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-        crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
 
-        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 
 </head>
 
@@ -185,28 +183,54 @@
         $fechaInicio = $_GET['fechaInicio'];
         $fechaFin = $_GET['fechaFin'];
         $id_habitacion = $_GET['id_habitacion'];
-
         $usuario = $_SESSION['cliente']['usuario'];
 
-        $controller->reservaHabitacion($db, $fechaInicio, $fechaFin, $usuario, $id_habitacion);
+        //En el caso de que la fecha de inicio sea menor que la actual, se repite el proceso de reserva
+        date_default_timezone_set('Europe/Madrid');
 
-        $controller->modalReservaConfirmacion();
+        $fecha = date('Y-m-d');
 
-        echo "<script>
+        //Si la fecha es menor, repetimos el proceso de reserva
+        if ($fechaInicio < $fecha) {
 
-        $(document).ready(function () {
-            $('#modalReservaConfirmacion').modal('show');
-    
-            let cerrar = document.getElementById('cerrar');
-    
-            cerrar.addEventListener('click', function () {
-    
-                window.location.href = 'https://hotelgdfree.epizy.com/';
-    
-            })
-        });
+            $controller->modalFalloReserva();
 
-        </script>";
+            echo "<script>
+
+                $(document).ready(function () {
+                    $('#modalFalloReserva').modal('show');
+            
+                    let cerrar = document.getElementById('cerrar');
+            
+                    cerrar.addEventListener('click', function () {
+            
+                        window.location.href = 'https://hotelgdfree.epizy.com/';
+            
+                    })
+                });
+
+            </script>";
+        } else {
+            $controller->reservaHabitacion($db, $fechaInicio, $fechaFin, $usuario, $id_habitacion);
+
+            $controller->modalReservaConfirmacion();
+
+            echo "<script>
+
+                $(document).ready(function () {
+                    $('#modalReservaConfirmacion').modal('show');
+            
+                    let cerrar = document.getElementById('cerrar');
+            
+                    cerrar.addEventListener('click', function () {
+            
+                        window.location.href = 'https://hotelgdfree.epizy.com/';
+            
+                    })
+                });
+
+            </script>";
+        }
     }
 
     if (isset($_GET['idReserva'])) {
@@ -215,6 +239,24 @@
 
         //Llamar al método de cancelar reserva
         $controller->cancelarReserva($db, $id_reserva);
+
+        $controller->modalCancelarReserva();
+
+        echo "<script>
+
+            $(document).ready(function() {
+                $('#modalCancelarReserva').modal('show');
+
+                let cerrar = document.getElementById('cerrar');
+
+                cerrar.addEventListener('click', function () {
+
+                window.location.href = 'https://hotelgdfree.epizy.com/';
+
+                })
+            });
+
+        </script>";
     }
 
     //Si le damos a iniciar sesión
@@ -414,9 +456,11 @@
 
     $controller->actualizarReservas($db);
 
+
+
+    // $type = $_POST['type'];
     
-
-
+    // echo json_encode("Correcto: <br>Tipo: " . $type);
 
 
 
@@ -466,6 +510,25 @@
     //     // No se recibieron datos JSON
     //     echo "No se recibieron datos JSON";
     // }
+
+
+
+
+    // $data = json_decode(file_get_contents('php://input'), true);
+
+    // if ($data) {
+    //     echo "Dato recibido: ";
+    //     print_r($data);
+    // } else {
+    //     echo "Dato no recibido";
+    // }
+
+
+
+
+
+
+
 
 
     ?>
