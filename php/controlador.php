@@ -207,4 +207,9 @@ class Controller
         $this->view->modalFalloReserva();
     }
 
+    public function modalConfirmacionCancelacionReserva()
+    {
+        $this->view->modalConfirmacionCancelacionReserva();
+    }
+
 }

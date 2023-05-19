@@ -190,8 +190,11 @@
 
         $fecha = date('Y-m-d');
 
+        //En el caso de que la fecha de fin sea menor o igual que la de inicio se repite el proceso de reserva
+        
+
         //Si la fecha es menor, repetimos el proceso de reserva
-        if ($fechaInicio < $fecha) {
+        if (($fechaInicio < $fecha) || ($fechaFin <= $fechaInicio)) {
 
             $controller->modalFalloReserva();
 
@@ -233,7 +236,7 @@
         }
     }
 
-    if (isset($_GET['idReserva'])) {
+    if (isset($_GET['idReserva']) && isset($_GET['confirmacion'])) {
 
         $id_reserva = $_GET['idReserva'];
 
@@ -254,6 +257,40 @@
                 window.location.href = 'https://hotelgdfree.epizy.com/';
 
                 })
+            });
+
+        </script>";
+    }else if (isset($_GET['idReserva'])) {
+
+        $id_reserva = $_GET['idReserva'];
+
+        $controller->modalConfirmacionCancelacionReserva();
+
+        //Si le doy a que sí, cierra el modal, y recarga la pagina con el id de la reserva para borrarla
+
+        //Si le doy a que no, cierra el modal, y recarga la pagina al carrito
+
+        echo "<script>
+
+            $(document).ready(function() {
+                $('#modalConfirmacionCancelacionReserva').modal('show');
+
+                let si = document.getElementById('si');
+
+                si.addEventListener('click', function () {
+
+                window.location.href = 'https://hotelgdfree.epizy.com/?idReserva=$id_reserva&confirmacion';
+
+                })
+
+                let no = document.getElementById('no');
+
+                no.addEventListener('click', function () {
+
+                window.location.href = 'https://hotelgdfree.epizy.com/?carrito';
+
+                })
+
             });
 
         </script>";
@@ -459,7 +496,7 @@
 
 
     // $type = $_POST['type'];
-    
+
     // echo json_encode("Correcto: <br>Tipo: " . $type);
 
 

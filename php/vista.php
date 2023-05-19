@@ -246,7 +246,7 @@
 
         public function servicios()
         {
-            echo '<p class="d-flex justify-content-center mb-5 mt-5 pruebaMargen centered-text">Estos son los diferentes servicios que puedes encontrar en nuestro hotel:</p>
+            echo '<h4 class="d-flex justify-content-center mb-5 mt-5 pruebaMargen centered-text">Nuestros Servicios</h4>
 
             <!-- Servicios -->
             <section class="services">
@@ -455,15 +455,15 @@
                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="miModalLabel">Mensaje de confirmación</h5>
+                            <h5 class="modal-title" id="miModalLabel" style="display: block; margin: auto; text-align: center;">Mensaje de confirmación</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body" style="display: block; margin: auto; text-align: center;">
                             <p>Tu mensaje ha sido enviado correctamente</p>
                             <br>
-                            <img src="../images/mensajeCorrecto.avif" class="img-fluid w-50"></img>
+                            <img src="../images/mensajeCorrecto.avif" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -702,7 +702,8 @@
             </script>';
         }
 
-        public function modalRegistro(){
+        public function modalRegistro()
+        {
 
             echo '<script>
             
@@ -712,15 +713,15 @@
                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="myModalLabel">Registro</h5>
+                            <h5 class="modal-title" id="myModalLabel" style="display: block; margin: auto; text-align: center;">Registro</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body" style="display: block; margin: auto; text-align: center;">
                             Te has registrado correctamente
                             <br>
-                            <img src="../images/registro.png" class="img-fluid w-25"></img>
+                            <img src="../images/registro.png" class="img-fluid w-25" style="display: block; margin: auto; text-align: center;"></img>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -732,7 +733,8 @@
             </script>';
         }
 
-        public function modalNoRegistro(){
+        public function modalNoRegistro()
+        {
 
             echo '<script>
             
@@ -742,15 +744,15 @@
                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="myModalLabel">Registro</h5>
+                            <h5 class="modal-title" id="myModalLabel" style="display: block; margin: auto; text-align: center;">Registro</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body" style="display: block; margin: auto; text-align: center;">
                             No te has podido registrar. El usuario ya está registrado
                             <br>
-                            <img src="../images/prueba1.jpg" class="img-fluid w-50"></img>
+                            <img src="../images/prueba1.jpg" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -785,7 +787,8 @@
             </script>';
         }
 
-        public function modalCarrito(){
+        public function modalCarrito()
+        {
 
             echo '<script>
             
@@ -795,15 +798,15 @@
                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="myModalLabel">Carrito No Disponible</h5>
+                            <h5 class="modal-title" id="myModalLabel" style="display: block; margin: auto; text-align: center;">Carrito No Disponible</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body" style="display: block; margin: auto; text-align: center;">
                             Debes iniciar sesión para consultar tu carrito
                             <br>
-                            <img src="../images/carritoNoDisponible.webp" class="img-fluid w-50"></img>
+                            <img src="../images/carritoNoDisponible.webp" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -866,7 +869,8 @@
             </script>';
         }
 
-        public function modalReservaConfirmacion(){
+        public function modalReservaConfirmacion()
+        {
 
             echo '<script>
             
@@ -876,12 +880,12 @@
                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="myModalLabel">Confirmación de Reserva</h5>
+                            <h5 class="modal-title" id="myModalLabel" style="display: block; margin: auto; text-align: center;">Confirmación de Reserva</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body" style="display: block; margin: auto; text-align: center;">
                             Se ha reservado correctamente la habitación. Muchas gracias por confiar en nuestro magnifico hotel
                             <br>
                             <img src="../images/reservaConfirmada.jpg" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
@@ -896,7 +900,8 @@
             </script>';
         }
 
-        public function modalLoginIncorrecto(){
+        public function modalLoginIncorrecto()
+        {
 
             echo '<script>
             
@@ -906,16 +911,16 @@
                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="myModalLabel">Login Incorrecto</h5>
+                            <h5 class="modal-title" id="myModalLabel" style="display: block; margin: auto; text-align: center;">Login Incorrecto</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body" style="display: block; margin: auto; text-align: center;">
                             Los datos son incorrectos
                             <br>
                             <br>
-                            <img src="../images/loginFallido.jpg" class="img-fluid w-25"></img>
+                            <img src="../images/loginFallido.jpg" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -927,11 +932,12 @@
             </script>';
         }
 
-        public function mostrarMapa(){
+        public function mostrarMapa()
+        {
 
-            echo '<p class="d-flex justify-content-center centered-text mb-5">Esta es la ubicación de nuestro magnífico hotel en la famosa localidad de Almagro:</p>';
+            echo '<h4 class="d-flex justify-content-center centered-text mb-5">Nuestra Ubicación</h4>';
 
-            echo'<script>
+            echo '<script>
 
                 main = $("#main");
 
@@ -954,12 +960,12 @@
                 marker.bindPopup("<strong>Hotel GD</strong>").openPopup();
 
             </script>';
-
         }
 
-        public function mostrarTipoHabitacion(){
+        public function mostrarTipoHabitacion()
+        {
 
-            echo '<p class="d-flex justify-content-center centered-text mb-5 mt-5">Estos son los tipos de habitaciones que existen en nuestro hotel:</p>';
+            echo '<h4 class="d-flex justify-content-center centered-text mb-5 mt-5">Nuestras Habitaciones</h4>';
 
             echo '
             <section class="tipos">
@@ -1017,12 +1023,12 @@
                     </div>
                 </div>
             </section>';
-
         }
 
-        public function opiniones(){
+        public function opiniones()
+        {
 
-            echo '<p class="d-flex justify-content-center centered-text mb-5 mt-5">Se pueden observar las distintas reseñas que han dejado algunos de nuestros clientes:</p>';
+            echo '<h4 class="d-flex justify-content-center centered-text mb-5 mt-5">Nuestras Reseñas</h4>';
 
             echo '<div class="card mb-5 noReserva" style="max-width: 800px; background: #ADD8E6">
                 <div class="row g-0">
@@ -1084,10 +1090,10 @@
                 </div>
             </div>
             ';
-
         }
 
-        public function modalCancelarReserva(){
+        public function modalCancelarReserva()
+        {
 
             echo '<script>
             
@@ -1097,16 +1103,16 @@
                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="myModalLabel">Reserva Cancelada</h5>
+                            <h5 class="modal-title" id="myModalLabel" style="display: block; margin: auto; text-align: center;">Reserva Cancelada</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body" style="display: block; margin: auto; text-align: center;">
                             Se ha cancelado la reserva de la habitación correctamente.
                             <br>
                             <br>
-                            <img src="../images/reservaCancelada.jpg" class="img-fluid w-50"></img>
+                            <img src="../images/reservaCancelada.jpg" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -1118,7 +1124,8 @@
             </script>';
         }
 
-        public function modalFalloReserva(){
+        public function modalFalloReserva()
+        {
 
             echo '<script>
             
@@ -1128,13 +1135,16 @@
                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="myModalLabel">Fallo Reserva</h5>
+                            <h5 class="modal-title" id="myModalLabel" style="display: block; margin: auto; text-align: center;">Fallo Reserva</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body" style="display: block; margin: auto; text-align: center;">
                             La reserva no se puedo realizar correctamente. La fecha de inicio no puede ser anterior al día de hoy.
+                            <br>
+                            <br>
+                            <img src="../images/reservaFallida.jpg" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -1146,6 +1156,38 @@
             </script>';
         }
 
+        public function modalConfirmacionCancelacionReserva()
+        {
+
+            echo '<script>
+            
+                main = $("#main");
+
+                main.append(`<div class="modal fade show" id="modalConfirmacionCancelacionReserva" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="myModalLabel" style="display: block; margin: auto; text-align: center;">Confirmación</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body" style="display: block; margin: auto; text-align: center;">
+                            Deseas cancelar la reserva?
+                            <br>
+                            <br>
+                            <img src="../images/duda2.png" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="si">Si</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="no">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>`)
+            
+            </script>';
+        }
     }
 
     ?>

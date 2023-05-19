@@ -176,15 +176,15 @@ cancelar.find('a').click((event) => {
 
     location.href = 'https://hotelgdfree.epizy.com/?idReserva=' + type;
 
-    $('#modalCancelarReserva').modal('show');
+    $('#modalConfirmacionCancelacionReserva').modal('show');
 
-    let cerrar = document.getElementById("cerrar");
+    // let cerrar = document.getElementById("cerrar");
 
-    cerrar.addEventListener("click", function () {
+    // cerrar.addEventListener("click", function () {
 
-        window.location.href = "https://hotelgdfree.epizy.com/";
+    //     window.location.href = "https://hotelgdfree.epizy.com/";
 
-    })
+    // })
 
 });
 

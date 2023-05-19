@@ -159,7 +159,7 @@
                         <img src="data:image/jpg;base64,' . base64_encode($fila['imagen']) . '" class="card-img-top" alt="Imagen Habitacion">
                         <div class="card-body">
                             <h5 class="card-title">' . $fila['tipo_habitacion'] . '</h5>
-                            <p class="card-text">' . $fila['precio'] . '€</p>
+                            <p class="card-text">' . $fila['precio'] . '€/noche</p>
                             <p class="card-text">' . $fila['descripcion'] . '</p>
                             <p class="card-text">' . $fila['estado'] . '</p>
                             <button id="reservar" class="btn btn-primary">Reservar</button>
@@ -295,6 +295,25 @@
 
             $total = $db->filas[0]['total'];
 
+            function obtenerNombreMes($mes_numero) {
+                $meses = array(
+                    "01" => "enero",
+                    "02" => "febrero",
+                    "03" => "marzo",
+                    "04" => "abril",
+                    "05" => "mayo",
+                    "06" => "junio",
+                    "07" => "julio",
+                    "08" => "agosto",
+                    "09" => "septiembre",
+                    "10" => "octubre",
+                    "11" => "noviembre",
+                    "12" => "diciembre"
+                );
+            
+                return ucfirst($meses[$mes_numero]);
+            }
+
             if ($total == 0) {
                 echo '<script>
 
@@ -358,6 +377,26 @@
                     $imagen = $db->filas[0]['imagen'];
                     $tipo = $db->filas[0]['tipo'];
 
+                    //Obtenemos la fecha de inicio y la de fin
+                    $componentes_inicio = explode("-", $fila['fecha_inicio']);
+                    $componentes_fin = explode("-", $fila['fecha_fin']);
+
+                    $dia_inicio = $componentes_inicio[2];
+                    $mes_inicio = $componentes_inicio[1];
+                    $anio_inicio = $componentes_inicio[0];
+
+                    $dia_fin = $componentes_fin[2];
+                    $mes_fin = $componentes_fin[1];
+                    $anio_fin = $componentes_fin[0];
+                    
+                    $mes_numero_inicio = $mes_inicio;
+                    $mes_numero_fin = $mes_fin;
+                    $nombre_mes_inicio = obtenerNombreMes($mes_numero_inicio);
+                    $nombre_mes_fin = obtenerNombreMes($mes_numero_fin);
+
+                    $fecha_inicio = $dia_inicio . " de " . $nombre_mes_inicio . " de " . $anio_inicio;
+                    $fecha_fin = $dia_fin . " de " . $nombre_mes_fin . " de " . $anio_fin;
+
                     echo '<script>
 
                     reservas = $("#reservas");
@@ -369,8 +408,8 @@
                             <div class="card-body">
                                 <h5 class="card-title">' . $tipo . '</h5>
                                 <br>
-                                <p class="card-text">Fecha de Inicio: ' . $fila['fecha_inicio'] . '</p>
-                                <p class="card-text">Fecha de Fin: ' . $fila['fecha_fin'] . '</p>
+                                <p class="card-text">Fecha de Inicio: ' . $fecha_inicio . '</p>
+                                <p class="card-text">Fecha de Fin: ' . $fecha_fin . '</p>
                                 <a id="cancelar" href="#" class="btn btn-primary" data-type=" ' . $fila['id_reserva'] . ' ">Cancelar Reserva</a>
                             </div>
                         </div>
@@ -416,6 +455,26 @@
                     $imagen = $db->filas[0]['imagen'];
                     $tipo = $db->filas[0]['tipo'];
 
+                    //Obtenemos la fecha de inicio y la de fin
+                    $componentes_inicio = explode("-", $fila['fecha_inicio']);
+                    $componentes_fin = explode("-", $fila['fecha_fin']);
+
+                    $dia_inicio = $componentes_inicio[2];
+                    $mes_inicio = $componentes_inicio[1];
+                    $anio_inicio = $componentes_inicio[0];
+
+                    $dia_fin = $componentes_fin[2];
+                    $mes_fin = $componentes_fin[1];
+                    $anio_fin = $componentes_fin[0];
+                    
+                    $mes_numero_inicio = $mes_inicio;
+                    $mes_numero_fin = $mes_fin;
+                    $nombre_mes_inicio = obtenerNombreMes($mes_numero_inicio);
+                    $nombre_mes_fin = obtenerNombreMes($mes_numero_fin);
+
+                    $fecha_inicio = $dia_inicio . " de " . $nombre_mes_inicio . " de " . $anio_inicio;
+                    $fecha_fin = $dia_fin . " de " . $nombre_mes_fin . " de " . $anio_fin;
+
                     echo '<script>
 
                     reservas = $("#reservas");
@@ -427,8 +486,8 @@
                             <div class="card-body">
                                 <h5 class="card-title">' . $tipo . '</h5>
                                 <br>
-                                <p class="card-text">Fecha de Inicio: ' . $fila['fecha_inicio'] . '</p>
-                                <p class="card-text">Fecha de Fin: ' . $fila['fecha_fin'] . '</p>
+                                <p class="card-text">Fecha de Inicio: ' . $fecha_inicio . '</p>
+                                <p class="card-text">Fecha de Fin: ' . $fecha_fin . '</p>
                                 <a id="cancelar" href="#" class="btn btn-primary" data-type=" ' . $fila['id_reserva'] . ' ">Cancelar Reserva</a>
                             </div>
                         </div>
