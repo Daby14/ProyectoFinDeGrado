@@ -50,7 +50,7 @@
 
                                 <li>
                                     
-                                    <strong><a id="habitaciones" href="https://hotelgdfree.epizy.com/?habitaciones" class="nav-link px-2 text-light">Habitaciones</a></strong>
+                                    <strong><a id="habitacionesMenu" href="#" class="nav-link px-2 text-light">Habitaciones</a></strong>
                                 </li>
 
                                 <li>
@@ -456,14 +456,11 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="miModalLabel" style="display: block; margin: auto; text-align: center;">Mensaje de confirmación</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
                         </div>
                         <div class="modal-body" style="display: block; margin: auto; text-align: center;">
                             <p>Tu mensaje ha sido enviado correctamente</p>
                             <br>
-                            <img src="../images/mensajeCorrecto.avif" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
+                            <img src="../images/mensajeCorrecto.avif" class="img-fluid w-25" style="display: block; margin: auto; text-align: center;"></img>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -489,9 +486,6 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="miModalLabel">ACCIÓN NO IMPLEMENTADA</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
                         </div>
                         <div class="modal-body">
                             <p>Esta acción no está implementada</p>
@@ -570,9 +564,6 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="miModalLabel">Mensaje de confirmación</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
                         </div>
                         <div class="modal-body">
                             <p>Has iniciado sesión correctamente</p>
@@ -714,9 +705,6 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="myModalLabel" style="display: block; margin: auto; text-align: center;">Registro</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
                         </div>
                         <div class="modal-body" style="display: block; margin: auto; text-align: center;">
                             Te has registrado correctamente
@@ -745,9 +733,6 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="myModalLabel" style="display: block; margin: auto; text-align: center;">Registro</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
                         </div>
                         <div class="modal-body" style="display: block; margin: auto; text-align: center;">
                             No te has podido registrar. El usuario ya está registrado
@@ -799,9 +784,6 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="myModalLabel" style="display: block; margin: auto; text-align: center;">Carrito No Disponible</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
                         </div>
                         <div class="modal-body" style="display: block; margin: auto; text-align: center;">
                             Debes iniciar sesión para consultar tu carrito
@@ -881,9 +863,6 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="myModalLabel" style="display: block; margin: auto; text-align: center;">Confirmación de Reserva</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
                         </div>
                         <div class="modal-body" style="display: block; margin: auto; text-align: center;">
                             Se ha reservado correctamente la habitación. Muchas gracias por confiar en nuestro magnifico hotel
@@ -912,9 +891,6 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="myModalLabel" style="display: block; margin: auto; text-align: center;">Login Incorrecto</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
                         </div>
                         <div class="modal-body" style="display: block; margin: auto; text-align: center;">
                             Los datos son incorrectos
@@ -1104,9 +1080,6 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="myModalLabel" style="display: block; margin: auto; text-align: center;">Reserva Cancelada</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
                         </div>
                         <div class="modal-body" style="display: block; margin: auto; text-align: center;">
                             Se ha cancelado la reserva de la habitación correctamente.
@@ -1136,9 +1109,6 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="myModalLabel" style="display: block; margin: auto; text-align: center;">Fallo Reserva</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
                         </div>
                         <div class="modal-body" style="display: block; margin: auto; text-align: center;">
                             La reserva no se puedo realizar correctamente. La fecha de inicio no puede ser anterior al día de hoy.
@@ -1168,9 +1138,6 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="myModalLabel" style="display: block; margin: auto; text-align: center;">Confirmación</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
                         </div>
                         <div class="modal-body" style="display: block; margin: auto; text-align: center;">
                             Deseas cancelar la reserva?

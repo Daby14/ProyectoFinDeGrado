@@ -97,13 +97,15 @@
     }
 
     //Si recibimos el id específico de la habitación que se quiera reservar, mostramos sus datos
-    if (isset($_GET['id']) && isset($_SESSION['cliente'])) {
+    // if (isset($_GET['id']) && isset($_SESSION['cliente'])) {
+
+    if (isset($_GET['click']) && isset($_SESSION['cliente'])) {
 
         $id = $_GET['id'];
 
         $controller->borrarMain();
 
-        $controller->habitacionEspecifica($db, $id);
+        // $controller->habitacionEspecifica($db, $id);
 
         // $controller->mostrarModalReserva();
 
@@ -127,7 +129,7 @@
 
         </script>";
     } else {
-        if (isset($_GET['id'])) {
+        if (isset($_GET['click'])) {
 
             $controller->borrarMain();
 
@@ -191,7 +193,7 @@
         $fecha = date('Y-m-d');
 
         //En el caso de que la fecha de fin sea menor o igual que la de inicio se repite el proceso de reserva
-        
+
 
         //Si la fecha es menor, repetimos el proceso de reserva
         if (($fechaInicio < $fecha) || ($fechaFin <= $fechaInicio)) {
@@ -260,7 +262,7 @@
             });
 
         </script>";
-    }else if (isset($_GET['idReserva'])) {
+    } else if (isset($_GET['idReserva'])) {
 
         $id_reserva = $_GET['idReserva'];
 
@@ -493,80 +495,22 @@
 
     $controller->actualizarReservas($db);
 
+    //Si se recibe la sesión cliente le añado el id a la sección de habitaciones
+    if (isset($_SESSION['cliente'])) {
 
+        echo '<script>
+        
+        let elemento = document.getElementById("habitacionesMenu");
 
-    // $type = $_POST['type'];
+        if(elemento != null){
+            elemento.href = "https://hotelgdfree.epizy.com/?habitaciones";
+        }
 
-    // echo json_encode("Correcto: <br>Tipo: " . $type);
+        
 
-
-
-
-    // $controller->pruebaJSON($db);
-
-
-
-    // if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_SERVER['CONTENT_TYPE']) && $_SERVER['CONTENT_TYPE'] === 'application/json') {
-
-    // Recibimos datos JSON, decodifícalos
-    // $data = json_decode(file_get_contents('php://input'), true);
-
-    // if ($data !== null) {
-
-    //      $id = $data['type'];
-
-    // $controller->pruebaJSON($db, $type);
-
-    // $param = array();
-    // $param['Usuario'] = $type;
-
-    // $consulta = "insert into usuarios values (NULL, :Type, :Password)";
-    // $consulta = "select * from habitaciones where id_habitacion=:Usuario";
-    // $consulta = "select * from usuarios where usuario=:Usuario";
-
-    // $db->ConsultaDatos($consulta, $param);
-
-    // $id_usuario = $db->filas[0]['id_usuario'];
-
-    // echo $id_usuario;
-
-    // foreach ($db->filas as $fila) {
-
-    //     echo $fila['id_usuario'];
-
-    //     echo $fila['password'];
-    // }
-
-    // $controller->habitacionEspecifica($db, $id);
-
-    // } else {
-    //     // Los datos no son un JSON válido
-    //     echo "Los datos no son un JSON válido";
-    // }
-    // } else {
-    //     // No se recibieron datos JSON
-    //     echo "No se recibieron datos JSON";
-    // }
-
-
-
-
-    // $data = json_decode(file_get_contents('php://input'), true);
-
-    // if ($data) {
-    //     echo "Dato recibido: ";
-    //     print_r($data);
-    // } else {
-    //     echo "Dato no recibido";
-    // }
-
-
-
-
-
-
-
-
+        </script>';
+        
+    }
 
     ?>
 

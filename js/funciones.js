@@ -1,3 +1,4 @@
+//Formulario de Contacto
 let form = document.getElementById("formContacto");
 
 if (form !== null) {
@@ -12,7 +13,6 @@ if (form !== null) {
         } else {
 
             // Si el formulario es válido, abrir el modal
-            // $('#miModal').modal('show');
             $('#miModal').modal('show');
 
             let cerrar = document.getElementById("cerrar");
@@ -27,10 +27,11 @@ if (form !== null) {
     }, false);
 }
 
-let form2 = document.getElementById("formSesion");
+//Formulario de Sesión
+let formSesion = document.getElementById("formSesion");
 
-if (form2 !== null) {
-    form2.addEventListener("submit", function (event) {
+if (formSesion !== null) {
+    formSesion.addEventListener("submit", function (event) {
         // Prevenir que el formulario se envíe automáticamente
         event.preventDefault();
 
@@ -50,6 +51,7 @@ if (form2 !== null) {
     }, false);
 }
 
+//Formulario de Registro
 let formRegistro = document.getElementById("formRegistro");
 
 if (formRegistro !== null) {
@@ -72,69 +74,101 @@ if (formRegistro !== null) {
 
             window.location.href = "https://hotelgdfree.epizy.com/?nombre=" + nombre + "&apellido=" + apellido + "&usuario=" + usuario + "&password=" + password + "&email=" + email + "&telefono=" + telefono + "";
 
-            // Si el formulario es válido, abrir el modal
-            // $('#modalRegistro').modal('show');
-
-            // let cerrar = document.getElementById("cerrar");
-
-            // cerrar.addEventListener("click", function () {
-
-            // window.location.href = "https://hotelgdfree.epizy.com/?nombre=" + nombre + "&apellido=" + apellido + "&usuario=" + usuario + "&password=" + password + "&email=" + email + "&telefono=" + telefono + "";
-
-            // })
-
         }
     }, false);
 }
 
-let prueba = $('#habitacionesDisponibles');
+//Obtener el id de una habitación específica
+let especifica = $('#habitacionesDisponibles');
 
-prueba.find('a').click((event) => {
+especifica.find('a').click((event) => {
 
     var type = $(event.target).closest($('a')).get(0).dataset.type;
 
     console.log(type);
 
-    // var formData = new FormData();
-    // formData.append('type', type);
+    $.ajax({
+        url: 'pruebaJSON.php?tipo=id', // Ruta del archivo en el servidor que verifica la disponibilidad del correo electrónico
+        type: 'POST',
+        data: { type: type },
+        success: function (response) {
+            // console.log(response)
+            if (response.exists) {
+                // console.log("el correo ya existe")
+                // El correo electrónico ya está en uso
+                // showFeedBack($(form.email), false, 'El correo electrónico ya está en uso');
 
-    // fetch('post.php',{
-    //     method: 'POST',
-    //     body: formData
-    // }).then(res => res.json())
-    // .then(data => {
-    //     console.log(data);
-    // })
+                $("#main").empty();
 
-    // Dato a enviar al servidor
-    // var dato = 5;
+                $("#main").append(`
+                <div class="container py-5">
+                    <div id="habitacionEspecifica">
+                
+                    </div>
+                </div>`);
 
-    // const data = {
-    //     type: type
-    // };
+                for (let i = 0; i < response.exists.length; i += 6) {
+                    // console.log(response.exists[i]);
 
-    // // Hacer la petición HTTP POST al archivo PHP
-    // fetch('index.php', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify(data)
-    // })
-    //     .then(response => {
-    //         // Manejar la respuesta del servidor
-    //         console.log('Respuesta del servidor:', response);
-    //     })
-    //     .catch(error => {
-    //         // Manejar los errores de la petición
-    //         console.error('Error al hacer la petición:', error);
-    //     });
+                    let especifica = $("#habitacionEspecifica");
 
-    location.href = 'https://hotelgdfree.epizy.com/?id=' + type;
+                    especifica.append(`
 
+                    <div class="card mb-5 w-100 noReserva">
+                        <div class="row g-0">
+                            <div class="col-md-5">
+                                <img src="data:image/jpg;base64,${response.exists[i]}" class="img-fluid rounded-start" alt="asfd">
+                            </div>
+                            <div class="col-md-7" style="display:block; margin:auto;">
+                                <div class="card-body" id="prueba7">
+                                    <h5 class="card-title">${response.exists[i + 1]}</h5>
+                                    <p class="card-text">${response.exists[i + 2]}€/noche</p>
+                                    <p class="card-text">${response.exists[i + 3]}</p>
+                                    <p class="card-text">${response.exists[i + 4]}</p>
+                                    <button id="reservar" class="btn btn-primary">Reservar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    `);
+
+                    let boton = $('#reservar');
+
+                    boton.click(function () {
+
+                        // $('#modalReserva').modal('show');
+
+                        // let cerrar = document.getElementById('cerrar');
+
+                        // cerrar.addEventListener('click', function () {
+
+                        window.location.href = `https://hotelgdfree.epizy.com/?reservar&id_habitacion=${response.exists[i + 5]}`;
+
+                        // })
+
+                    });
+
+                }
+
+
+
+            } else {
+                console.log("esta mal")
+            }
+        },
+        error: function () {
+        }
+    });
+
+    // location.href = 'https://hotelgdfree.epizy.com/?id=' + type;
 
 });
 
+//Si le damos a reservar
+
+
+//Comprobamos si hemos pulsado el carrito
 let carrito = $('#carrito');
 
 carrito.click(() => {
@@ -143,6 +177,7 @@ carrito.click(() => {
 
 });
 
+//Formulario de Reserva
 let formReserva = document.getElementById("formReserva");
 
 if (formReserva !== null) {
@@ -168,6 +203,7 @@ if (formReserva !== null) {
     }, false);
 }
 
+//Obtenemos el id de la reserva a cancelar
 let cancelar = $('#reservas');
 
 cancelar.find('a').click((event) => {
@@ -178,51 +214,4 @@ cancelar.find('a').click((event) => {
 
     $('#modalConfirmacionCancelacionReserva').modal('show');
 
-    // let cerrar = document.getElementById("cerrar");
-
-    // cerrar.addEventListener("click", function () {
-
-    //     window.location.href = "https://hotelgdfree.epizy.com/";
-
-    // })
-
 });
-
-// this.main.append($('<div class="container"><div class="m-4" id="mapid"></div></div>'));
-//         let mapContainer = $('#mapid');
-//         mapContainer.css({
-//             height: '350px',
-//             border: '2px solid #faa541'
-//         });
-
-//         let map = L.map('mapid')
-//             .setView([product.locations.latitude, product.locations.longitude], 15);
-
-//         L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-//             attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
-//             maxZoom: 18
-//         }).addTo(map);
-
-//         let marker = L.marker([product.locations.latitude, product.locations.longitude]).addTo(map);
-
-// var dato = {
-//     nombre: 'John',
-//     edad: 30,
-//     ciudad: 'New York'
-// };
-
-// fetch('index.php', {
-//     method: 'POST',
-//     headers: {
-//         'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify(dato)
-// })
-//     .then(function (response) {
-//         return response.text();
-//     })
-//     .then(function (resultado) {
-//         console.log(resultado);
-//     });
-
-

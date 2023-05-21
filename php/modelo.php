@@ -87,18 +87,21 @@
 
                 disponibles.append(`
 
-                
-                    <div class="card mb-5 w-75 noReserva">
-                        <img src="data:image/jpg;base64,' . base64_encode($fila['imagen']) . '" class="card-img-top" alt="asfd">
-                        <div class="card-body">
-                            <h5 class="card-title">' . $fila['tipo_habitacion'] . '</h5>
-                            <br>
-                            <a href="#" class="btn btn-primary" data-type=" ' . $fila['id_habitacion'] . ' ">Ver mas</a>
+                    <div class="card mb-5 w-100 noReserva">
+                        <div class="row g-0">
+                            <div class="col-md-5">
+                                <img src="data:image/jpg;base64,' . base64_encode($fila['imagen']) . '" class="img-fluid rounded-start" alt="asfd">
+                            </div>
+                            <div class="col-md-7" style="display:block; margin:auto;">
+                                <div class="card-body">
+                                    <h4 class="card-title">' . htmlspecialchars($fila['tipo_habitacion']) . '</h4> 
+                                    <br>
+                                    <br>
+                                    <a href="#" class="btn btn-primary" data-type=" ' . $fila['id_habitacion'] . ' ">Ver mas</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                
-
-                    `);
+                    </div>`);
 
                 </script>';
             }
@@ -155,16 +158,24 @@
 
                 especifica.append(`
 
-                    <div class="card mb-5 w-75 noReserva">
-                        <img src="data:image/jpg;base64,' . base64_encode($fila['imagen']) . '" class="card-img-top" alt="Imagen Habitacion">
-                        <div class="card-body">
-                            <h5 class="card-title">' . $fila['tipo_habitacion'] . '</h5>
-                            <p class="card-text">' . $fila['precio'] . '€/noche</p>
-                            <p class="card-text">' . $fila['descripcion'] . '</p>
-                            <p class="card-text">' . $fila['estado'] . '</p>
-                            <button id="reservar" class="btn btn-primary">Reservar</button>
+                    <div class="card mb-5 w-100 noReserva">
+                        <div class="row g-0">
+                            <div class="col-md-5">
+                                <img src="data:image/jpg;base64,' . base64_encode($fila['imagen']) . '" class="img-fluid rounded-start" alt="asfd">
+                            </div>
+                            <div class="col-md-7" style="display:block; margin:auto;">
+                                <div class="card-body">
+                                    <h5 class="card-title">' . $fila['tipo_habitacion'] . '</h5>
+                                    <p class="card-text">' . $fila['precio'] . '€/noche</p>
+                                    <p class="card-text">' . $fila['descripcion'] . '</p>
+                                    <p class="card-text">' . $fila['estado'] . '</p>
+                                    <button id="reservar" class="btn btn-primary">Reservar</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+                    
 
                     `);
 
@@ -295,7 +306,8 @@
 
             $total = $db->filas[0]['total'];
 
-            function obtenerNombreMes($mes_numero) {
+            function obtenerNombreMes($mes_numero)
+            {
                 $meses = array(
                     "01" => "enero",
                     "02" => "febrero",
@@ -310,7 +322,7 @@
                     "11" => "noviembre",
                     "12" => "diciembre"
                 );
-            
+
                 return ucfirst($meses[$mes_numero]);
             }
 
@@ -388,7 +400,7 @@
                     $dia_fin = $componentes_fin[2];
                     $mes_fin = $componentes_fin[1];
                     $anio_fin = $componentes_fin[0];
-                    
+
                     $mes_numero_inicio = $mes_inicio;
                     $mes_numero_fin = $mes_fin;
                     $nombre_mes_inicio = obtenerNombreMes($mes_numero_inicio);
@@ -466,7 +478,7 @@
                     $dia_fin = $componentes_fin[2];
                     $mes_fin = $componentes_fin[1];
                     $anio_fin = $componentes_fin[0];
-                    
+
                     $mes_numero_inicio = $mes_inicio;
                     $mes_numero_fin = $mes_fin;
                     $nombre_mes_inicio = obtenerNombreMes($mes_numero_inicio);

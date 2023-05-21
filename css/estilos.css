@@ -9,13 +9,6 @@
     margin-top: 70px;
 }
 
-/* .formuContacto{
-    background-image: url("../images/imagen9.JPEG"); 
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center top;
-} */
-
 .card {
     border: none;
     border-radius: 15px;
@@ -45,31 +38,6 @@
 .card-text {
     margin-bottom: 20px;
 }
-
-@media (min-width: 768px) {
-    .card-columns {
-        column-count: 3;
-    }
-}
-
-@media (min-width: 768px) {
-    .card-columns2 {
-        column-count: 1;
-    }
-}
-
-@media (min-width: 768px) {
-    .card-columns3 {
-        column-count: 2;
-    }
-}
-
-/* .bg-image {
-    background-image: url('../images/imagen8.JPEG');
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-  } */
 
 .bg-form {
     max-width: 600px;
@@ -107,12 +75,6 @@
     height: 100vh;
 }
 
-@media (max-width: 767px) {
-    .bg-form {
-        margin-top: 0;
-    }
-}
-
 .carousel{
     height: 600px;
 }
@@ -123,20 +85,6 @@
 
 .carousel + .pruebaMargen {
     margin-top: -150px;
-}
-
-@media (max-width: 767px) {
-    .carousel-item img {
-        height: 600px;
-    }
-
-    .carousel + .pruebaMargen {
-        margin-top: -100px;
-    }
-
-    .card{
-        margin-bottom: 50px;
-    }
 }
 
 .introduccion {
@@ -174,18 +122,57 @@
     text-align: center;
 }
 
+.noOpiniones{
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+
+/* RESPONSIVE */
+@media (min-width: 768px) {
+    .card-columns {
+        column-count: 3;
+    }
+}
+
+@media (min-width: 768px) {
+    .card-columns2 {
+        column-count: 1;
+    }
+}
+
+@media (min-width: 768px) {
+    .card-columns3 {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 767px) {
+    .bg-form {
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 767px) {
+    .carousel-item img {
+        height: 600px;
+    }
+
+    .carousel + .pruebaMargen {
+        margin-top: -100px;
+    }
+
+    .card{
+        margin-bottom: 50px;
+    }
+}
+
 @media (max-width: 767px) {
     .noReserva{
         display: block;
         margin: auto;
         text-align: center;
     }
-}
-
-.noOpiniones{
-    display: block;
-    margin: auto;
-    text-align: center;
 }
 
 @media (max-width: 767px) {

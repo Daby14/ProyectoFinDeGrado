@@ -1,14 +1,17 @@
 <?php
 
+//Importamos el modelo y la vista
 require_once 'modelo.php';
 require_once 'vista.php';
 
+//Clase Controller
 class Controller
 {
     private $model;
     private $view;
     private $db;
 
+    //Constructor donde instanciamos modelo, vista y la BBDD
     public function __construct()
     {
         $this->model = new Model();
@@ -16,11 +19,12 @@ class Controller
         $this->db = new DB("epiz_34160839_hotelgd");
     }
 
+    //Habitaciones disponibles
     public function disponibles($db)
     {
         $this->model->habitacionesDisponibles($db);
     }
-
+    
     public function mostrarBoton()
     {
         $this->view->boton();
