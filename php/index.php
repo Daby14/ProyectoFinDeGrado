@@ -114,7 +114,7 @@
             let boton = $('#reservar');
 
             boton.click(function(){
-            
+
                 // $('#modalReserva').modal('show');
 
                 // let cerrar = document.getElementById('cerrar');
@@ -124,7 +124,7 @@
                 window.location.href = 'https://hotelgdfree.epizy.com/?reservar&id_habitacion=$id';
 
                 // })
-                
+
             });
 
         </script>";
@@ -147,8 +147,8 @@
                     <a href="https://hotelgdfree.epizy.com/?sesion" class="btn btn-primary">Iniciar Sesion</a>
                 </div>
             </div>
-                    
-                
+
+
             </div>`);
 
             let footer = document.getElementById("footer");
@@ -179,7 +179,6 @@
         </script>";
     }
 
-
     if (isset($_GET['fechaInicio']) && isset($_GET['fechaFin']) && isset($_GET['id_habitacion'])) {
 
         $fechaInicio = $_GET['fechaInicio'];
@@ -204,13 +203,13 @@
 
                 $(document).ready(function () {
                     $('#modalFalloReserva').modal('show');
-            
+
                     let cerrar = document.getElementById('cerrar');
-            
+
                     cerrar.addEventListener('click', function () {
-            
+
                         window.location.href = 'https://hotelgdfree.epizy.com/';
-            
+
                     })
                 });
 
@@ -224,13 +223,13 @@
 
                 $(document).ready(function () {
                     $('#modalReservaConfirmacion').modal('show');
-            
+
                     let cerrar = document.getElementById('cerrar');
-            
+
                     cerrar.addEventListener('click', function () {
-            
+
                         window.location.href = 'https://hotelgdfree.epizy.com/';
-            
+
                     })
                 });
 
@@ -315,7 +314,7 @@
             let boton = $('#registrar');
 
             boton.click(function(){
-            
+
                 window.location.href = 'https://hotelgdfree.epizy.com/?registrar';
 
             });
@@ -406,19 +405,6 @@
         $controller->modalRegistro();
     }
 
-    // if (isset($_SESSION['cliente'])) {
-
-    //     // Recuperar el valor de la variable de sesión
-    //     $usuario = $_SESSION['cliente']['usuario'];
-
-    //     //Obtenemos los datos para ese usuario
-    //     $controller->datosUsuarioLogin($db, $usuario);
-
-    // }
-    //  else {
-    //     echo 'La sesión no está iniciada.';
-    // }
-
     //Si se recibe la variable esta
     if (isset($_GET['esta'])) {
 
@@ -498,18 +484,178 @@
     //Si se recibe la sesión cliente le añado el id a la sección de habitaciones
     if (isset($_SESSION['cliente'])) {
 
+        //Si se recibe la sesión hago la petición de habitaciones para mostrar las habitaciones disponibles
+
         echo '<script>
-        
-        let elemento = document.getElementById("habitacionesMenu");
 
-        if(elemento != null){
-            elemento.href = "https://hotelgdfree.epizy.com/?habitaciones";
-        }
+        let elemento = $("#habitacionesMenu");
 
-        
+        elemento.click(() => {
+
+            console.log("has iniciado sesión");
+
+            $.ajax({
+                url: "peticiones.php?tipo=habitaciones", // Ruta del archivo en el servidor que verifica la disponibilidad del correo electrónico
+                type: "POST",
+                data: { type: "Disponible" },
+                success: function (response) {
+                    console.log(response)
+                    if (response.exists) {
+
+                        main = $("#main");
+
+                        main.empty();
+
+                        main.append(`
+                                <form id="formulario">
+                                    <div class="container py-5">
+                                        <div id="habitacionesDisponibles" class="card-columns2">
+
+                                        </div>
+                                    </div>
+                                </form>`);
+
+                        for (let i = 0; i < response.exists.length; i += 6) {
+
+                            disponibles = $("#habitacionesDisponibles");
+
+                            disponibles.append(`
+
+                                        <div class="card mb-5 w-100 noReserva" style="background:rgb(33, 37, 41);">
+                                            <div class="row g-0">
+                                                <div class="col-md-5">
+                                                    <img src="data:image/jpg;base64,${response.exists[i]}" class="img-fluid rounded-start" alt="asfd">
+                                                </div>
+                                                <div class="col-md-7" style="display:block; margin:auto;">
+                                                    <div class="card-body">
+                                                        <h4 class="card-title text-light">${response.exists[i + 1]}</h4>
+                                                        <br>
+                                                        <br>
+                                                        <a id="pruebaEnlace" href="#" class="btn btn-light" data-type=" ${response.exists[i + 5]} ">Ver mas</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>`);
+
+                        }
+
+                        let especifica = $("#habitacionesDisponibles");
+                        console.log(especifica);
+                        especifica.find("a").click((event) => {
+                            var type = $(event.target).closest($("a")).get(0).dataset.type;
+
+                            console.log(type);
+
+                            $.ajax({
+                                url: "peticiones.php?tipo=id", // Ruta del archivo en el servidor que verifica la disponibilidad del correo electrónico
+                                type: "POST",
+                                data: { type: type },
+                                success: function (response) {
+                                    // console.log(response)
+                                    if (response.exists) {
+                                        // console.log("el correo ya existe")
+                                        // El correo electrónico ya está en uso
+                                        // showFeedBack($(form.email), false, "El correo electrónico ya está en uso");
+
+                                        $("#main").empty();
+
+                                        $("#main").append(`
+                                        <div class="container py-5">
+                                            <div id="habitacionEspecifica">
+
+                                            </div>
+                                        </div>`);
+
+                                        for (let i = 0; i < response.exists.length; i += 6) {
+                                            // console.log(response.exists[i]);
+
+                                            let especifica = $("#habitacionEspecifica");
+
+                                            especifica.append(`
+
+                                            <div class="card mb-5 w-100 noReserva" style="background:rgb(33, 37, 41);">
+                                                <div class="row g-0">
+                                                    <div class="col-md-5">
+                                                        <img src="data:image/jpg;base64,${response.exists[i]}" class="img-fluid rounded-start" alt="asfd">
+                                                    </div>
+                                                    <div class="col-md-7" style="display:block; margin:auto;">
+                                                        <div class="card-body" id="prueba7">
+                                                            <h5 class="card-title text-light">${response.exists[i + 1]}</h5>
+                                                            <p class="card-text text-light">${response.exists[i + 2]}€/noche</p>
+                                                            <p class="card-text text-light">${response.exists[i + 3]}</p>
+                                                            <p class="card-text text-light">${response.exists[i + 4]}</p>
+                                                            <button id="reservar" class="btn btn-light">Reservar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            `);
+
+                                            let boton = $("#reservar");
+
+                                            boton.click(function () {
+
+                                                // $("#modalReserva").modal("show");
+
+                                                // let cerrar = document.getElementById("cerrar");
+
+                                                // cerrar.addEventListener("click", function () {
+
+                                                window.location.href = `https://hotelgdfree.epizy.com/?reservar&id_habitacion=${response.exists[i + 5]}`;
+
+                                                // })
+
+                                            });
+
+                                        }
+
+                                    } else {
+                                        console.log("esta mal")
+                                    }
+                                },
+                                error: function () {
+                                }
+                            });
+
+                        })
+
+                    } else {
+                        console.log("esta mal")
+                    }
+                },
+                error: function () {
+                }
+            });
+
+
+        });
 
         </script>';
-        
+    } else {
+        //Llamamos al método que contiene el modal
+        $controller->modalHabitacionesNoDisponibles();
+
+        //Lo mostramos (modal .show)
+        echo '<script>
+
+        let elemento = $("#habitacionesMenu");
+
+        elemento.click(() => {
+
+            $("#modalHabitacionesNoDisponibles").modal("show");
+
+                let cerrar = document.getElementById("cerrar");
+
+                cerrar.addEventListener("click", function () {
+
+                window.location.href = "https://hotelgdfree.epizy.com/";
+
+            })
+
+        });
+
+        </script>';
     }
 
     ?>

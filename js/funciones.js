@@ -78,93 +78,6 @@ if (formRegistro !== null) {
     }, false);
 }
 
-//Obtener el id de una habitación específica
-let especifica = $('#habitacionesDisponibles');
-
-especifica.find('a').click((event) => {
-
-    var type = $(event.target).closest($('a')).get(0).dataset.type;
-
-    console.log(type);
-
-    $.ajax({
-        url: 'pruebaJSON.php?tipo=id', // Ruta del archivo en el servidor que verifica la disponibilidad del correo electrónico
-        type: 'POST',
-        data: { type: type },
-        success: function (response) {
-            // console.log(response)
-            if (response.exists) {
-                // console.log("el correo ya existe")
-                // El correo electrónico ya está en uso
-                // showFeedBack($(form.email), false, 'El correo electrónico ya está en uso');
-
-                $("#main").empty();
-
-                $("#main").append(`
-                <div class="container py-5">
-                    <div id="habitacionEspecifica">
-                
-                    </div>
-                </div>`);
-
-                for (let i = 0; i < response.exists.length; i += 6) {
-                    // console.log(response.exists[i]);
-
-                    let especifica = $("#habitacionEspecifica");
-
-                    especifica.append(`
-
-                    <div class="card mb-5 w-100 noReserva">
-                        <div class="row g-0">
-                            <div class="col-md-5">
-                                <img src="data:image/jpg;base64,${response.exists[i]}" class="img-fluid rounded-start" alt="asfd">
-                            </div>
-                            <div class="col-md-7" style="display:block; margin:auto;">
-                                <div class="card-body" id="prueba7">
-                                    <h5 class="card-title">${response.exists[i + 1]}</h5>
-                                    <p class="card-text">${response.exists[i + 2]}€/noche</p>
-                                    <p class="card-text">${response.exists[i + 3]}</p>
-                                    <p class="card-text">${response.exists[i + 4]}</p>
-                                    <button id="reservar" class="btn btn-primary">Reservar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    `);
-
-                    let boton = $('#reservar');
-
-                    boton.click(function () {
-
-                        // $('#modalReserva').modal('show');
-
-                        // let cerrar = document.getElementById('cerrar');
-
-                        // cerrar.addEventListener('click', function () {
-
-                        window.location.href = `https://hotelgdfree.epizy.com/?reservar&id_habitacion=${response.exists[i + 5]}`;
-
-                        // })
-
-                    });
-
-                }
-
-
-
-            } else {
-                console.log("esta mal")
-            }
-        },
-        error: function () {
-        }
-    });
-
-    // location.href = 'https://hotelgdfree.epizy.com/?id=' + type;
-
-});
-
 //Si le damos a reservar
 
 
@@ -215,3 +128,7 @@ cancelar.find('a').click((event) => {
     $('#modalConfirmacionCancelacionReserva').modal('show');
 
 });
+
+
+
+

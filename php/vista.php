@@ -33,12 +33,12 @@
                     <div class="container">
                         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 
-                            <img src="../images/logo2.jpg" alt="logotipo" class="header__logo" itemprop="associatedMedia">
+                            <a href="https://hotelgdfree.epizy.com/"><img src="../images/logo2.jpg" alt="logotipo" class="header__logo" itemprop="associatedMedia"></a>
 
                             <ul id="menu" class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 
                                 <li>
-                                    <strong><a id="init" href="#" class="nav-link px-2 text-light">HOTEL GD</a></strong>
+                                    <strong><a id="init" class="nav-link px-2 text-light">HOTEL GD</a></strong>
                                 </li>
 
                             </ul>
@@ -630,13 +630,13 @@
                                     <div class="form-group">
                                         <label for="usuario">Usuario:</label>
                                         <input type="text" class="form-control" id="usuario" placeholder="Ingrese su usuario"
-                                            pattern="[A-Z]{1}[a-z]{3,12}" required>
+                                            pattern="[A-Za-z]{1}[a-z]{4,12}[0-9]{0,3}" required>
     
                                         <div class="valid-feedback">
                                             ¡Correcto!
                                         </div>
                                         <div class="invalid-feedback">
-                                            El usuario debe incluir 1 mayúscula y 3 minúsculas mínimo
+                                            El usuario puede incluir una mayúscula al principio o no, debe incluir 4 minúsculas mínimo y puede incluir un máximo de 3 números
                                         </div>
     
                                     </div>
@@ -865,7 +865,7 @@
                             <h5 class="modal-title" id="myModalLabel" style="display: block; margin: auto; text-align: center;">Confirmación de Reserva</h5>
                         </div>
                         <div class="modal-body" style="display: block; margin: auto; text-align: center;">
-                            Se ha reservado correctamente la habitación. Muchas gracias por confiar en nuestro magnifico hotel
+                            Se ha reservado correctamente la habitación. Muchas gracias por confiar en nuestro hotel
                             <br>
                             <img src="../images/reservaConfirmada.jpg" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
                         </div>
@@ -1155,6 +1155,36 @@
             
             </script>';
         }
+
+        public function modalHabitacionesNoDisponibles()
+        {
+
+            echo '<script>
+            
+                main = $("#main");
+
+                main.append(`<div class="modal fade show" id="modalHabitacionesNoDisponibles" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="myModalLabel" style="display: block; margin: auto; text-align: center;">No Disponible</h5>
+                        </div>
+                        <div class="modal-body" style="display: block; margin: auto; text-align: center;">
+                            Para poder acceder a las habitaciones debes iniciar sesión
+                            <br>
+                            <br>
+                            <img src="../images/habitacionesNoDisponibles.png" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>`)
+            
+            </script>';
+        }
+
     }
 
     ?>

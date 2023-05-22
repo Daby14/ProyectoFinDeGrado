@@ -216,4 +216,9 @@ class Controller
         $this->view->modalConfirmacionCancelacionReserva();
     }
 
+    public function modalHabitacionesNoDisponibles()
+    {
+        $this->view->modalHabitacionesNoDisponibles();
+    }
+
 }
