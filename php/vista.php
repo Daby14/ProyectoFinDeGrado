@@ -2,7 +2,7 @@
 
 <head></head>
 
-<body>
+<body id="body">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -509,44 +509,46 @@
 
                 body.classList.add("formuContacto");
 
+                body.id = "login";
+
                 main = $("#main");
 
-                main.append(`<div class="container-fluid bg-image">
-                <div class="container bg2-form">
-                    <form id="formSesion" class="needs-validation" novalidate>
-
-                        <div class="card-header">
-                            <h4>Formulario de Sesión</h4>
+                main.append(`<div class="wrapper bg-white">
+                <div class="h2 text-center tituloLogin">Hotel GD</div>
+                <div class="h4 text-muted text-center pt-2 subtituloLogin">Inicie Sesión</div>
+                <form id="formSesion" class="needs-validation" novalidate>
+                    <div class="form-group">
+                        
+                        <label for="usuario">Usuario:</label>
+                        <input type="text" class="form-control" id="usuario" placeholder="Ingrese su usuario" required>
+                        <div class="valid-feedback">
+                            ¡Correcto!
                         </div>
-
-                        <div class="form-group">
-                            <label for="usuario">Usuario:</label>
-                            <input type="text" class="form-control" id="usuario" placeholder="Ingrese su usuario" required>
-                            <div class="valid-feedback">
-                                ¡Correcto!
-                            </div>
-                            <div class="invalid-feedback">
-                                El usuario es obligatorio
-                            </div>
-
+                        <div class="invalid-feedback">
+                            El usuario es obligatorio
                         </div>
-                        <div class="form-group">
-                            <label for="password">Contraseña</label>
-                            <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña" required>
-                            <div class="valid-feedback">
+                    </div>
+
+                    <div class="form-group">
+                        
+                        <label for="password" class="mt-3">Contraseña:</label>
+                        <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña" required>
+                        
+                        <div class="valid-feedback">
                                 ¡Correcto!
-                            </div>
-                            <div class="invalid-feedback">
+                        </div>
+                        <div class="invalid-feedback">
                                 La contraseña es obligatoria
-                            </div>
                         </div>
-                    
-                        <button type="submit" class="btn btn-primary mt-2" id="iniciar" data-toggle="modal" data-target="#exampleModal">Iniciar Sesión</button>
-                        <button type="button" class="btn btn-primary mt-2" id="registrar" data-toggle="modal" data-target="#exampleModal">Registrarse</button>
-                        <a href="https://hotelgdfree.epizy.com/" class="btn btn-primary mt-2">Volver</a>
-                    </form>
-                </div>
-                </div>`);
+                    </div>
+                    <div class="d-flex align-items-start">
+                        <div class="ml-auto"> </div>
+                    </div> 
+                    <button type="submit" class="btn btn-block text-center my-3" id="iniciar" data-toggle="modal" data-target="#exampleModal">Iniciar Sesion</button>
+                    <button type="button" class="btn btn-block text-center my-3" id="registrar" data-toggle="modal" data-target="#exampleModal">Registrarse</button>
+                    <a href="https://hotelgdfree.epizy.com/" class="btn btn-block text-center my-3">Volver</a>
+                </form>
+            </div>`);
 
             </script>';
         }
@@ -589,106 +591,79 @@
 
                 body.classList.add("formuContacto");
 
+                body.id = "login";
+
                 main = $("#main");
 
-                main.append(`<div class="container-fluid bg-image">
-                <div class="container bg3-form">
-                    <form id="formRegistro" class="needs-validation" novalidate>
+                main.append(`<div class="wrapper bg-white">
+                <div class="h2 text-center tituloLogin">Hotel GD</div>
+                <div class="h4 text-muted text-center pt-2 subtituloLogin">Registrarse</div>
+                <form id="formRegistro" class="needs-validation" novalidate>
 
-                        <div class="card-header">
-                            <h4>Formulario de Registro</h4>
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre"
+                            pattern="[A-Z]{1}[a-z]{3,12}" required>
+
+                        <div class="valid-feedback">
+                            ¡Correcto!
+                        </div>
+                        <div class="invalid-feedback">
+                            El nombre debe incluir 1 mayúscula y 3 minúsculas mínimo
                         </div>
 
-                        <div class="form-group">
-                                        <label for="nombre">Nombre:</label>
-                                        <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre"
-                                            pattern="[A-Z]{1}[a-z]{3,12}" required>
-    
-                                        <div class="valid-feedback">
-                                            ¡Correcto!
-                                        </div>
-                                        <div class="invalid-feedback">
-                                            El nombre debe incluir 1 mayúscula y 3 minúsculas mínimo
-                                        </div>
-    
-                                    </div>
+                    </div>
 
-                                    <div class="form-group">
-                                        <label for="apellido">Apellido:</label>
-                                        <input type="text" class="form-control" id="apellido" placeholder="Ingrese su apellido"
-                                            pattern="[A-Z]{1}[a-z]{3,12}" required>
-    
-                                        <div class="valid-feedback">
-                                            ¡Correcto!
-                                        </div>
-                                        <div class="invalid-feedback">
-                                            El apellido debe incluir 1 mayúscula y 3 minúsculas mínimo
-                                        </div>
-    
-                                    </div>
+                    
 
-                                    <div class="form-group">
-                                        <label for="usuario">Usuario:</label>
-                                        <input type="text" class="form-control" id="usuario" placeholder="Ingrese su usuario"
-                                            pattern="[A-Za-z]{1}[a-z]{4,12}[0-9]{0,3}" required>
+                    <div class="form-group">
+                        <label for="usuario" class="mt-1">Usuario:</label>
+                        <input type="text" class="form-control" id="usuario" placeholder="Ingrese su usuario" pattern="[A-Za-z]{1}[a-z]{4,12}[0-9]{0,3}" required>
     
-                                        <div class="valid-feedback">
-                                            ¡Correcto!
-                                        </div>
-                                        <div class="invalid-feedback">
-                                            El usuario puede incluir una mayúscula al principio o no, debe incluir 4 minúsculas mínimo y puede incluir un máximo de 3 números
-                                        </div>
+                            <div class="valid-feedback">
+                                ¡Correcto!
+                            </div>
+                            <div class="invalid-feedback">
+                                El usuario puede incluir una mayúscula al principio o no, debe incluir 4 minúsculas mínimo y puede incluir un máximo de 3 números
+                            </div>
     
-                                    </div>
+                    </div>
 
-                                    <div class="form-group">
-                                        <label for="password">Contraseña</label>
-                                        <input type="password" class="form-control" id="password"
-                                            placeholder="Ingrese su contraseña" required>
-    
-                                        <div class="valid-feedback">
-                                            ¡Correcto!
-                                        </div>
-                                        <div class="invalid-feedback">
-                                            La contraseña es obligatoria
-                                        </div>
-    
-                                    </div>
+                    <div class="form-group">
+                        <label for="password" class="mt-1">Contraseña</label>
+                        <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña" required>
 
-                                    <div class="form-group">
-                                        <label for="email">Correo electrónico:</label>
-                                        <input type="email" class="form-control" id="email"
-                                            placeholder="Ingrese su correo electrónico" required>
-    
-                                        <div class="valid-feedback">
-                                            ¡Correcto!
-                                        </div>
-                                        <div class="invalid-feedback">
-                                            El correo electrónico es obligatorio
-                                        </div>
-    
-                                    </div>
+                        <div class="valid-feedback">
+                            ¡Correcto!
+                        </div>
+                            <div class="invalid-feedback">
+                                La contraseña es obligatoria
+                            </div>
 
-                                    <div class="form-group">
-                                        <label for="telefono">Teléfono:</label>
-                                        <input type="text" class="form-control" id="telefono"
-                                            placeholder="Ingrese su número de teléfono" pattern="[0-9]{9}" required>
-    
-                                        <div class="valid-feedback">
-                                            ¡Correcto!
-                                        </div>
-                                        <div class="invalid-feedback">
-                                            El telefono debe incluir 9 números
-                                        </div>
-    
-                                    </div>
+                    </div>
 
-                                    <button type="submit" class="btn btn-primary mt-2" id="enviar" data-toggle="modal"
-                                        data-target="#exampleModal">Registrarse</button>
-                                    <a href="https://hotelgdfree.epizy.com/?sesion" class="btn btn-primary mt-2">Volver</a>
-                    </form>
-                </div>
-                </div>`);
+                    <div class="form-group">
+                        <label for="email" class="mt-1">Correo electrónico:</label>
+                        <input type="email" class="form-control" id="email" placeholder="Ingrese su correo electrónico" required>
+    
+                            <div class="valid-feedback">
+                                ¡Correcto!
+                            </div>
+                            <div class="invalid-feedback">
+                                El correo electrónico es obligatorio
+                            </div>
+    
+                    </div>
+
+                    
+
+                    <div class="d-flex align-items-start">
+                        <div class="ml-auto"> </div>
+                    </div> 
+                    <button type="submit" class="btn btn-block text-center my-3" id="enviar" data-toggle="modal" data-target="#exampleModal">Registrarse</button>
+                    <a href="https://hotelgdfree.epizy.com/?sesion" class="btn btn-block text-center my-3">Volver</a>
+                </form>
+            </div>`);
 
             </script>';
         }
@@ -1184,7 +1159,6 @@
             
             </script>';
         }
-
     }
 
     ?>

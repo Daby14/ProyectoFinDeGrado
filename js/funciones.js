@@ -31,7 +31,9 @@ if (form !== null) {
 let formSesion = document.getElementById("formSesion");
 
 if (formSesion !== null) {
+
     formSesion.addEventListener("submit", function (event) {
+
         // Prevenir que el formulario se envíe automáticamente
         event.preventDefault();
 
@@ -40,7 +42,6 @@ if (formSesion !== null) {
             event.stopPropagation();
             this.classList.add('was-validated');
         } else {
-
             let usuario = document.getElementById("usuario").value;
 
             let password = document.getElementById("password").value;
@@ -66,11 +67,11 @@ if (formRegistro !== null) {
         } else {
 
             let nombre = document.getElementById("nombre").value;
-            let apellido = document.getElementById("apellido").value;
+            let apellido = '';
             let usuario = document.getElementById("usuario").value;
             let password = document.getElementById("password").value;
             let email = document.getElementById("email").value;
-            let telefono = document.getElementById("telefono").value;
+            let telefono = '999999999';
 
             window.location.href = "https://hotelgdfree.epizy.com/?nombre=" + nombre + "&apellido=" + apellido + "&usuario=" + usuario + "&password=" + password + "&email=" + email + "&telefono=" + telefono + "";
 
