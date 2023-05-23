@@ -50,7 +50,7 @@
 
                                 <li>
                                     
-                                    <strong><a id="habitacionesMenu" href="#" class="nav-link px-2 text-light">Habitaciones</a></strong>
+                                    <strong><a id="habitacionesMenu" href="https://hotelgdfree.epizy.com/?habitacionesHotel" class="nav-link px-2 text-light">Habitaciones</a></strong>
                                 </li>
 
                                 <li>

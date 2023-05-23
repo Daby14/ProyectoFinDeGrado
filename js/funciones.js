@@ -91,30 +91,30 @@ carrito.click(() => {
 });
 
 //Formulario de Reserva
-let formReserva = document.getElementById("formReserva");
+// let formReserva = document.getElementById("formReserva");
 
-if (formReserva !== null) {
-    formReserva.addEventListener("submit", function (event) {
-        // Prevenir que el formulario se envíe automáticamente
-        event.preventDefault();
+// if (formReserva !== null) {
+//     formReserva.addEventListener("submit", function (event) {
+//         // Prevenir que el formulario se envíe automáticamente
+//         event.preventDefault();
 
-        // Validar el formulario
-        if (this.checkValidity() === false) {
-            event.stopPropagation();
-            this.classList.add('was-validated');
-        } else {
+//         // Validar el formulario
+//         if (this.checkValidity() === false) {
+//             event.stopPropagation();
+//             this.classList.add('was-validated');
+//         } else {
 
-            let fechaInicio = document.getElementById("fechaInicio").value;
+//             let fechaInicio = document.getElementById("fechaInicio").value;
 
-            let fechaFin = document.getElementById("fechaFin").value;
+//             let fechaFin = document.getElementById("fechaFin").value;
 
-            let id = document.getElementById("id").value;
+//             let id = document.getElementById("id").value;
 
-            window.location.href = "https://hotelgdfree.epizy.com/?fechaInicio=" + fechaInicio + "&fechaFin=" + fechaFin + "&id_habitacion=" + id;
+//             window.location.href = "https://hotelgdfree.epizy.com/?fechaInicio=" + fechaInicio + "&fechaFin=" + fechaFin + "&id_habitacion=" + id;
 
-        }
-    }, false);
-}
+//         }
+//     }, false);
+// }
 
 //Obtenemos el id de la reserva a cancelar
 let cancelar = $('#reservas');

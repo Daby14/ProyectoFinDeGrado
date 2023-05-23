@@ -60,6 +60,12 @@ function habitacionesHotel($type, $db)
     return $arrayDatos;
 }
 
+function habitacionEspecificaReserva($type, $db)
+{
+
+    return $type;
+}
+
 if ($select === "id") {
     $type = $_POST['type'];
 
@@ -75,6 +81,15 @@ if ($select === "id") {
     $datosHotel =  habitacionesHotel($type, $db);
 
     $response = array('exists' => $datosHotel);
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+}else if ($select === "idEspecifico") {
+    $type = $_POST['type'];
+
+    $datosHabitacionReserva =  habitacionEspecificaReserva($type, $db);
+
+    $response = array('exists' => $datosHabitacionReserva);
 
     header('Content-Type: application/json');
     echo json_encode($response);
