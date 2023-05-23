@@ -371,72 +371,73 @@
 
                 body.classList.add("formuContacto");
 
+                body.id = "login";
+
                 main = $("#main");
 
-                main.append(`<div class="container-fluid bg-image">
-                <div class="container bg-form">
-                    <form id="formContacto" class="needs-validation" novalidate>
-                        <div class="card-header">
-                            <h4>Formulario de Contacto</h4>
+                main.append(`<div class="wrapper bg-white">
+                <div class="h2 text-center tituloLogin">Hotel GD</div>
+                <div class="h4 text-muted text-center pt-2 subtituloLogin">Contacto</div>
+                <form id="formContacto" class="needs-validation" novalidate>
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre" pattern="[A-Z]{1}[a-z]{3,12}" required>
+
+                        <div class="valid-feedback">
+                            ¡Correcto!
+                        </div>
+                        <div class="invalid-feedback">
+                            El nombre debe incluir 1 mayúscula y 3 minúsculas mínimo
                         </div>
 
-                        <div class="form-group">
-                            <label for="nombre">Nombre:</label>
-                            <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre" pattern="[A-Z]{1}[a-z]{3,12}" required>
+                    </div>
 
-                            <div class="valid-feedback">
-                                ¡Correcto!
-                            </div>
-                            <div class="invalid-feedback">
-                                El nombre debe incluir 1 mayúscula y 3 minúsculas mínimo
-                            </div>
+                    <div class="form-group">
+                        <label for="correo">Correo:</label>
+                        <input type="email" class="form-control" id="correo" placeholder="Ingrese su correo" required>
 
+                        <div class="valid-feedback">
+                            ¡Correcto!
+                        </div>
+                        <div class="invalid-feedback">
+                            El correo es obligatorio
                         </div>
 
-                        <div class="form-group">
-                            <label for="correo">Correo:</label>
-                            <input type="email" class="form-control" id="correo" placeholder="Ingrese su correo" required>
+                    </div>
 
-                            <div class="valid-feedback">
-                                ¡Correcto!
-                            </div>
-                            <div class="invalid-feedback">
-                                El correo es obligatorio
-                            </div>
+                    <div class="form-group">
+                        <label for="telefono">Telefono:</label>
+                        <input type="text" class="form-control" id="telefono" placeholder="Ingrese su telefono" pattern="[0-9]{9}" required>
 
+                        <div class="valid-feedback">
+                            ¡Correcto!
+                        </div>
+                        <div class="invalid-feedback">
+                        El telefono debe incluir 9 números
                         </div>
 
-                        <div class="form-group">
-                            <label for="telefono">Telefono:</label>
-                            <input type="text" class="form-control" id="telefono" placeholder="Ingrese su telefono" pattern="[0-9]{9}" required>
+                    </div>
 
-                            <div class="valid-feedback">
-                                ¡Correcto!
-                            </div>
-                            <div class="invalid-feedback">
-                            El telefono debe incluir 9 números
-                            </div>
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje:</label>
+                        <textarea class="form-control" id="mensaje" rows="2" placeholder="Ingrese su mensaje" required></textarea>
 
+                        <div class="valid-feedback">
+                            ¡Correcto!
+                        </div>
+                        <div class="invalid-feedback">
+                            El mensaje es obligatorio
                         </div>
 
-                        <div class="form-group">
-                            <label for="mensaje">Mensaje:</label>
-                            <textarea class="form-control" id="mensaje" rows="3" placeholder="Ingrese su mensaje" required></textarea>
-    
-                            <div class="valid-feedback">
-                                ¡Correcto!
-                            </div>
-                            <div class="invalid-feedback">
-                                El mensaje es obligatorio
-                            </div>
-    
-                        </div>
+                    </div>
+                    <div class="d-flex align-items-start">
+                        <div class="ml-auto"> </div>
+                    </div> 
 
-                        <button type="submit" class="btn btn-primary mt-2" id="enviar" data-toggle="modal" data-target="#exampleModal">Enviar</button>
-                        <a href="https://hotelgdfree.epizy.com/" class="btn btn-primary mt-2">Volver</a>
-                    </form>
-                </div>
-                </div>`);
+                    <button type="submit" class="btn btn-block text-center my-3" id="enviar" data-toggle="modal" data-target="#exampleModal">Enviar</button>
+                    <a href="https://hotelgdfree.epizy.com/" class="btn btn-block text-center my-3">Volver</a>
+                </form>
+            </div>`);
 
             </script>';
         }
@@ -469,6 +470,35 @@
                 </div>
             </div>`);
 
+            </script>';
+        }
+
+        public function modalContactoNoDisponible()
+        {
+
+            echo '<script>
+            
+                main = $("#main");
+
+                main.append(`<div class="modal fade show" id="modalContactoNoDisponible" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="myModalLabel" style="display: block; margin: auto; text-align: center;">No Disponible</h5>
+                        </div>
+                        <div class="modal-body" style="display: block; margin: auto; text-align: center;">
+                            Debes iniciar sesión para acceder al formulario de contacto
+                            <br>
+                            <br>
+                            <img src="../images/contactoNoDisponible.webp" class="img-fluid w-75" style="display: block; margin: auto; text-align: center;"></img>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>`)
+            
             </script>';
         }
 

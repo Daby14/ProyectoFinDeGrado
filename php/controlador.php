@@ -221,4 +221,9 @@ class Controller
         $this->view->modalHabitacionesNoDisponibles();
     }
 
+    public function modalContactoNoDisponible()
+    {
+        $this->view->modalContactoNoDisponible();
+    }
+
 }

@@ -55,7 +55,7 @@
     $controller->mostrarFooter();
 
     //En el caso de que le demos a la sección de contacto, borramos todo y mostramos el formulario de contacto
-    if (isset($_GET['contacto'])) {
+    if (isset($_SESSION['cliente']) && isset($_GET['contacto'])) {
 
         $controller->borrarHeader();
 
@@ -67,6 +67,27 @@
 
         $controller->mostrarModalContacto();
         // $controller->modalPruebaFondo();
+
+    }else if (isset($_GET['contacto'])) {
+
+        $controller->modalContactoNoDisponible();
+
+        echo "<script>
+
+            $(document).ready(function() {
+                $('#modalContactoNoDisponible').modal('show');
+
+                let cerrar = document.getElementById('cerrar');
+
+                cerrar.addEventListener('click', function () {
+
+                window.location.href = 'https://hotelgdfree.epizy.com/';
+
+                })
+            });
+
+        </script>";
+
     }
 
     //En el caso de que le demos a la sección de habitaciones, borramos todo y mostramos las habitaciones disponibles
