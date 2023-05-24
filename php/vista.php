@@ -557,6 +557,7 @@
                         <div class="invalid-feedback">
                             El usuario es obligatorio
                         </div>
+
                     </div>
 
                     <div class="form-group">

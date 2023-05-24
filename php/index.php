@@ -348,30 +348,31 @@
         }
     }
 
-    if (isset($_GET['nombre']) && isset($_GET['apellido']) && isset($_GET['usuario']) && isset($_GET['password']) && isset($_GET['email']) && isset($_GET['telefono'])) {
+    // if (isset($_GET['nombre']) && isset($_GET['apellido']) && isset($_GET['usuario']) && isset($_GET['password']) && isset($_GET['email']) && isset($_GET['telefono'])) {
 
-        $nombre = $_GET['nombre'];
+    //     $nombre = $_GET['nombre'];
 
-        $apellido = $_GET['apellido'];
+    //     $apellido = $_GET['apellido'];
 
-        $usuario = $_GET['usuario'];
+    //     $usuario = $_GET['usuario'];
 
-        $password = $_GET['password'];
+    //     $password = $_GET['password'];
 
-        $email = $_GET['email'];
+    //     $email = $_GET['email'];
 
-        $telefono = $_GET['telefono'];
+    //     $telefono = $_GET['telefono'];
 
-        //COMPROBAR SI EL USUARIO A REGISTRAR YA EXISTE. EN EL CASO DE QUE EXISTA DAMOS UN MENSAJE DE ERROR, Y SI NO EXISTE LO REGISTRAMOS
+    //     //COMPROBAR SI EL USUARIO A REGISTRAR YA EXISTE. EN EL CASO DE QUE EXISTA DAMOS UN MENSAJE DE ERROR, Y SI NO EXISTE LO REGISTRAMOS
 
-        $controller->registroClienteUsuario($nombre, $apellido, $usuario, $password, $email, $telefono, $db);
+    //     $controller->registroClienteUsuario($nombre, $apellido, $usuario, $password, $email, $telefono, $db);
 
-        // echo "<script>
+    //     // echo "<script>
 
-        //     window.location.href = 'https://hotelgdfree.epizy.com';
+    //     //     window.location.href = 'https://hotelgdfree.epizy.com';
 
-        // </script>";
-    } else if (isset($_GET['usuario']) && isset($_GET['password'])) {
+    //     // </script>";
+    // } else 
+    if (isset($_GET['usuario']) && isset($_GET['password'])) {
 
         $usuario = $_GET['usuario'];
 
@@ -524,13 +525,13 @@
                     main.empty();
         
                     main.append(`
-                                        <form id="formulario">
-                                            <div class="container py-5">
-                                                <div id="habitacionesDisponibles" class="card-columns2">
+                        <form id="formulario">
+                            <div class="container py-5">
+                                <div id="habitacionesDisponibles" class="card-columns2">
         
-                                                </div>
-                                            </div>
-                                        </form>`);
+                                </div>
+                            </div>
+                        </form>`);
         
                     for (let i = 0; i < response.exists.length; i += 6) {
         
@@ -538,28 +539,25 @@
         
                         disponibles.append(`
         
-                                                <div class="card mb-5 w-100 noReserva" style="background:rgb(33, 37, 41);">
-                                                    <div class="row g-0">
-                                                        <div class="col-md-5">
-                                                            <img src="data:image/jpg;base64,${response.exists[i]}" class="img-fluid rounded-start" alt="asfd">
-                                                        </div>
-                                                        <div class="col-md-7" style="display:block; margin:auto;">
-                                                            <div class="card-body">
-                                                                <h4 class="card-title text-light">${response.exists[i + 1]}</h4>
-                                                                <br>
-                                                                <br>
-                                                                <a id="pruebaEnlace" href="https://hotelgdfree.epizy.com/?habitacionEspecificaHotel&id=${response.exists[i + 5]}" class="btn btn-light" data-type=" ${response.exists[i + 5]} ">Ver mas</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>`);
-        
+                            <div class="card mb-5 w-100 noReserva" style="background:rgb(33, 37, 41);">
+                                <div class="row g-0">
+                                    <div class="col-md-5">
+                                        <img src="data:image/jpg;base64,${response.exists[i]}" class="img-fluid rounded-start" alt="asfd">
+                                    </div>
+                                    <div class="col-md-7" style="display:block; margin:auto;">
+                                        <div class="card-body">
+                                            <h4 class="card-title text-light">${response.exists[i + 1]}</h4>
+                                            <br>
+                                            <br>
+                                            <a id="pruebaEnlace" href="https://hotelgdfree.epizy.com/?habitacionEspecificaHotel&id=${response.exists[i + 5]}" class="btn btn-light" data-type=" ${response.exists[i + 5]} ">Ver mas</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`);
                     }
 
                     
-        
-                    
-        
+
                 } else {
                     console.log("esta mal")
                 }
@@ -660,6 +658,11 @@
     if(isset($_SESSION['cliente']) && isset($_GET['reservaHabitacion']) && $_GET['id']){
 
         $id = $_GET['id'];
+        $usuario = $_SESSION['cliente']['usuario'];
+
+        $usuario = "\"$usuario\"";
+
+        
 
         echo '<script>
         
@@ -685,6 +688,8 @@
 
                         body.classList.add("formuContacto");
 
+                        body.id = "login";
+
                         header = $("#header");
 
                         header.empty();
@@ -697,42 +702,42 @@
 
                         main.empty();
 
-                        main.append(`<div class="container-fluid bg-image">
-                        <div class="container bg2-form">
-                            <form id="formReserva" class="needs-validation" novalidate>
-
-                                <div class="card-header">
-                                    <h4>Formulario de Reserva</h4>
+                        main.append(`<div class="wrapper bg-white">
+                        <div class="h2 text-center tituloLogin">Hotel GD</div>
+                        <div class="h4 text-muted text-center pt-2 subtituloLogin">Reserva</div>
+                        <form id="formReserva" class="needs-validation" novalidate>
+                            <div class="form-group">
+                                
+                                <label for="fechaInicio">Fecha de Inicio:</label>
+                                <input type="date" class="form-control" id="fechaInicio" placeholder="Ingrese la fecha de inicio" required>
+                                <div class="valid-feedback">
+                                    ¡Correcto!
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="fechaInicio">Fecha de Inicio:</label>
-                                    <input type="date" class="form-control" id="fechaInicio" placeholder="Ingrese la fecha de inicio" required>
-                                    <div class="valid-feedback">
-                                        ¡Correcto!
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        La fecha de inicio es obligatoria
-                                    </div>
-
+                                <div class="invalid-feedback">
+                                    La fecha de inicio es obligatoria
                                 </div>
-                                <div class="form-group">
-                                    <label for="fechaFin">Fecha de Fin:</label>
-                                    <input type="date" class="form-control" id="fechaFin" placeholder="Ingrese la fecha de fin" required>
-                                    <div class="valid-feedback">
+        
+                            </div>
+        
+                            <div class="form-group">
+                                
+                                <label for="fechaFin" class="mt-3">Fecha de Fin:</label>
+                                <input type="date" class="form-control" id="fechaFin" placeholder="Ingrese la fecha de fin" required>
+                                
+                                <div class="valid-feedback">
                                         ¡Correcto!
-                                    </div>
-                                    <div class="invalid-feedback">
+                                </div>
+                                <div class="invalid-feedback">
                                         La fecha de fin es obligatoria
-                                    </div>
-
                                 </div>
-                            
-                                <button id="confirmarReserva" type="submit" class="btn btn-primary mt-2" id="iniciar" data-toggle="modal" data-target="#exampleModal">Confirmar Reserva</button>
-                                <a href="https://hotelgdfree.epizy.com/" class="btn btn-primary mt-2">Volver</a>
-                            </form>
-                        </div>
-                        </div>`);
+                            </div>
+                            <div class="d-flex align-items-start">
+                                <div class="ml-auto"> </div>
+                            </div> 
+                            <button type="submit" class="btn btn-block text-center my-3" id="confirmarReserva" data-toggle="modal" data-target="#exampleModal">Confirmar Reserva</button>
+                            <a href="https://hotelgdfree.epizy.com/" class="btn btn-block text-center my-3">Volver</a>
+                        </form>
+                    </div>`);
 
                         let formReserva = document.getElementById("formReserva");
 
@@ -747,15 +752,70 @@
                                     this.classList.add("was-validated");
                                 } else {
 
-                                    console.log("hola");
+                                    // let usuario = '.$usuario.';
+
+                                    // console.log(usuario);
 
                                     let fechaInicio = document.getElementById("fechaInicio").value;
 
                                     let fechaFin = document.getElementById("fechaFin").value;
 
+                                    $.ajax({
+                                        url: "peticiones.php?tipo=reserva", // Ruta del archivo en el servidor que verifica la disponibilidad del correo electrónico
+                                        type: "POST",
+                                        data: {fechaInicio: fechaInicio, 
+                                            fechaFin: fechaFin,
+                                            id: '. $id .',
+                                            usuario: '. $usuario .'
+                                        },
+                                        success: function (response) {
+                                            // console.log(response)
+                                            if (response.exists) {
+                                    
+                                                
+                        
+                                            } else {
+
+                                                main = $("#main");
+
+                                                main.append(`<div class="modal fade show" id="modalReservaConfirmacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="myModalLabel" style="display: block; margin: auto; text-align: center;">Confirmación de Reserva</h5>
+                                                        </div>
+                                                        <div class="modal-body" style="display: block; margin: auto; text-align: center;">
+                                                            Se ha reservado correctamente la habitación. Muchas gracias por confiar en nuestro hotel
+                                                            <br>
+                                                            <img src="../images/reservaConfirmada.jpg" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>`);
+
+                                                $("#modalReservaConfirmacion").modal("show");
+                                
+                                                let cerrar = document.getElementById("cerrar");
+                                
+                                                cerrar.addEventListener("click", function () {
+                                
+                                                    window.location.href = "https://hotelgdfree.epizy.com/";
+                                
+                                                })
+                                                
+                                                console.log("esta mal")
+                                            }
+                                        },
+                                        error: function () {
+                                        }
+                                    });
+
                                     // let id = document.getElementById("id").value;
 
-                                    window.location.href = "https://hotelgdfree.epizy.com/?fechaInicio=" + fechaInicio + "&fechaFin=" + fechaFin + "&id_habitacion=" + '. $id .';
+                                    // window.location.href = "https://hotelgdfree.epizy.com/?fechaInicio=" + fechaInicio + "&fechaFin=" + fechaFin + "&id_habitacion=" + '. $id .';
 
                                 }
                             }, false);

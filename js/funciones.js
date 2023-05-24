@@ -46,7 +46,33 @@ if (formSesion !== null) {
 
             let password = document.getElementById("password").value;
 
-            window.location.href = "https://hotelgdfree.epizy.com/?sesion&usuario=" + usuario + "&password=" + password;
+            $.ajax({
+                url: "peticiones.php?tipo=sesion", // Ruta del archivo en el servidor que verifica la disponibilidad del correo electrónico
+                type: "POST",
+                data: { usuario: usuario, 
+                    password: password
+                },
+                success: function (response) {
+                    console.log(response)
+                    if (response.exists) {
+            
+                        console.log(response.exists);
+
+                        if (response.exists === "loginIncorrecto"){
+                            window.location.href = "https://hotelgdfree.epizy.com/?loginIncorrecto";
+                        }else{
+                            window.location.href = "https://hotelgdfree.epizy.com/?usuario=" + response.exists;
+                        }
+
+                    } else {
+                        console.log("esta mal")
+                    }
+                },
+                error: function () {
+                }
+            });
+
+            // window.location.href = "https://hotelgdfree.epizy.com/?sesion&usuario=" + usuario + "&password=" + password;
 
         }
     }, false);
@@ -73,7 +99,35 @@ if (formRegistro !== null) {
             let email = document.getElementById("email").value;
             let telefono = '999999999';
 
-            window.location.href = "https://hotelgdfree.epizy.com/?nombre=" + nombre + "&apellido=" + apellido + "&usuario=" + usuario + "&password=" + password + "&email=" + email + "&telefono=" + telefono + "";
+            $.ajax({
+                url: "peticiones.php?tipo=registro", // Ruta del archivo en el servidor que verifica la disponibilidad del correo electrónico
+                type: "POST",
+                data: {nombre: nombre, 
+                    apellido: apellido,
+                    usuario: usuario, 
+                    password: password, 
+                    email: email, 
+                    telefono: telefono
+                },
+                success: function (response) {
+                    console.log(response)
+                    if (response.exists) {
+            
+                        if (response.exists === "no registrado"){
+                            window.location.href = "https://hotelgdfree.epizy.com/?esta=no registrado";
+                        }else{
+                            window.location.href = "https://hotelgdfree.epizy.com/?esta=registrado";
+                        }
+
+                    } else {
+                        console.log("esta mal")
+                    }
+                },
+                error: function () {
+                }
+            });
+
+            // window.location.href = "https://hotelgdfree.epizy.com/?nombre=" + nombre + "&apellido=" + apellido + "&usuario=" + usuario + "&password=" + password + "&email=" + email + "&telefono=" + telefono + "";
 
         }
     }, false);
