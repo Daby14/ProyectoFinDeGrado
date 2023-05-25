@@ -150,42 +150,86 @@ function datosRegistro($nombre, $apellido, $usuario, $password, $email, $telefon
 function datosReserva($fechaInicio, $fechaFin, $id, $usuario, $db)
 {
 
-    $param = array();
-    $param['Usuario'] = $usuario;
+    date_default_timezone_set("Europe/Madrid");
 
-    $consulta = "select id_usuario as id_usuario from usuarios where usuario = :Usuario";
+    $fecha = date("Y-m-d");
+
+    $cadena = "";
+
+    if (($fechaInicio < $fecha) || ($fechaFin <= $fechaInicio)) {
+        $cadena = "fallo";
+    } else {
+        $param = array();
+        $param['Usuario'] = $usuario;
+
+        $consulta = "select id_usuario as id_usuario from usuarios where usuario = :Usuario";
+
+        $db->ConsultaDatos($consulta, $param);
+
+        $id_usuario = $db->filas[0]['id_usuario'];
+
+        $param = array();
+        $param['Usuario'] = $id_usuario;
+
+        $consulta = "select id_cliente as id_cliente from clientes where id_usuario = :Usuario";
+
+        $db->ConsultaDatos($consulta, $param);
+
+        $id_cliente = $db->filas[0]['id_cliente'];
+
+        $param = array();
+        $param['Habitacion'] = $id;
+        $param['Inicio'] = $fechaInicio;
+        $param['Fin'] = $fechaFin;
+        $param['Cliente'] = $id_cliente;
+
+        $consulta = "insert into reservas values (NULL, :Habitacion, :Inicio, :Fin, :Cliente)";
+
+        $db->ConsultaSimple($consulta, $param);
+
+        $param = array();
+        $param['Estado'] = "Ocupado";
+        $param['Habitacion'] = $id;
+
+        $consulta = "update habitaciones set estado=:Estado where id_habitacion=:Habitacion";
+
+        $db->ConsultaSimple($consulta, $param);
+
+        $cadena = "no fallo";
+    }
+
+    return $cadena;
+
+}
+
+function cancelarReserva($type, $db)
+{
+
+    $param = array();
+    $param['Reserva'] = $type;
+
+    $consulta = "select id_habitacion as id_habitacion from reservas where id_reserva=:Reserva";
 
     $db->ConsultaDatos($consulta, $param);
 
-    $id_usuario = $db->filas[0]['id_usuario'];
+    $id_habitacion = $db->filas[0]['id_habitacion'];
 
     $param = array();
-    $param['Usuario'] = $id_usuario;
-
-    $consulta = "select id_cliente as id_cliente from clientes where id_usuario = :Usuario";
-
-    $db->ConsultaDatos($consulta, $param);
-
-    $id_cliente = $db->filas[0]['id_cliente'];
-
-    $param = array();
-    $param['Habitacion'] = $id;
-    $param['Inicio'] = $fechaInicio;
-    $param['Fin'] = $fechaFin;
-    $param['Cliente'] = $id_cliente;
-
-    $consulta = "insert into reservas values (NULL, :Habitacion, :Inicio, :Fin, :Cliente)";
-
-    $db->ConsultaSimple($consulta, $param);
-
-    $param = array();
-    $param['Estado'] = "Ocupado";
-    $param['Habitacion'] = $id;
+    $param['Habitacion'] = $id_habitacion;
+    $param['Estado'] = "Disponible";
 
     $consulta = "update habitaciones set estado=:Estado where id_habitacion=:Habitacion";
 
     $db->ConsultaSimple($consulta, $param);
 
+    $param = array();
+    $param['Reserva'] = $type;
+
+    $consulta = "delete from reservas where id_reserva=:Reserva";
+
+    $db->ConsultaSimple($consulta, $param);
+
+    return "conseguido";
 }
 
 if ($select === "id") {
@@ -248,6 +292,15 @@ if ($select === "id") {
     $datosReserva =  datosReserva($fechaInicio, $fechaFin, $id, $usuario, $db);
 
     $response = array('exists' => $datosReserva);
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+} else if ($select === "cancelarReserva") {
+    $type = $_POST['type'];
+
+    $cancelarReserva =  cancelarReserva($type, $db);
+
+    $response = array('exists' => $cancelarReserva);
 
     header('Content-Type: application/json');
     echo json_encode($response);

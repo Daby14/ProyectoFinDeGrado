@@ -1117,7 +1117,7 @@
                             <h5 class="modal-title" id="myModalLabel" style="display: block; margin: auto; text-align: center;">Fallo Reserva</h5>
                         </div>
                         <div class="modal-body" style="display: block; margin: auto; text-align: center;">
-                            La reserva no se puedo realizar correctamente. La fecha de inicio no puede ser anterior al día de hoy.
+                            La reserva no se pudo realizar correctamente. La fecha de inicio no puede ser anterior al día de hoy y la fecha de fin no puede ser anterior a la fecha de inicio
                             <br>
                             <br>
                             <img src="../images/reservaFallida.jpg" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
