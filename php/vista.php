@@ -1190,6 +1190,130 @@
             
             </script>';
         }
+
+        public function formularioAgregaHabitacion()
+        {
+
+    ?>
+
+            <form name='f1' method='post' enctype='multipart/form-data'>
+                <legend><strong>Alta de imagenes para las camaras</strong></legend>
+
+                <fieldset>
+
+                    <label for='respon'>Responsable</label>
+                    <input type="text" name="respon">
+
+                    <br>
+                    <br>
+
+                    <label for='foto'>Foto</label>
+                    <input type="file" name="foto">
+
+                    <br>
+                    <br>
+                    <label for="fecha">Fecha</label>
+                    <input type="text" name='fecha' placeholder="dd/mm/yyyy">
+                    <br>
+                    <br>
+                    <input type='submit' name='Insertar' value='Insertar'>
+                    <input type='submit' name='Listar' value='Listar'>
+                </fieldset>
+
+                <?php
+
+                if (isset($_POST['Insertar'])) {
+
+                    $respon = $_POST['respon'];
+
+                    //Realizamos la inserción de los datos
+                    $fecha = $_POST['fecha'];
+
+                    $campos = explode("/", $fecha);     //Tenemos que convertir la fecha dd/mm/yyyy a epoch
+
+                    $fechaTime = mktime(0, 0, 0, $campos[1], $campos[0], $campos[2]);
+
+                    $param = array();
+
+                    $param[":Fecha"] = $fechaTime;
+
+                    if ($_FILES["foto"]["name"] != "") {
+                        $NomOriginal = $_FILES["foto"]["name"];
+
+                        echo $NomOriginal;
+
+                        echo "<br>";
+
+                        $NomOriginal = $_FILES["foto"]["type"];
+
+                        echo $NomOriginal;
+
+                        echo "<br>";
+
+                        //Copiamos el archivo de la ruta temporal a la carpeta Logos
+                        $NomTempLogo = $_FILES["foto"]["tmp_name"];
+
+                        echo $NomTempLogo;
+
+                        echo "<br>";
+
+                        // copy($NomTempLogo, "Fotos/" . $NomOriginal);
+
+                        $foto = file_get_contents($NomTempLogo);
+
+                        $foto = base64_encode($foto);
+
+                        echo $foto;
+
+                        $cadena = "\"$foto\"";
+
+                        echo '<script>
+                        
+                        $.ajax({
+                            url: "peticiones.php?tipo=agregaHabitacion",
+                            type: "POST",
+                            data: {
+                                idHabitacion: "NULL",
+                                tipoHabitacion: "aerea",
+                                precio: "76",
+                                estado: "Disponible",
+                                imagen: '.$cadena.',
+                                descripcion: "LA MEJOR"
+                            },
+                            success: function (response) {
+                                console.log(response);
+                                if (response.exists) {
+
+                                } else {
+                                    console.log("No se ha realizado correctamente")
+                                }
+                            },
+                            error: function () {
+                            }
+                        });
+                        
+                        </script>';
+
+                        // $param[":Foto"] = $NomOriginal;
+
+                        $prueba = $foto;
+                    }
+
+                    // $_SESSION[$respon] = $prueba . " " . $fechaTime;
+
+                    // $consulta = "insert into camaras values(NULL,:Foto,:Fecha)";
+
+                    // $db->ConsultaSimple($consulta, $param);
+                }
+
+                ?>
+
+            </form>
+
+    <?php
+
+
+        }
     }
 
     ?>

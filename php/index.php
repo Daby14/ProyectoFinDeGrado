@@ -359,9 +359,10 @@
     //Si se recibe la sesión cliente le añado el id a la sección de habitaciones
     if (isset($_SESSION['cliente']) && isset($_GET['habitacionesHotel'])) {
 
-        //Si se recibe la sesión hago la petición de habitaciones para mostrar las habitaciones disponibles
+        $usuario = $_SESSION['cliente']['usuario'];
 
-        echo '<script>
+        if ($usuario == "admin") {
+            echo '<script>
 
         $.ajax({
             url: "peticiones.php?tipo=habitaciones", 
@@ -377,6 +378,13 @@
         
                     main.append(`
                         <h4 class="noReserva mt-5 mb-2">Habitaciones Disponibles</h4>
+
+                        <div class="noReserva mt-5 mb-3" id="agregaHabitaciones">
+                        
+                            <a href="https://hotelgdfree.epizy.com" class="btn btn-primary">Agregar Habitacion</a>
+
+                        </div>
+
                         <form id="formulario">
                             <div class="container py-5">
                                 <div id="habitacionesDisponibles" class="card-columns2">
@@ -421,6 +429,79 @@
         
 
         </script>';
+        } else {
+            echo '<script>
+
+        $.ajax({
+            url: "peticiones.php?tipo=habitaciones", 
+            type: "POST",
+            data: { type: "Disponible" },
+            success: function (response) {
+                
+                if (response.exists) {
+        
+                    main = $("#main");
+
+                    main.empty();
+        
+                    main.append(`
+                        <h4 class="noReserva mt-5 mb-2">Habitaciones Disponibles</h4>
+
+                        <div class="noReserva mt-3 mb-3" id="agregaHabitaciones">
+                        
+
+
+                        </div>
+
+                        <form id="formulario">
+                            <div class="container py-5">
+                                <div id="habitacionesDisponibles" class="card-columns2">
+        
+                                </div>
+                            </div>
+                        </form>`);
+        
+                    for (let i = 0; i < response.exists.length; i += 6) {
+        
+                        disponibles = $("#habitacionesDisponibles");
+        
+                        disponibles.append(`
+        
+                            <div class="card mb-5 w-100 noReserva" style="background:rgb(33, 37, 41);">
+                                <div class="row g-0">
+                                    <div class="col-md-5">
+                                        <img src="data:image/jpg;base64,${response.exists[i]}" class="img-fluid rounded-start" alt="asfd">
+                                    </div>
+                                    <div class="col-md-7" style="display:block; margin:auto;">
+                                        <div class="card-body">
+                                            <h4 class="card-title text-light">${response.exists[i + 1]}</h4>
+                                            <br>
+                                            <br>
+                                            <a id="pruebaEnlace" href="https://hotelgdfree.epizy.com/?habitacionEspecificaHotel&id=${response.exists[i + 5]}" class="btn btn-light" data-type=" ${response.exists[i + 5]} ">Ver mas</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`);
+                    }
+
+                    
+
+                } else {
+                    console.log("esta mal")
+                }
+            },
+            error: function () {
+            }
+        });
+
+        
+
+        </script>';
+        }
+
+        //Si se recibe la sesión hago la petición de habitaciones para mostrar las habitaciones disponibles
+
+
     } else if (isset($_GET['habitacionesHotel'])) {
         $controller->modalHabitacionesNoDisponibles();
 
@@ -708,6 +789,129 @@
             });
 
         </script>';
+    }
+
+    if (isset($_SESSION['cliente'])) {
+
+        $usuario = $_SESSION['cliente']['usuario'];
+
+        //Si inicia sesión el administrador tiene unos derechos exclusivos
+        if (($usuario == "admin") || ($usuario == "Admin")) {
+
+            echo '<script>
+            
+                // $("#habitacionesMenu").html("Reservas");
+
+                // $("#habitacionesMenu").attr("href","https://hotelgdfree.epizy.com/?reservasAdmin");
+
+                $("#contacto").html("Usuarios");
+
+                $("#contacto").attr("href","https://hotelgdfree.epizy.com/?usuariosAdmin");
+
+            </script>';
+
+            if (isset($_GET['usuariosAdmin'])) {
+                echo '<script>
+            
+                $("#main").empty();
+
+                </script>';
+
+                $controller->reservasAdmin($db);
+                
+            }
+
+            if (isset($_GET['borrarReserva'])) {
+                
+                $id = $_GET['borrarReserva'];
+
+                $controller->cancelarReserva($db, $id);
+                
+                echo '<script>
+                
+                location.href = "https://hotelgdfree.epizy.com/?usuariosAdmin";
+                
+                </script>';
+            }
+
+            // if (isset($_GET['agregaHabitacion'])) {
+
+            //     echo '<script>
+            
+            //     $("#header").empty();
+            //     $("#main").empty();
+            //     $("#footer").empty();
+
+            //     // body = document.body;
+
+            //     // body.id = "login";
+
+            //     // $("#habitacionesMenu").attr("href","https://hotelgdfree.epizy.com/?reservasAdmin");
+
+            //     // $("#contacto").html("Usuarios");
+
+            //     // $("#contacto").attr("href","https://hotelgdfree.epizy.com/?usuariosAdmin");
+
+            //     </scrip>';
+
+            //     $controller->formularioAgregaHabitacion();
+
+                // echo '<script>
+            
+                //     let formAgregaHabitacion = document.getElementById("formAgregaHabitacion");
+
+                //     if (formAgregaHabitacion !== null) {
+                //         formAgregaHabitacion.addEventListener("submit", function (event) {
+                //             //Prevenimos que el formulario se envíe automáticamente
+                //             event.preventDefault();
+
+                //             //Validamos el formulario
+                //             if (this.checkValidity() === false) {
+                //                 event.stopPropagation();
+                //                 this.classList.add("was-validated");
+                //             } else {
+
+                //                 //Recogemos los datos que devuelve el formulario
+                //                 let idHabitacion = "NULL";
+                //                 let tipoHabitacion = document.getElementById("tipoHabitacion").value;
+                //                 let precio = document.getElementById("precio").value;
+                //                 let estado = "Disponible";
+                //                 let img = document.getElementById("img").value;
+
+                //                 let descripcion = document.getElementById("descripcion").value;
+                                
+                //                 $.ajax({
+                //                     url: "peticiones.php?tipo=agregaHabitacion",
+                //                     type: "POST",
+                //                     data: {
+                //                         idHabitacion: idHabitacion,
+                //                         tipoHabitacion: tipoHabitacion,
+                //                         precio: precio,
+                //                         estado: estado,
+                //                         imagen: img,
+                //                         descripcion: descripcion
+                //                     },
+                //                     success: function (response) {
+                //                         console.log(response);
+                //                         if (response.exists) {
+
+                //                         } else {
+                //                             console.log("No se ha realizado correctamente")
+                //                         }
+                //                     },
+                //                     error: function () {
+                //                     }
+                //                 });
+
+                //             }
+                //         }, false);
+                //     }
+
+                //     </script>';
+                // }
+            // }
+        } else {
+        }
     }
 
     ?>

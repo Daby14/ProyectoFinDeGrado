@@ -287,3 +287,18 @@
     }
 
 }
+
+/* Estilos para el contenedor */
+.containerReservasAdmin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+  /* Estilos para la tabla */
+.table {
+    max-width: 600px; /* Ajusta este valor según tus necesidades */
+    margin: 0 auto;
+    width: 100%;
+}

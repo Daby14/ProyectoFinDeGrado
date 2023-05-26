@@ -226,4 +226,14 @@ class Controller
         $this->view->modalContactoNoDisponible();
     }
 
+    public function formularioAgregaHabitacion()
+    {
+        $this->view->formularioAgregaHabitacion();
+    }
+
+    public function reservasAdmin($db)
+    {
+        $this->model->reservasAdmin($db);
+    }
+
 }

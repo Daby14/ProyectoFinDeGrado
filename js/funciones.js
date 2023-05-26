@@ -220,4 +220,63 @@ cancelar.find('a').click((event) => {
 
 
 
+//Formulario de agregar una habitación
+// let formAgregaHabitacion = document.getElementById("formAgregaHabitacion");
+
+// if (formAgregaHabitacion !== null) {
+//     formAgregaHabitacion.addEventListener("submit", function (event) {
+//         //Prevenimos que el formulario se envíe automáticamente
+//         event.preventDefault();
+
+//         //Validamos el formulario
+//         if (this.checkValidity() === false) {
+//             event.stopPropagation();
+//             this.classList.add('was-validated');
+//         } else {
+
+//             //Recogemos los datos que devuelve el formulario
+//             let idHabitacion = "NULL";
+//             let tipoHabitacion = document.getElementById("tipoHabitacion").value;
+//             let precio = document.getElementById("precio").value;
+//             let estado = "Disponible";
+//             let imagen = document.getElementById("imagen").value;
+
+//             let nombreImagen = imagen.split('\\').pop();
+
+//             let rutaImagen = "../images/" + nombreImagen;
+
+//             console.log(rutaImagen);
+
+//             let descripcion = document.getElementById("descripcion").value;
+
+//             // console.log(idHabitacion, tipoHabitacion, precio, estado, imagen, descripcion);
+
+//             $.ajax({
+//                 url: "peticiones.php?tipo=agregaHabitacion",
+//                 type: "POST",
+//                 data: {
+//                     idHabitacion: idHabitacion,
+//                     tipoHabitacion: tipoHabitacion,
+//                     precio: precio,
+//                     estado: estado,
+//                     imagen: rutaImagen,
+//                     descripcion: descripcion
+//                 },
+//                 success: function (response) {
+//                     console.log(response);
+//                     if (response.exists) {
+
+//                     } else {
+//                         console.log("No se ha realizado correctamente")
+//                     }
+//                 },
+//                 error: function () {
+//                 }
+//             });
+
+//         }
+//     }, false);
+// }
+
+
 

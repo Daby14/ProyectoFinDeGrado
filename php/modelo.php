@@ -632,6 +632,61 @@
 
             $db->ConsultaSimple($consulta, $param);
         }
+
+        public function reservasAdmin($db)
+        {
+
+            $param = array();
+
+            $consulta = "select * from reservas";
+
+            $db->ConsultaDatos($consulta, $param);
+
+            echo '<script>
+
+                $("#main").append(`
+                
+                <div class="containerReservasAdmin">
+                    <table id="tablaReservasAdmin" class="table table-success table-striped">
+                    
+                        <tr class="table-dark">
+                            <th>Reserva ID</th>
+                            <th>Habitacion ID</th>
+                            <th>Fecha Inicio</th>
+                            <th>Fecha Fin</th>
+                            <th>Cliente ID</th>
+                            <th>Borrar</th>
+                        </tr>
+
+                    </table>
+                </div>
+
+                `);
+                
+            </script>';
+
+            foreach ($db->filas as $fila) {
+
+                echo '<script>
+
+                    $("#tablaReservasAdmin").append(`
+                    
+                    <tr>
+                        <td>'.$fila['id_reserva'].'</td>
+                        <td>'.$fila['id_habitacion'].'</td>
+                        <td>'.$fila['fecha_inicio'].'</td>
+                        <td>'.$fila['fecha_fin'].'</td>
+                        <td>'.$fila['id_cliente'].'</td>
+                        <td><a class="btn btn-primary" href="https://hotelgdfree.epizy.com/?borrarReserva='.$fila['id_reserva'].'">Borrar</a></td>
+                    </tr>
+
+                    `);
+                    
+                </script>';
+
+            }
+
+        }
     }
 
     ?>

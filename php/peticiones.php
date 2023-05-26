@@ -199,7 +199,6 @@ function datosReserva($fechaInicio, $fechaFin, $id, $usuario, $db)
     }
 
     return $cadena;
-
 }
 
 function cancelarReserva($type, $db)
@@ -230,6 +229,29 @@ function cancelarReserva($type, $db)
     $db->ConsultaSimple($consulta, $param);
 
     return "conseguido";
+}
+
+function agregaHabitacion($idHabitacion, $tipoHabitacion, $precio, $estado, $imagen, $descripcion, $db)
+{
+
+    // $imageData = file_get_contents($imagen);
+
+    // $fileData = file_get_contents($imagen);
+    // $encodedData = base64_encode($fileData);
+
+    // return $imagen;
+
+    $param = array();
+    $param['Id'] = $idHabitacion;
+    $param['Tipo'] = $tipoHabitacion;
+    $param['Precio'] = $precio;
+    $param['Estado'] = $estado;
+    $param['Imagen'] = $imagen;
+    $param['Descripcion'] = $descripcion;
+
+    $consulta = "insert into habitaciones values (:Id, :Tipo, :Precio, :Estado, :Imagen, :Descripcion)";
+
+    $db->ConsultaSimple($consulta, $param);
 }
 
 if ($select === "id") {
@@ -301,6 +323,20 @@ if ($select === "id") {
     $cancelarReserva =  cancelarReserva($type, $db);
 
     $response = array('exists' => $cancelarReserva);
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+} else if ($select === "agregaHabitacion") {
+    $idHabitacion = $_POST['idHabitacion'];
+    $tipoHabitacion = $_POST['tipoHabitacion'];
+    $precio = $_POST['precio'];
+    $estado = $_POST['estado'];
+    $imagen = $_POST['imagen'];
+    $descripcion = $_POST['descripcion'];
+
+    $agregaHabitacion =  agregaHabitacion($idHabitacion, $tipoHabitacion, $precio, $estado, $imagen, $descripcion, $db);
+
+    $response = array('exists' => $agregaHabitacion);
 
     header('Content-Type: application/json');
     echo json_encode($response);
