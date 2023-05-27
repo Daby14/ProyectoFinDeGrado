@@ -361,7 +361,7 @@
 
         $usuario = $_SESSION['cliente']['usuario'];
 
-        if ($usuario == "admin") {
+        if ($usuario == "admin" || $usuario == "Admin") {
             echo '<script>
 
         $.ajax({
@@ -381,7 +381,7 @@
 
                         <div class="noReserva mt-5 mb-3" id="agregaHabitaciones">
                         
-                            <a href="https://hotelgdfree.epizy.com" class="btn btn-primary">Agregar Habitacion</a>
+                            <a href="https://hotelgdfree.epizy.com?agregaHabitacion" class="btn btn-primary">Agregar Habitacion</a>
 
                         </div>
 
@@ -402,7 +402,7 @@
                             <div class="card mb-5 w-100 noReserva" style="background:rgb(33, 37, 41);">
                                 <div class="row g-0">
                                     <div class="col-md-5">
-                                        <img src="data:image/jpg;base64,${response.exists[i]}" class="img-fluid rounded-start" alt="asfd">
+                                        <img src="../images/${response.exists[i]}" class="img-fluid rounded-start" alt="asfd">
                                     </div>
                                     <div class="col-md-7" style="display:block; margin:auto;">
                                         <div class="card-body">
@@ -410,6 +410,8 @@
                                             <br>
                                             <br>
                                             <a id="pruebaEnlace" href="https://hotelgdfree.epizy.com/?habitacionEspecificaHotel&id=${response.exists[i + 5]}" class="btn btn-light" data-type=" ${response.exists[i + 5]} ">Ver mas</a>
+                                            <a href="https://hotelgdfree.epizy.com/?borrarHabitacion=${response.exists[i + 5]}" class="btn btn-light">Borrar</a>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -470,7 +472,7 @@
                             <div class="card mb-5 w-100 noReserva" style="background:rgb(33, 37, 41);">
                                 <div class="row g-0">
                                     <div class="col-md-5">
-                                        <img src="data:image/jpg;base64,${response.exists[i]}" class="img-fluid rounded-start" alt="asfd">
+                                        <img src="../images/${response.exists[i]}" class="img-fluid rounded-start" alt="asfd">
                                     </div>
                                     <div class="col-md-7" style="display:block; margin:auto;">
                                         <div class="card-body">
@@ -526,66 +528,135 @@
 
         $id = $_GET['id'];
 
-        echo '<script>
+        $usuario = $_SESSION['cliente']['usuario'];
+
+        if ($usuario == "admin" || $usuario == "Admin") {
+
+            echo '<script>
         
-        $.ajax({
-            url: "peticiones.php?tipo=id", // Ruta del archivo en el servidor que verifica la disponibilidad del correo electrónico
-            type: "POST",
-            data: { type: ' . $id . ' },
-            success: function (response) {
-                // console.log(response)
-                if (response.exists) {
-                    // console.log("el correo ya existe")
-                    // El correo electrónico ya está en uso
-                    // showFeedBack($(form.email), false, "El correo electrónico ya está en uso");
+            $.ajax({
+                url: "peticiones.php?tipo=id", // Ruta del archivo en el servidor que verifica la disponibilidad del correo electrónico
+                type: "POST",
+                data: { type: ' . $id . ' },
+                success: function (response) {
+                    // console.log(response)
+                    if (response.exists) {
+                        // console.log("el correo ya existe")
+                        // El correo electrónico ya está en uso
+                        // showFeedBack($(form.email), false, "El correo electrónico ya está en uso");
 
-                    $("#main").empty();
+                        $("#main").empty();
 
-                    $("#main").append(`
-                    <div class="container py-5">
-                        <div id="habitacionEspecifica">
+                        $("#main").append(`
+                        <div class="container py-5">
+                            <div id="habitacionEspecifica">
 
-                        </div>
-                    </div>`);
+                            </div>
+                        </div>`);
 
-                    for (let i = 0; i < response.exists.length; i += 6) {
-                        // console.log(response.exists[i]);
+                        for (let i = 0; i < response.exists.length; i += 6) {
+                            // console.log(response.exists[i]);
 
-                        let especifica = $("#habitacionEspecifica");
+                            let especifica = $("#habitacionEspecifica");
 
-                        especifica.append(`
+                            especifica.append(`
 
-                        <div class="card mb-5 w-100 noReserva" style="background:rgb(33, 37, 41);">
-                            <div class="row g-0">
-                                <div class="col-md-5">
-                                    <img src="data:image/jpg;base64,${response.exists[i]}" class="img-fluid rounded-start" alt="asfd">
-                                </div>
-                                <div class="col-md-7" style="display:block; margin:auto;">
-                                    <div class="card-body" id="prueba7">
-                                        <h5 class="card-title text-light">${response.exists[i + 1]}</h5>
-                                        <p class="card-text text-light">${response.exists[i + 2]}€/noche</p>
-                                        <p class="card-text text-light">${response.exists[i + 3]}</p>
-                                        <p class="card-text text-light">${response.exists[i + 4]}</p>
-                                        <a id="reservar" href="https://hotelgdfree.epizy.com/?reservaHabitacion&id=' . $id . '" class="btn btn-light" data-type=" ${response.exists[i + 5]} ">Reservar</a>
+                            <div class="card mb-5 w-100 noReserva" style="background:rgb(33, 37, 41);">
+                                <div class="row g-0">
+                                    <div class="col-md-5">
+                                        <img src="../images/${response.exists[i]}" class="img-fluid rounded-start" alt="asfd">
+                                    </div>
+                                    <div class="col-md-7" style="display:block; margin:auto;">
+                                        <div class="card-body" id="prueba7">
+                                            <h5 class="card-title text-light">${response.exists[i + 1]}</h5>
+                                            <p class="card-text text-light">${response.exists[i + 2]}€/noche</p>
+                                            <p class="card-text text-light">${response.exists[i + 3]}</p>
+                                            <p class="card-text text-light">${response.exists[i + 4]}</p>
+                                            <a class="btn btn-light" href="https://hotelgdfree.epizy.com/?habitacionesHotel">Volver</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        `);
+                            `);
 
+                        }
+
+                    } else {
+                        console.log("esta mal")
                     }
-
-                } else {
-                    console.log("esta mal")
+                },
+                error: function () {
                 }
-            },
-            error: function () {
-            }
-        });
+            });
+
+            
+            </script>';
+
+        }else{
+            echo '<script>
+        
+            $.ajax({
+                url: "peticiones.php?tipo=id", // Ruta del archivo en el servidor que verifica la disponibilidad del correo electrónico
+                type: "POST",
+                data: { type: ' . $id . ' },
+                success: function (response) {
+                    // console.log(response)
+                    if (response.exists) {
+                        // console.log("el correo ya existe")
+                        // El correo electrónico ya está en uso
+                        // showFeedBack($(form.email), false, "El correo electrónico ya está en uso");
+
+                        $("#main").empty();
+
+                        $("#main").append(`
+                        <div class="container py-5">
+                            <div id="habitacionEspecifica">
+
+                            </div>
+                        </div>`);
+
+                        for (let i = 0; i < response.exists.length; i += 6) {
+                            // console.log(response.exists[i]);
+
+                            let especifica = $("#habitacionEspecifica");
+
+                            especifica.append(`
+
+                            <div class="card mb-5 w-100 noReserva" style="background:rgb(33, 37, 41);">
+                                <div class="row g-0">
+                                    <div class="col-md-5">
+                                        <img src="../images/${response.exists[i]}" class="img-fluid rounded-start" alt="asfd">
+                                    </div>
+                                    <div class="col-md-7" style="display:block; margin:auto;">
+                                        <div class="card-body" id="prueba7">
+                                            <h5 class="card-title text-light">${response.exists[i + 1]}</h5>
+                                            <p class="card-text text-light">${response.exists[i + 2]}€/noche</p>
+                                            <p class="card-text text-light">${response.exists[i + 3]}</p>
+                                            <p class="card-text text-light">${response.exists[i + 4]}</p>
+                                            <a id="reservar" href="https://hotelgdfree.epizy.com/?reservaHabitacion&id=' . $id . '" class="btn btn-light" data-type=" ${response.exists[i + 5]} ">Reservar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            `);
+
+                        }
+
+                    } else {
+                        console.log("esta mal")
+                    }
+                },
+                error: function () {
+                }
+            });
+
+            
+            </script>';
+        }
 
         
-        </script>';
     }
 
     if (isset($_SESSION['cliente']) && isset($_GET['reservaHabitacion']) && $_GET['id']) {
@@ -800,17 +871,15 @@
 
             echo '<script>
             
-                // $("#habitacionesMenu").html("Reservas");
+                $("#carrito").css({"display" : "none"});
 
-                // $("#habitacionesMenu").attr("href","https://hotelgdfree.epizy.com/?reservasAdmin");
+                $("#contacto").html("Reservas");
 
-                $("#contacto").html("Usuarios");
-
-                $("#contacto").attr("href","https://hotelgdfree.epizy.com/?usuariosAdmin");
+                $("#contacto").attr("href","https://hotelgdfree.epizy.com/?reservasAdmin");
 
             </script>';
 
-            if (isset($_GET['usuariosAdmin'])) {
+            if (isset($_GET['reservasAdmin'])) {
                 echo '<script>
             
                 $("#main").empty();
@@ -829,87 +898,186 @@
                 
                 echo '<script>
                 
-                location.href = "https://hotelgdfree.epizy.com/?usuariosAdmin";
+                location.href = "https://hotelgdfree.epizy.com/?reservasAdmin";
                 
                 </script>';
             }
 
-            // if (isset($_GET['agregaHabitacion'])) {
+            if (isset($_GET['agregaHabitacion'])) {
 
-            //     echo '<script>
+                echo '<script>
             
-            //     $("#header").empty();
-            //     $("#main").empty();
-            //     $("#footer").empty();
+                $("#header").empty();
+                $("#main").empty();
+                $("#footer").empty();
 
-            //     // body = document.body;
+                let body = document.body;
 
-            //     // body.id = "login";
+                body.classList.add("formuContacto");
 
-            //     // $("#habitacionesMenu").attr("href","https://hotelgdfree.epizy.com/?reservasAdmin");
+                body.id = "login";
 
-            //     // $("#contacto").html("Usuarios");
+                </script>';
 
-            //     // $("#contacto").attr("href","https://hotelgdfree.epizy.com/?usuariosAdmin");
+                $controller->formularioAgregaHabitacion();
 
-            //     </scrip>';
+                echo '<script>
+                
+                let formAgregaHabitacion = document.getElementById("formAgregaHabitacion");
 
-            //     $controller->formularioAgregaHabitacion();
+                if (formAgregaHabitacion !== null) {
+                    formAgregaHabitacion.addEventListener("submit", function (event) {
+                        //Prevenimos que el formulario se envíe automáticamente
+                        event.preventDefault();
 
-                // echo '<script>
-            
-                //     let formAgregaHabitacion = document.getElementById("formAgregaHabitacion");
+                        //Validamos el formulario
+                        if (this.checkValidity() === false) {
+                            event.stopPropagation();
+                            this.classList.add("was-validated");
+                        } else {
 
-                //     if (formAgregaHabitacion !== null) {
-                //         formAgregaHabitacion.addEventListener("submit", function (event) {
-                //             //Prevenimos que el formulario se envíe automáticamente
-                //             event.preventDefault();
+                            //Recogemos los datos que devuelve el formulario
+                            let tipoHabitacion = document.getElementById("tipoHabitacion").value;
+                            let precio = document.getElementById("precio").value;
 
-                //             //Validamos el formulario
-                //             if (this.checkValidity() === false) {
-                //                 event.stopPropagation();
-                //                 this.classList.add("was-validated");
-                //             } else {
+                            let imagen = document.getElementById("img").value;
+                            let nombre = imagen.substring(12);
 
-                //                 //Recogemos los datos que devuelve el formulario
-                //                 let idHabitacion = "NULL";
-                //                 let tipoHabitacion = document.getElementById("tipoHabitacion").value;
-                //                 let precio = document.getElementById("precio").value;
-                //                 let estado = "Disponible";
-                //                 let img = document.getElementById("img").value;
+                            console.log(nombre);
 
-                //                 let descripcion = document.getElementById("descripcion").value;
-                                
-                //                 $.ajax({
-                //                     url: "peticiones.php?tipo=agregaHabitacion",
-                //                     type: "POST",
-                //                     data: {
-                //                         idHabitacion: idHabitacion,
-                //                         tipoHabitacion: tipoHabitacion,
-                //                         precio: precio,
-                //                         estado: estado,
-                //                         imagen: img,
-                //                         descripcion: descripcion
-                //                     },
-                //                     success: function (response) {
-                //                         console.log(response);
-                //                         if (response.exists) {
+                            let descripcion = document.getElementById("descripcion").value;
+                            let idHabitacion = "NULL";
+                            let estado = "Disponible";
 
-                //                         } else {
-                //                             console.log("No se ha realizado correctamente")
-                //                         }
-                //                     },
-                //                     error: function () {
-                //                     }
-                //                 });
+                            //Implementamos una petición ajax para enviar los datos al servidor y devolver respuesta
+                            $.ajax({
+                                url: "peticiones.php?tipo=agregaHabitacion",
+                                type: "POST",
+                                data: {
+                                    idHabitacion: idHabitacion,
+                                    tipoHabitacion: tipoHabitacion,
+                                    precio: precio,
+                                    estado: estado,
+                                    imagen: nombre,
+                                    descripcion: descripcion
+                                },
+                                success: function (response) {
+                                    console.log(response);
+                                    if (response.exists) {
 
-                //             }
-                //         }, false);
-                //     }
+                                        if(response.exists == "conseguido"){
+                                        
+                                            main = $("#main");
 
-                //     </script>';
-                // }
-            // }
+                                            main.append(`<div class="modal fade show" id="modalAgregaHabitacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="myModalLabel" style="display: block; margin: auto; text-align: center;">Habitación Agregada</h5>
+                                                        </div>
+                                                        <div class="modal-body" style="display: block; margin: auto; text-align: center;">
+                                                            Se ha agregado la habitación correctamente
+                                                            <br>
+                                                            <br>
+                                                            <img src="../images/agregaHabitacion.jpg" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>`);
+
+                                            $("#modalAgregaHabitacion").modal("show");
+                                            
+                                            let cerrar = document.getElementById("cerrar");
+                                                
+                                            cerrar.addEventListener("click", function () {
+                                                
+                                                window.location.href = "https://hotelgdfree.epizy.com/?habitacionesHotel";
+                                                
+                                            })
+                                            
+                                        }
+
+                                    } else {
+                                        console.log("No se ha realizado correctamente")
+                                    }
+                                },
+                                error: function () {
+                                }
+                            });
+
+                        }
+                    }, false);
+                }
+
+                </script>';
+
+            }
+
+            if (isset($_GET['borrarHabitacion'])) {
+                
+                $id = $_GET['borrarHabitacion'];
+                
+                echo '<script>
+                
+                    $.ajax({
+                        url: "peticiones.php?tipo=borrarHabitacion",
+                        type: "POST",
+                        data: {
+                            id: '.$id.'
+                        },
+                        success: function (response) {
+                            console.log(response);
+                            if (response.exists) {
+        
+                                if(response.exists == "conseguido"){
+                                        
+                                    main = $("#main");
+
+                                    main.append(`<div class="modal fade show" id="modalBorraHabitacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="myModalLabel" style="display: block; margin: auto; text-align: center;">Habitación Borrada</h5>
+                                                </div>
+                                                <div class="modal-body" style="display: block; margin: auto; text-align: center;">
+                                                    Se ha borrado la habitación correctamente
+                                                    <br>
+                                                    <br>
+                                                    <img src="../images/borraHabitacion.jpg" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>`);
+
+                                    $("#modalBorraHabitacion").modal("show");
+                                    
+                                    let cerrar = document.getElementById("cerrar");
+                                        
+                                    cerrar.addEventListener("click", function () {
+                                        
+                                        window.location.href = "https://hotelgdfree.epizy.com/?habitacionesHotel";
+                                        
+                                    })
+                                    
+                                }
+        
+                            } else {
+                                console.log("No se ha realizado correctamente")
+                            }
+                        },
+                        error: function () {
+                        }
+                    });
+                
+                </script>';
+            }
+
         } else {
         }
     }

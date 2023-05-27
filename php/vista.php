@@ -1194,126 +1194,80 @@
         public function formularioAgregaHabitacion()
         {
 
-    ?>
+            echo '<script>
 
-            <form name='f1' method='post' enctype='multipart/form-data'>
-                <legend><strong>Alta de imagenes para las camaras</strong></legend>
+            main = $("#main");
 
-                <fieldset>
+            main.append(`<div class="wrapper bg-white">
+            <div class="h2 text-center tituloLogin">Hotel GD</div>
+            <div class="h4 text-muted text-center pt-2 subtituloLogin">Agrega Habitacion</div>
+            <form id="formAgregaHabitacion" class="needs-validation" novalidate method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    
+                    <label for="tipoHabitacion">Nombre:</label>
+                    <input type="text" class="form-control" id="tipoHabitacion" placeholder="Ingrese el nombre" required>
+                    <div class="valid-feedback">
+                        ¡Correcto!
+                    </div>
+                    <div class="invalid-feedback">
+                        El nombre es obligatorio
+                    </div>
 
-                    <label for='respon'>Responsable</label>
-                    <input type="text" name="respon">
+                </div>
 
-                    <br>
-                    <br>
+                <div class="form-group">
+                    
+                    <label for="precio" class="mt-3">Precio:</label>
+                    <input type="text" class="form-control" id="precio" placeholder="Ingrese el precio" required>
+                    
+                    <div class="valid-feedback">
+                            ¡Correcto!
+                    </div>
+                    <div class="invalid-feedback">
+                            El precio es obligatorio
+                    </div>
+                </div>
 
-                    <label for='foto'>Foto</label>
-                    <input type="file" name="foto">
+                <div class="form-group">
+                    
+                    <label for="imagen" class="mt-3">Foto:</label>
+                    <input type="file" class="form-control" id="img" name="imagen" accept="image/*" placeholder="Ingrese la foto" required>
+                    
+                    <div class="valid-feedback">
+                            ¡Correcto!
+                    </div>
+                    <div class="invalid-feedback">
+                            La foto es obligatoria
+                    </div>
+                </div>
 
-                    <br>
-                    <br>
-                    <label for="fecha">Fecha</label>
-                    <input type="text" name='fecha' placeholder="dd/mm/yyyy">
-                    <br>
-                    <br>
-                    <input type='submit' name='Insertar' value='Insertar'>
-                    <input type='submit' name='Listar' value='Listar'>
-                </fieldset>
+                <div class="form-group">
+                    
+                    <label for="descripcion" class="mt-3">Descripcion:</label>
+                    <input type="text" class="form-control" id="descripcion" placeholder="Ingrese la descripcion" required>
+                    
+                    <div class="valid-feedback">
+                            ¡Correcto!
+                    </div>
+                    <div class="invalid-feedback">
+                            La descripcion es obligatoria
+                    </div>
+                </div>
 
-                <?php
-
-                if (isset($_POST['Insertar'])) {
-
-                    $respon = $_POST['respon'];
-
-                    //Realizamos la inserción de los datos
-                    $fecha = $_POST['fecha'];
-
-                    $campos = explode("/", $fecha);     //Tenemos que convertir la fecha dd/mm/yyyy a epoch
-
-                    $fechaTime = mktime(0, 0, 0, $campos[1], $campos[0], $campos[2]);
-
-                    $param = array();
-
-                    $param[":Fecha"] = $fechaTime;
-
-                    if ($_FILES["foto"]["name"] != "") {
-                        $NomOriginal = $_FILES["foto"]["name"];
-
-                        echo $NomOriginal;
-
-                        echo "<br>";
-
-                        $NomOriginal = $_FILES["foto"]["type"];
-
-                        echo $NomOriginal;
-
-                        echo "<br>";
-
-                        //Copiamos el archivo de la ruta temporal a la carpeta Logos
-                        $NomTempLogo = $_FILES["foto"]["tmp_name"];
-
-                        echo $NomTempLogo;
-
-                        echo "<br>";
-
-                        // copy($NomTempLogo, "Fotos/" . $NomOriginal);
-
-                        $foto = file_get_contents($NomTempLogo);
-
-                        $foto = base64_encode($foto);
-
-                        echo $foto;
-
-                        $cadena = "\"$foto\"";
-
-                        echo '<script>
-                        
-                        $.ajax({
-                            url: "peticiones.php?tipo=agregaHabitacion",
-                            type: "POST",
-                            data: {
-                                idHabitacion: "NULL",
-                                tipoHabitacion: "aerea",
-                                precio: "76",
-                                estado: "Disponible",
-                                imagen: '.$cadena.',
-                                descripcion: "LA MEJOR"
-                            },
-                            success: function (response) {
-                                console.log(response);
-                                if (response.exists) {
-
-                                } else {
-                                    console.log("No se ha realizado correctamente")
-                                }
-                            },
-                            error: function () {
-                            }
-                        });
-                        
-                        </script>';
-
-                        // $param[":Foto"] = $NomOriginal;
-
-                        $prueba = $foto;
-                    }
-
-                    // $_SESSION[$respon] = $prueba . " " . $fechaTime;
-
-                    // $consulta = "insert into camaras values(NULL,:Foto,:Fecha)";
-
-                    // $db->ConsultaSimple($consulta, $param);
-                }
-
-                ?>
-
+                <div class="d-flex align-items-start">
+                    <div class="ml-auto"> </div>
+                </div> 
+                <button type="submit" class="btn btn-block text-center my-3" id="iniciar" data-toggle="modal" data-target="#exampleModal">Agregar</button>
+                <a href="https://hotelgdfree.epizy.com/?habitacionesHotel" class="btn btn-block text-center my-3">Volver</a>
             </form>
+        </div>`);
+            
+            
 
-    <?php
-
+            </script>';
 
         }
+
     }
 
     ?>

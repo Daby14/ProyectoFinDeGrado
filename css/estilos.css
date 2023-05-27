@@ -298,7 +298,22 @@
 
   /* Estilos para la tabla */
 .table {
-    max-width: 600px; /* Ajusta este valor según tus necesidades */
+    max-width: 300px; /* Ajusta este valor según tus necesidades */
     margin: 0 auto;
     width: 100%;
 }
+
+#enlaceReservaAdmin{
+    width: 70px;
+    height: 35px;
+}
+
+@media (max-width: 767px) {
+    .table {
+        font-size: 12px;
+    }
+
+}
+
+
+

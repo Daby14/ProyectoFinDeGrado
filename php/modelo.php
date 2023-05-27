@@ -418,7 +418,7 @@
                     <div class="card mb-5 w-100 noReserva" style="background:rgb(33, 37, 41);">
                         <div class="row g-0">
                             <div class="col-md-5">
-                                <img src="data:image/jpg;base64,' . base64_encode($imagen) . '" class="img-fluid rounded-start" alt="asfd">
+                                <img src="../images/'.$imagen.'" class="img-fluid rounded-start" alt="asfd">
                             </div>
                             <div class="col-md-7" style="display:block; margin:auto;">
                                 <div class="card-body">
@@ -501,7 +501,7 @@
                     <div class="card mb-5 w-100 noReserva" style="background:rgb(33, 37, 41);">
                         <div class="row g-0">
                             <div class="col-md-5">
-                                <img src="data:image/jpg;base64,' . base64_encode($imagen) . '" class="img-fluid rounded-start" alt="asfd">
+                                <img src="../images/'.$imagen. '" class="img-fluid rounded-start" alt="asfd">
                             </div>
                             <div class="col-md-7" style="display:block; margin:auto;">
                                 <div class="card-body">
@@ -638,54 +638,118 @@
 
             $param = array();
 
-            $consulta = "select * from reservas";
+            $consulta = "select count(*) as 'total' from reservas";
 
             $db->ConsultaDatos($consulta, $param);
 
-            echo '<script>
+            $total = $db->filas[0]['total'];
 
-                $("#main").append(`
+            if ($total == 0) {
+                echo '<script>
                 
-                <div class="containerReservasAdmin">
-                    <table id="tablaReservasAdmin" class="table table-success table-striped">
-                    
-                        <tr class="table-dark">
-                            <th>Reserva ID</th>
-                            <th>Habitacion ID</th>
-                            <th>Fecha Inicio</th>
-                            <th>Fecha Fin</th>
-                            <th>Cliente ID</th>
-                            <th>Borrar</th>
-                        </tr>
+                main = $("#main");
 
-                    </table>
-                </div>
+                main.append(`
+                    <div class="container py-5">
 
-                `);
+                    <div class="card noReserva" style="width: 18rem;">
+                        <img src="../images/noReservas.webp" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">No existen reservas</h5>
+                            <p class="card-text">Cuando existan reservas aparecerán aquí</p>
+                        </div>
+                    </div>
+                            
+                        
+                    </div>`);
+
+                let footer = document.getElementById("footer");
+                footer.style.bottom = "0";
+                footer.style.left = "0";
+                footer.style.right = "0";
                 
-            </script>';
+                </script>';
+            } else {
+                $param = array();
 
-            foreach ($db->filas as $fila) {
+                $consulta = "select * from reservas";
+
+                $db->ConsultaDatos($consulta, $param);
 
                 echo '<script>
 
-                    $("#tablaReservasAdmin").append(`
+                $("#footer").css({
+                    "margin-top": "100px"
+                });
+
+                $("#main").append(`
+
+                <div class="container">
+                    <div class="table-responsive table-responsive-sm">
+                        <table class="table table-striped mt-5 mb-5">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th class="text-center">Habitacion</th>
+                                    <th class="text-center">Inicio</th>
+                                    <th class="text-center">Fin</th>
+                                    <th class="text-center">Cliente</th>
+                                    <th class="text-center">Borrar</th>
+                                </tr>
+                            </thead>
+                            <tbody id="filasReservasAdmin">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                `);
+
+                
+                
+            </script>';
+
+                foreach ($db->filas as $fila) {
+
+                    //Obtenemos el nombre de la habitacion
+                    $param = array();
+                    $param['Tipo'] = $fila['id_habitacion'];
+
+                    $consulta = "select tipo_habitacion as 'tipo' from habitaciones where id_habitacion = :Tipo";
+
+                    $db->ConsultaDatos($consulta, $param);
+
+                    $tipo = $db->filas[0]['tipo'];
+                    $palabras = explode(' ', $tipo);
+                    $resultado = trim($palabras[1]);
+
+                    //Obtenemos el nombre del cliente que ha reservado
+                    $param = array();
+                    $param['Id'] = $fila['id_cliente'];
+
+                    $consulta = "select nombre as 'nombre' from clientes where id_cliente = :Id";
+
+                    $db->ConsultaDatos($consulta, $param);
+
+                    $nombre = $db->filas[0]['nombre'];
+
+                    echo '<script>
+
+                    $("#filasReservasAdmin").append(`
                     
                     <tr>
-                        <td>'.$fila['id_reserva'].'</td>
-                        <td>'.$fila['id_habitacion'].'</td>
-                        <td>'.$fila['fecha_inicio'].'</td>
-                        <td>'.$fila['fecha_fin'].'</td>
-                        <td>'.$fila['id_cliente'].'</td>
-                        <td><a class="btn btn-primary" href="https://hotelgdfree.epizy.com/?borrarReserva='.$fila['id_reserva'].'">Borrar</a></td>
+                        <td class="text-center">' . $resultado . '</td>
+                        <td class="text-center">' . $fila['fecha_inicio'] . '</td>
+                        <td class="text-center">' . $fila['fecha_fin'] . '</td>
+                        <td class="text-center">' . $nombre . '</td>
+                        <td class="text-center"><a id="enlaceReservaAdmin" class="btn btn-primary" href="https://hotelgdfree.epizy.com/?borrarReserva=' . $fila['id_reserva'] . '">Borrar</a></td>
                     </tr>
 
                     `);
                     
                 </script>';
-
+                }
             }
-
         }
     }
 

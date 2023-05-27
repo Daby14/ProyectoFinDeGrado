@@ -21,7 +21,7 @@ function habitacionEspecifica($type, $db)
     $arrayDatos = array();
 
     foreach ($db->filas as $fila) {
-        $arrayDatos[] = base64_encode($fila['imagen']);
+        $arrayDatos[] = $fila['imagen'];
         $arrayDatos[] = $fila['tipo_habitacion'];
         $arrayDatos[] = $fila['precio'];
         $arrayDatos[] = $fila['descripcion'];
@@ -49,7 +49,7 @@ function habitacionesHotel($type, $db)
     $arrayDatos = array();
 
     foreach ($db->filas as $fila) {
-        $arrayDatos[] = base64_encode($fila['imagen']);
+        $arrayDatos[] = $fila['imagen'];
         $arrayDatos[] = $fila['tipo_habitacion'];
         $arrayDatos[] = $fila['precio'];
         $arrayDatos[] = $fila['descripcion'];
@@ -234,13 +234,6 @@ function cancelarReserva($type, $db)
 function agregaHabitacion($idHabitacion, $tipoHabitacion, $precio, $estado, $imagen, $descripcion, $db)
 {
 
-    // $imageData = file_get_contents($imagen);
-
-    // $fileData = file_get_contents($imagen);
-    // $encodedData = base64_encode($fileData);
-
-    // return $imagen;
-
     $param = array();
     $param['Id'] = $idHabitacion;
     $param['Tipo'] = $tipoHabitacion;
@@ -252,6 +245,25 @@ function agregaHabitacion($idHabitacion, $tipoHabitacion, $precio, $estado, $ima
     $consulta = "insert into habitaciones values (:Id, :Tipo, :Precio, :Estado, :Imagen, :Descripcion)";
 
     $db->ConsultaSimple($consulta, $param);
+
+    $cadena = "conseguido";
+
+    return $cadena;
+}
+
+function borrarHabitacion($id, $db)
+{
+
+    $param = array();
+    $param['Id'] = $id;
+
+    $consulta = "delete from habitaciones where id_habitacion=:Id";
+
+    $db->ConsultaSimple($consulta, $param);
+
+    $cadena = "conseguido";
+
+    return $cadena;
 }
 
 if ($select === "id") {
@@ -337,6 +349,15 @@ if ($select === "id") {
     $agregaHabitacion =  agregaHabitacion($idHabitacion, $tipoHabitacion, $precio, $estado, $imagen, $descripcion, $db);
 
     $response = array('exists' => $agregaHabitacion);
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+} else if ($select === "borrarHabitacion") {
+    $id = $_POST['id'];
+
+    $borrarHabitacion =  borrarHabitacion($id, $db);
+
+    $response = array('exists' => $borrarHabitacion);
 
     header('Content-Type: application/json');
     echo json_encode($response);
