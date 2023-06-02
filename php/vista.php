@@ -1268,6 +1268,96 @@
 
         }
 
+        public function formularioActualizaHabitacion()
+        {
+
+            echo '<script>
+
+            main = $("#main");
+
+            main.append(`<div class="wrapper bg-white">
+            <div class="h2 text-center tituloLogin">Hotel GD</div>
+            <div class="h4 text-muted text-center pt-2 subtituloLogin">Actualiza Habitacion</div>
+            <form id="formActualizaHabitacion" class="needs-validation" novalidate method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    
+                    <label for="tipoHabitacion">Nombre:</label>
+                    <input type="text" class="form-control" id="tipoHabitacion" placeholder="Ingrese el nombre" required>
+                    <div class="valid-feedback">
+                        ¡Correcto!
+                    </div>
+                    <div class="invalid-feedback">
+                        El nombre es obligatorio
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    
+                    <label for="precio" class="mt-3">Precio:</label>
+                    <input type="text" class="form-control" id="precio" placeholder="Ingrese el precio" required>
+                    
+                    <div class="valid-feedback">
+                            ¡Correcto!
+                    </div>
+                    <div class="invalid-feedback">
+                            El precio es obligatorio
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    
+                    <label for="imagen" class="mt-3">Foto:</label>
+                    <input type="file" class="form-control" id="img" name="imagen" accept="image/*" placeholder="Ingrese la foto" required>
+                    
+                    <div class="valid-feedback">
+                            ¡Correcto!
+                    </div>
+                    <div class="invalid-feedback">
+                            La foto es obligatoria
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    
+                    <label for="estado" class="mt-3">Estado:</label>
+                    <input type="text" class="form-control" id="estado" placeholder="Ingrese el estado" required>
+                    
+                    <div class="valid-feedback">
+                            ¡Correcto!
+                    </div>
+                    <div class="invalid-feedback">
+                            El estado es obligatorio
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    
+                    <label for="descripcion" class="mt-3">Descripcion:</label>
+                    <input type="text" class="form-control" id="descripcion" placeholder="Ingrese la descripcion" required>
+                    
+                    <div class="valid-feedback">
+                            ¡Correcto!
+                    </div>
+                    <div class="invalid-feedback">
+                            La descripcion es obligatoria
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-start">
+                    <div class="ml-auto"> </div>
+                </div> 
+                <button type="submit" class="btn btn-block text-center my-3" id="iniciar" data-toggle="modal" data-target="#exampleModal">Actualizar</button>
+                <a href="https://hotelgdfree.epizy.com/?habitacionesHotel" class="btn btn-block text-center my-3">Volver</a>
+            </form>
+        </div>`);
+            
+            
+
+            </script>';
+
+        }
+
     }
 
     ?>

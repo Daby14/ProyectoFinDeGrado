@@ -266,6 +266,59 @@ function borrarHabitacion($id, $db)
     return $cadena;
 }
 
+function cancelarReservaAdmin($id, $db)
+{
+
+    $param = array();
+    $param['Reserva'] = $id;
+
+    $consulta = "select id_habitacion as id_habitacion from reservas where id_reserva=:Reserva";
+
+    $db->ConsultaDatos($consulta, $param);
+
+    $id_habitacion = $db->filas[0]['id_habitacion'];
+
+    $param = array();
+    $param['Habitacion'] = $id_habitacion;
+    $param['Estado'] = "Disponible";
+
+    $consulta = "update habitaciones set estado=:Estado where id_habitacion=:Habitacion";
+
+    $db->ConsultaSimple($consulta, $param);
+
+    $param = array();
+    $param['Reserva'] = $id;
+
+    $consulta = "delete from reservas where id_reserva=:Reserva";
+
+    $db->ConsultaSimple($consulta, $param);
+
+    $cadena = "conseguido";
+
+    return $cadena;
+}
+
+function actualizaHabitacion($idHabitacion, $tipoHabitacion, $precio, $estado, $imagen, $descripcion, $db)
+{
+
+    $param = array();
+    $param['Id'] = $idHabitacion;
+    $param['Tipo'] = $tipoHabitacion;
+    $param['Precio'] = $precio;
+    $param['Estado'] = $estado;
+    $param['Imagen'] = $imagen;
+    $param['Descripcion'] = $descripcion;
+
+    $consulta = "update habitaciones set tipo_habitacion=:Tipo, precio=:Precio, estado=:Estado, imagen=:Imagen, descripcion=:Descripcion where id_habitacion=:Id";
+
+    $db->ConsultaSimple($consulta, $param);
+
+    $cadena = "conseguido";
+
+    return $cadena;
+
+}
+
 if ($select === "id") {
     $type = $_POST['type'];
 
@@ -358,6 +411,29 @@ if ($select === "id") {
     $borrarHabitacion =  borrarHabitacion($id, $db);
 
     $response = array('exists' => $borrarHabitacion);
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+} else if ($select === "cancelarReservaAdmin") {
+    $id = $_POST['id'];
+
+    $cancelarReservaAdmin =  cancelarReservaAdmin($id, $db);
+
+    $response = array('exists' => $cancelarReservaAdmin);
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+} else if ($select === "actualizaHabitacion") {
+    $idHabitacion = $_POST['idHabitacion'];
+    $tipoHabitacion = $_POST['tipoHabitacion'];
+    $precio = $_POST['precio'];
+    $estado = $_POST['estado'];
+    $imagen = $_POST['imagen'];
+    $descripcion = $_POST['descripcion'];
+
+    $actualizaHabitacion =  actualizaHabitacion($idHabitacion, $tipoHabitacion, $precio, $estado, $imagen, $descripcion, $db);
+
+    $response = array('exists' => $actualizaHabitacion);
 
     header('Content-Type: application/json');
     echo json_encode($response);

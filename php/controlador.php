@@ -236,4 +236,9 @@ class Controller
         $this->model->reservasAdmin($db);
     }
 
+    public function formularioActualizaHabitacion()
+    {
+        $this->view->formularioActualizaHabitacion();
+    }
+
 }
