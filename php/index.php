@@ -940,6 +940,21 @@
 
                 $("#contacto").attr("href","https://hotelgdfree.epizy.com/?reservasAdmin");
 
+                $("#menu2").append(`
+                    <li>
+                        <strong><a id="contactoDatos" href="https://hotelgdfree.epizy.com/?contactoDatos" class="nav-link px-2 text-light">Mensajes</a></strong>
+                    </li>`);
+
+                $("#menu2").append(`
+                    <li>
+                        <strong><a id="clientesAdmin" href="https://hotelgdfree.epizy.com/?clientesAdmin" class="nav-link px-2 text-light">Clientes</a></strong>
+                    </li>`);
+                
+                $("#menu2").append(`
+                    <li>
+                        <strong><a id="usuariosAdmin" href="https://hotelgdfree.epizy.com/?usuariosAdmin" class="nav-link px-2 text-light">Usuarios</a></strong>
+                    </li>`);
+
             </script>';
 
             if (isset($_GET['reservasAdmin'])) {
@@ -953,9 +968,9 @@
                 
             }
 
-            if (isset($_GET['borrarReserva'])) {
+            if (isset($_GET['borrarReservaAdmin'])) {
 
-                $id = $_GET['borrarReserva'];
+                $id = $_GET['borrarReservaAdmin'];
 
                 echo '<script>
                 
@@ -1361,6 +1376,62 @@
                     });
                 
                 </script>';
+            }
+
+            if (isset($_GET['contactoDatos'])) {
+                echo '<script>
+            
+                $("#main").empty();
+
+                </script>';
+
+                $controller->contactoDatos($db);
+                
+            }
+
+            if (isset($_GET['borrarMensaje'])) {
+
+                $id_contacto = $_GET['borrarMensaje'];
+
+                $controller->modalBorrarMensaje();
+
+                echo '<script>
+            
+                $.ajax({
+                    url: "peticiones.php?tipo=borrarMensaje",
+                    type: "POST",
+                    data: {
+                        id: '.$id_contacto.'
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        if (response.exists) {
+    
+                            
+                            if(response.exists == "conseguido"){
+                            
+                                $("#modalBorrarMensaje").modal("show");
+
+                                let cerrar = document.getElementById("cerrar");
+                                        
+                                cerrar.addEventListener("click", function () {
+                                        
+                                    window.location.href = "https://hotelgdfree.epizy.com/?contactoDatos";
+                                        
+                                })
+                            
+                            }
+    
+                        } else {
+                            console.log("No se ha realizado correctamente");
+                        }
+                    },
+                    error: function () {
+                    }
+                });
+
+                </script>';
+                
             }
 
         } else {

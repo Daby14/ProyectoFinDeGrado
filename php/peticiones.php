@@ -319,6 +319,42 @@ function actualizaHabitacion($idHabitacion, $tipoHabitacion, $precio, $estado, $
 
 }
 
+function contacto($nombre, $correo, $telefono, $mensaje, $db)
+{
+
+    $param = array();
+    $param['Nombre'] = $nombre;
+    $param['Correo'] = $correo;
+    $param['Telefono'] = $telefono;
+    $param['Mensaje'] = $mensaje;
+
+    $consulta = "insert into contacto values (NULL, :Nombre, :Correo, :Telefono, :Mensaje)";
+
+    $db->ConsultaSimple($consulta, $param);
+
+    $cadena = "conseguido";
+
+    return $cadena;
+
+}
+
+function borrarMensaje($id, $db)
+{
+
+    $param = array();
+    $param['Id'] = $id;
+
+    $consulta = "delete from contacto where id_contacto=:Id";
+
+    $db->ConsultaSimple($consulta, $param);
+
+    $cadena = "conseguido";
+
+    return $cadena;
+
+}
+
+
 if ($select === "id") {
     $type = $_POST['type'];
 
@@ -434,6 +470,27 @@ if ($select === "id") {
     $actualizaHabitacion =  actualizaHabitacion($idHabitacion, $tipoHabitacion, $precio, $estado, $imagen, $descripcion, $db);
 
     $response = array('exists' => $actualizaHabitacion);
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+} else if ($select === "contacto") {
+    $nombre = $_POST['nombre'];
+    $correo = $_POST['correo'];
+    $telefono = $_POST['telefono'];
+    $mensaje = $_POST['mensaje'];
+
+    $contacto =  contacto($nombre, $correo, $telefono, $mensaje, $db);
+
+    $response = array('exists' => $contacto);
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+} else if ($select === "borrarMensaje") {
+    $id = $_POST['id'];
+
+    $borrarMensaje =  borrarMensaje($id, $db);
+
+    $response = array('exists' => $borrarMensaje);
 
     header('Content-Type: application/json');
     echo json_encode($response);

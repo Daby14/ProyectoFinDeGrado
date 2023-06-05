@@ -241,4 +241,14 @@ class Controller
         $this->view->formularioActualizaHabitacion();
     }
 
+    public function contactoDatos($db)
+    {
+        $this->model->contactoDatos($db);
+    }
+
+    public function modalBorrarMensaje()
+    {
+        $this->view->modalBorrarMensaje();
+    }
+
 }

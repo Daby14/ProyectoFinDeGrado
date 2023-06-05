@@ -43,7 +43,7 @@
 
                             </ul>
 
-                            <ul id="menu" class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                            <ul id="menu2" class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                                 <li>
                                     <strong><a id="init" href="https://hotelgdfree.epizy.com/" class="nav-link px-2 text-light">Inicio</a></strong>
                                 </li>
@@ -1356,6 +1356,35 @@
 
             </script>';
 
+        }
+
+        public function modalBorrarMensaje()
+        {
+
+            echo '<script>
+            
+                main = $("#main");
+
+                main.append(`<div class="modal fade show" id="modalBorrarMensaje" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="myModalLabel" style="display: block; margin: auto; text-align: center;">Mensaje Eliminado</h5>
+                        </div>
+                        <div class="modal-body" style="display: block; margin: auto; text-align: center;">
+                            El mensaje se ha eliminado correctamente
+                            <br>
+                            <br>
+                            <img src="../images/registro.png" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>`)
+            
+            </script>';
         }
 
     }

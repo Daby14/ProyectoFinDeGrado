@@ -12,17 +12,44 @@ if (form !== null) {
             this.classList.add('was-validated');
         } else {
 
-            //Si el formulario es válido, abrimos el modal
-            $('#miModal').modal('show');
+            let nombre = document.getElementById("nombre").value;
+            let correo = document.getElementById("correo").value;
+            let telefono = document.getElementById("telefono").value;
+            let mensaje = document.getElementById("mensaje").value;
 
-            //En el caso de que se pinche en cerrar el modal, lo cerramos
-            let cerrar = document.getElementById("cerrar");
+            $.ajax({
+                url: "peticiones.php?tipo=contacto",
+                type: "POST",
+                data: {
+                    nombre: nombre,
+                    correo: correo,
+                    telefono: telefono,
+                    mensaje: mensaje
+                },
+                success: function (response) {
+                    console.log(response);
+                    if (response.exists) {
 
-            cerrar.addEventListener("click", function () {
+                        if (response.exists == "conseguido") {
+                            $('#miModal').modal('show');
 
-                window.location.href = "https://hotelgdfree.epizy.com/";
+                            //En el caso de que se pinche en cerrar el modal, lo cerramos
+                            let cerrar = document.getElementById("cerrar");
 
-            })
+                            cerrar.addEventListener("click", function () {
+
+                                window.location.href = "https://hotelgdfree.epizy.com/";
+
+                            })
+                        }
+
+                    } else {
+                        console.log("No se ha realizado correctamente");
+                    }
+                },
+                error: function () {
+                }
+            });
 
         }
     }, false);
@@ -189,9 +216,9 @@ cancelar.find('a').click((event) => {
             success: function (response) {
                 console.log(response);
                 if (response.exists) {
-    
+
                     location.href = 'https://hotelgdfree.epizy.com/?idReserva';
-    
+
                 } else {
                     // $('#modalConfirmacionCancelacionReserva').modal('show');
                 }
@@ -210,7 +237,7 @@ cancelar.find('a').click((event) => {
 
     })
 
-    
+
 
 
 

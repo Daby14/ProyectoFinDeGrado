@@ -684,24 +684,13 @@
 
                 $("#main").append(`
 
-                <div class="container">
-                    <div class="table-responsive table-responsive-sm">
-                        <table class="table table-striped mt-5 mb-5">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th class="text-center">Habitacion</th>
-                                    <th class="text-center">Inicio</th>
-                                    <th class="text-center">Fin</th>
-                                    <th class="text-center">Cliente</th>
-                                    <th class="text-center">Borrar</th>
-                                </tr>
-                            </thead>
-                            <tbody id="filasReservasAdmin">
-                                
-                            </tbody>
-                        </table>
+                <div class="container py-5">
+                    <div id="reservasDisponiblesAdmin" class="card-columns2">
+                
                     </div>
                 </div>
+
+                
                 
                 `);
 
@@ -723,6 +712,16 @@
                     $palabras = explode(' ', $tipo);
                     $resultado = trim($palabras[1]);
 
+                    //Obtenemos la imagen de la habitacion
+                    $param = array();
+                    $param['Tipo'] = $fila['id_habitacion'];
+
+                    $consulta = "select imagen as 'imagen' from habitaciones where id_habitacion = :Tipo";
+
+                    $db->ConsultaDatos($consulta, $param);
+
+                    $imagen = $db->filas[0]['imagen'];
+
                     //Obtenemos el nombre del cliente que ha reservado
                     $param = array();
                     $param['Id'] = $fila['id_cliente'];
@@ -735,22 +734,123 @@
 
                     echo '<script>
 
-                    $("#filasReservasAdmin").append(`
+                    $("#reservasDisponiblesAdmin").append(`
+
+                    <div class="card mb-5 w-100 noReserva text-light" style="background:rgb(33, 37, 41);">
+                        <div class="row g-0">
+                            <div class="col-md-5">
+                                <img src="../images/'.$imagen.'" class="img-fluid rounded-start" alt="reservaImagen">
+                            </div>
+                            <div class="col-md-7" style="display:block; margin:auto;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Reserva de '.$nombre.'</h5>
+                                    <br>
+                                    <p class="card-text">'.$tipo.'</p>
+                                    <p class="card-text">'.$fila['fecha_inicio'].' -> '.$fila['fecha_fin'].'</p>
+                                    <p class="card-text"><a href="https://hotelgdfree.epizy.com/?actualizarReservaAdmin='.$fila['id_reserva'].'" class="btn btn-light">Actualizar</a></p>
+                                    <p class="card-text"><a href="https://hotelgdfree.epizy.com/?borrarReservaAdmin='.$fila['id_reserva'].'" class="btn btn-light">Borrar</a></p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     
-                    <tr>
-                        <td class="text-center">' . $resultado . '</td>
-                        <td class="text-center">' . $fila['fecha_inicio'] . '</td>
-                        <td class="text-center">' . $fila['fecha_fin'] . '</td>
-                        <td class="text-center">' . $nombre . '</td>
-                        <td class="text-center"><a id="enlaceReservaAdmin" class="btn btn-primary" href="https://hotelgdfree.epizy.com/?borrarReserva=' . $fila['id_reserva'] . '">Borrar</a></td>
-                    </tr>
+                    
+                    
 
                     `);
+
                     
                 </script>';
                 }
             }
         }
+
+        public function contactoDatos($db)
+        {
+
+            $param = array();
+
+            $consulta = "select count(*) as 'total' from contacto";
+
+            $db->ConsultaDatos($consulta, $param);
+
+            $total = $db->filas[0]['total'];
+
+            if ($total == 0) {
+                echo '<script>
+                
+                main = $("#main");
+
+                main.append(`
+                    <div class="container py-5">
+
+                    <div class="card noReserva" style="width: 18rem;">
+                        <img src="../images/noReservas.webp" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">No existen mensajes</h5>
+                            <p class="card-text">Cuando existan mensajes aparecerán aquí</p>
+                        </div>
+                    </div>
+                            
+                        
+                    </div>`);
+
+                let footer = document.getElementById("footer");
+                footer.style.bottom = "0";
+                footer.style.left = "0";
+                footer.style.right = "0";
+                
+                </script>';
+            } else {
+                $param = array();
+
+                $consulta = "select * from contacto";
+
+                $db->ConsultaDatos($consulta, $param);
+
+                echo '<script>
+
+                $("#footer").css({
+                    "margin-top": "100px"
+                });
+
+                
+
+                
+                
+            </script>';
+
+                foreach ($db->filas as $fila) {
+
+                    echo '<script>
+
+                    $("#main").append(`
+
+                    <div class="card mb-3 noReserva mt-5 text-light" style="background:rgb(33, 37, 41); max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-12">
+                            <div class="card-body">
+                                <h5 class="card-title">Mensaje de '.$fila['nombre'].'</h5>
+                                <p class="card-text">Correo: '.$fila['correo'].'</p>
+                                <p class="card-text">Telefono: '.$fila['telefono'].'</p>
+                                <p class="card-text">'.$fila['mensaje'].'</p>
+
+                                <p class="card-text"><a href="https://hotelgdfree.epizy.com/?borrarMensaje='.$fila['id_contacto'].'" class="btn btn-light">Borrar</a></p>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    `);
+                    
+                    </script>';
+
+                    
+                }
+            }
+        }
+
     }
 
     ?>
