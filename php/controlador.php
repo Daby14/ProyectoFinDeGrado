@@ -251,4 +251,24 @@ class Controller
         $this->view->modalBorrarMensaje();
     }
 
+    public function clientesAdmin($db)
+    {
+        $this->model->clientesAdmin($db);
+    }
+
+    public function modalClienteAdminBorrado()
+    {
+        $this->view->modalClienteAdminBorrado();
+    }
+
+    public function usuariosAdmin($db)
+    {
+        $this->model->usuariosAdmin($db);
+    }
+
+    public function modalUsuarioAdminBorrado()
+    {
+        $this->view->modalUsuarioAdminBorrado();
+    }
+
 }

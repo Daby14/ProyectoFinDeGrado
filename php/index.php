@@ -1087,6 +1087,7 @@
 
             }
 
+
             if (isset($_GET['agregaHabitacion'])) {
 
                 echo '<script>
@@ -1432,6 +1433,108 @@
 
                 </script>';
                 
+            }
+
+            if (isset($_GET['clientesAdmin'])) {
+                echo '<script>
+            
+                $("#main").empty();
+
+                </script>';
+
+                $controller->clientesAdmin($db);
+                
+            }
+
+            if (isset($_GET['borrarCliente'])) {
+
+                $id_cliente = $_GET['borrarCliente'];
+
+                $controller->modalClienteAdminBorrado();
+
+                echo '<script>
+            
+                $.ajax({
+                    url: "peticiones.php?tipo=borrarCliente",
+                    type: "POST",
+                    data: {
+                        id: '.$id_cliente.'
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        if (response.exists) {
+    
+                            $("#modalClienteAdminBorrado").modal("show");
+
+                                let cerrar = document.getElementById("cerrar");
+                                        
+                                cerrar.addEventListener("click", function () {
+                                        
+                                    window.location.href = "https://hotelgdfree.epizy.com/?clientesAdmin";
+                                        
+                            })
+    
+                        } else {
+                            console.log("No se ha realizado correctamente");
+                        }
+                    },
+                    error: function () {
+                    }
+                });
+
+                </script>';
+
+            }
+
+            if (isset($_GET['usuariosAdmin'])) {
+                echo '<script>
+            
+                $("#main").empty();
+
+                </script>';
+
+                $controller->usuariosAdmin($db);
+                
+            }
+
+            if (isset($_GET['borrarUsuario'])) {
+
+                $id_usuario = $_GET['borrarUsuario'];
+
+                $controller->modalUsuarioAdminBorrado();
+
+                echo '<script>
+            
+                $.ajax({
+                    url: "peticiones.php?tipo=borrarUsuario",
+                    type: "POST",
+                    data: {
+                        id: '.$id_usuario.'
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        if (response.exists) {
+    
+                            $("#modalUsuarioAdminBorrado").modal("show");
+
+                                let cerrar = document.getElementById("cerrar");
+                                        
+                                cerrar.addEventListener("click", function () {
+                                        
+                                    window.location.href = "https://hotelgdfree.epizy.com/?usuariosAdmin";
+                                        
+                            })
+    
+                        } else {
+                            console.log("No se ha realizado correctamente");
+                        }
+                    },
+                    error: function () {
+                    }
+                });
+
+                </script>';
+
             }
 
         } else {

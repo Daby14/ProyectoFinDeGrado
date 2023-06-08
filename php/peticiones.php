@@ -316,7 +316,6 @@ function actualizaHabitacion($idHabitacion, $tipoHabitacion, $precio, $estado, $
     $cadena = "conseguido";
 
     return $cadena;
-
 }
 
 function contacto($nombre, $correo, $telefono, $mensaje, $db)
@@ -335,7 +334,6 @@ function contacto($nombre, $correo, $telefono, $mensaje, $db)
     $cadena = "conseguido";
 
     return $cadena;
-
 }
 
 function borrarMensaje($id, $db)
@@ -351,9 +349,147 @@ function borrarMensaje($id, $db)
     $cadena = "conseguido";
 
     return $cadena;
-
 }
 
+function borrarCliente($id, $db)
+{
+
+    $param = array();
+    $param['Id'] = $id;
+
+    $consulta = "select count(*) as 'total' from reservas where id_cliente=:Id";
+
+    $db->ConsultaDatos($consulta, $param);
+
+    $total = $db->filas[0]['total'];
+
+    if ($total != 0) {
+        $param = array();
+        $param['Id'] = $id;
+
+        $consulta = "select * from reservas where id_cliente=:Id";
+
+        $db->ConsultaDatos($consulta, $param);
+
+        foreach ($db->filas as $fila) {
+
+            $id_reserva = $fila['id_reserva'];
+            $id_habitacion = $fila['id_habitacion'];
+
+            $param = array();
+            $param['Id'] = $id_reserva;
+
+            $consulta = "delete from reservas where id_reserva=:Id";
+
+            $db->ConsultaSimple($consulta, $param);
+
+            $param = array();
+            $param['Estado'] = "Disponible";
+            $param['Id'] = $id_habitacion;
+
+            $consulta = "update habitaciones set estado=:Estado where id_habitacion=:Id";
+
+            $db->ConsultaSimple($consulta, $param);
+        }
+    }
+
+    $param = array();
+    $param['Id'] = $id;
+
+    $consulta = "select id_usuario as 'id_usuario' from clientes where id_cliente=:Id";
+
+    $db->ConsultaDatos($consulta, $param);
+
+    $id_usuario = $db->filas[0]['id_usuario'];
+
+    $param = array();
+    $param['Id'] = $id_usuario;
+
+    $consulta = "delete from usuarios where id_usuario=:Id";
+
+    $db->ConsultaSimple($consulta, $param);
+
+    $param = array();
+    $param['Id'] = $id;
+
+    $consulta = "delete from clientes where id_cliente=:Id";
+
+    $db->ConsultaSimple($consulta, $param);
+
+    $cadena = "conseguido";
+
+    return $cadena;
+}
+
+function borrarUsuario($id, $db)
+{
+
+    $param = array();
+    $param['Id'] = $id;
+
+    $consulta = "select id_cliente as 'id_cliente' from clientes where id_usuario=:Id";
+
+    $db->ConsultaDatos($consulta, $param);
+
+    $id_cliente = $db->filas[0]['id_cliente'];
+
+    $param = array();
+    $param['Id'] = $id_cliente;
+
+    $consulta = "select count(*) as 'total' from reservas where id_cliente=:Id";
+
+    $db->ConsultaDatos($consulta, $param);
+
+    $total = $db->filas[0]['total'];
+
+    if ($total != 0) {
+        $param = array();
+        $param['Id'] = $id_cliente;
+
+        $consulta = "select * from reservas where id_cliente=:Id";
+
+        $db->ConsultaDatos($consulta, $param);
+
+        foreach ($db->filas as $fila) {
+
+            $id_reserva = $fila['id_reserva'];
+            $id_habitacion = $fila['id_habitacion'];
+
+            $param = array();
+            $param['Id'] = $id_reserva;
+
+            $consulta = "delete from reservas where id_reserva=:Id";
+
+            $db->ConsultaSimple($consulta, $param);
+
+            $param = array();
+            $param['Estado'] = "Disponible";
+            $param['Id'] = $id_habitacion;
+
+            $consulta = "update habitaciones set estado=:Estado where id_habitacion=:Id";
+
+            $db->ConsultaSimple($consulta, $param);
+        }
+    }
+
+    $param = array();
+    $param['Id'] = $id_cliente;
+
+    $consulta = "delete from clientes where id_cliente=:Id";
+
+    $db->ConsultaSimple($consulta, $param);
+
+    $param = array();
+    $param['Id'] = $id;
+
+    $consulta = "delete from usuarios where id_usuario=:Id";
+
+    $db->ConsultaSimple($consulta, $param);
+
+    $cadena = "conseguido";
+
+    return $cadena;
+}
 
 if ($select === "id") {
     $type = $_POST['type'];
@@ -494,4 +630,22 @@ if ($select === "id") {
 
     header('Content-Type: application/json');
     echo json_encode($response);
-}
+} else if ($select === "borrarCliente") {
+    $id = $_POST['id'];
+
+    $borrarCliente =  borrarCliente($id, $db);
+
+    $response = array('exists' => $borrarCliente);
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+} else if ($select === "borrarUsuario") {
+    $id = $_POST['id'];
+
+    $borrarUsuario =  borrarUsuario($id, $db);
+
+    $response = array('exists' => $borrarUsuario);
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+} 

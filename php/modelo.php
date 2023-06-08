@@ -418,7 +418,7 @@
                     <div class="card mb-5 w-100 noReserva" style="background:rgb(33, 37, 41);">
                         <div class="row g-0">
                             <div class="col-md-5">
-                                <img src="../images/'.$imagen.'" class="img-fluid rounded-start" alt="asfd">
+                                <img src="../images/' . $imagen . '" class="img-fluid rounded-start" alt="asfd">
                             </div>
                             <div class="col-md-7" style="display:block; margin:auto;">
                                 <div class="card-body">
@@ -501,7 +501,7 @@
                     <div class="card mb-5 w-100 noReserva" style="background:rgb(33, 37, 41);">
                         <div class="row g-0">
                             <div class="col-md-5">
-                                <img src="../images/'.$imagen. '" class="img-fluid rounded-start" alt="asfd">
+                                <img src="../images/' . $imagen . '" class="img-fluid rounded-start" alt="asfd">
                             </div>
                             <div class="col-md-7" style="display:block; margin:auto;">
                                 <div class="card-body">
@@ -650,10 +650,11 @@
                 main = $("#main");
 
                 main.append(`
+
                     <div class="container py-5">
 
                     <div class="card noReserva" style="width: 18rem;">
-                        <img src="../images/noReservas.webp" class="card-img-top" alt="...">
+                        <img src="../images/noExistenReservas.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">No existen reservas</h5>
                             <p class="card-text">Cuando existan reservas aparecerán aquí</p>
@@ -683,6 +684,8 @@
                 });
 
                 $("#main").append(`
+
+                <h4 class="noReserva mt-5">Reservas</h4>
 
                 <div class="container py-5">
                     <div id="reservasDisponiblesAdmin" class="card-columns2">
@@ -739,24 +742,24 @@
                     <div class="card mb-5 w-100 noReserva text-light" style="background:rgb(33, 37, 41);">
                         <div class="row g-0">
                             <div class="col-md-5">
-                                <img src="../images/'.$imagen.'" class="img-fluid rounded-start" alt="reservaImagen">
+                                <img src="../images/' . $imagen . '" class="img-fluid rounded-start" alt="reservaImagen">
                             </div>
                             <div class="col-md-7" style="display:block; margin:auto;">
                                 <div class="card-body">
-                                    <h5 class="card-title">Reserva de '.$nombre.'</h5>
+                                    <h5 class="card-title">Reserva de ' . $nombre . '</h5>
                                     <br>
-                                    <p class="card-text">'.$tipo.'</p>
-                                    <p class="card-text">'.$fila['fecha_inicio'].' -> '.$fila['fecha_fin'].'</p>
-                                    <p class="card-text"><a href="https://hotelgdfree.epizy.com/?actualizarReservaAdmin='.$fila['id_reserva'].'" class="btn btn-light">Actualizar</a></p>
-                                    <p class="card-text"><a href="https://hotelgdfree.epizy.com/?borrarReservaAdmin='.$fila['id_reserva'].'" class="btn btn-light">Borrar</a></p>
+                                    <p class="card-text">' . $tipo . '</p>
+                                    <p class="card-text">' . $fila['fecha_inicio'] . ' --> ' . $fila['fecha_fin'] . '</p>
+                                    <br>
+                                    <p class="card-text">
+                                        
+                                        <a href="https://hotelgdfree.epizy.com/?borrarReservaAdmin=' . $fila['id_reserva'] . '" class="btn btn-light">Borrar</a>
+                                    </p>
 
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
-                    
-                    
 
                     `);
 
@@ -815,11 +818,13 @@
                     "margin-top": "100px"
                 });
 
-                
+                $("#main").append(`
 
+                <h4 class="noReserva mt-5">Mensajes</h4>
+            
+                `);
                 
-                
-            </script>';
+                </script>';
 
                 foreach ($db->filas as $fila) {
 
@@ -831,12 +836,12 @@
                         <div class="row g-0">
                             <div class="col-md-12">
                             <div class="card-body">
-                                <h5 class="card-title">Mensaje de '.$fila['nombre'].'</h5>
-                                <p class="card-text">Correo: '.$fila['correo'].'</p>
-                                <p class="card-text">Telefono: '.$fila['telefono'].'</p>
-                                <p class="card-text">'.$fila['mensaje'].'</p>
+                                <h5 class="card-title">Mensaje de ' . $fila['nombre'] . '</h5>
+                                <p class="card-text">Correo: ' . $fila['correo'] . '</p>
+                                <p class="card-text">Telefono: ' . $fila['telefono'] . '</p>
+                                <p class="card-text">' . $fila['mensaje'] . '</p>
 
-                                <p class="card-text"><a href="https://hotelgdfree.epizy.com/?borrarMensaje='.$fila['id_contacto'].'" class="btn btn-light">Borrar</a></p>
+                                <p class="card-text"><a href="https://hotelgdfree.epizy.com/?borrarMensaje=' . $fila['id_contacto'] . '" class="btn btn-light">Borrar</a></p>
                             </div>
                             </div>
                         </div>
@@ -845,9 +850,96 @@
                     `);
                     
                     </script>';
-
-                    
                 }
+            }
+        }
+
+        public function clientesAdmin($db)
+        {
+
+            $param = array();
+
+            $consulta = "select * from clientes";
+
+            $db->ConsultaDatos($consulta, $param);
+
+            echo '<script>
+
+                $("#main").append(`
+
+                <h4 class="noReserva mt-5">Clientes</h4>
+            
+                `);
+                
+            </script>';
+
+            foreach ($db->filas as $fila) {
+
+                echo '<script>
+
+                $("#main").append(`
+
+                <div class="card mb-5 noReserva mt-5 text-light" style="background:rgb(33, 37, 41); max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-12">
+                        <div class="card-body">
+                            <h5 class="card-title">Cliente ' . $fila['nombre'] . '</h5>
+                            <p class="card-text">Correo: ' . $fila['email'] . '</p>
+                            <p class="card-text">Telefono: ' . $fila['telefono'] . '</p>
+
+                            <p class="card-text"><a href="https://hotelgdfree.epizy.com/?borrarCliente=' . $fila['id_cliente'] . '" class="btn btn-light">Borrar</a></p>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            
+                `);
+                
+                </script>';
+            }
+        }
+
+        public function usuariosAdmin($db)
+        {
+
+            $param = array();
+
+            $consulta = "select * from usuarios";
+
+            $db->ConsultaDatos($consulta, $param);
+
+            echo '<script>
+
+                $("#main").append(`
+
+                <h4 class="noReserva mt-5">Usuarios</h4>
+            
+                `);
+                
+            </script>';
+
+            foreach ($db->filas as $fila) {
+
+                echo '<script>
+
+                $("#main").append(`
+
+                <div class="card mb-5 noReserva mt-5 text-light" style="background:rgb(33, 37, 41); max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-12">
+                        <div class="card-body">
+                            <h5 class="card-title">Usuario ' . $fila['usuario'] . '</h5>
+                            <br>
+                            <br>
+                            <p class="card-text"><a href="https://hotelgdfree.epizy.com/?borrarUsuario=' . $fila['id_usuario'] . '" class="btn btn-light">Borrar</a></p>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            
+                `);
+                
+                </script>';
             }
         }
 

@@ -1387,6 +1387,64 @@
             </script>';
         }
 
+        public function modalClienteAdminBorrado()
+        {
+
+            echo '<script>
+            
+                main = $("#main");
+
+                main.append(`<div class="modal fade show" id="modalClienteAdminBorrado" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="myModalLabel" style="display: block; margin: auto; text-align: center;">Cliente Eliminado</h5>
+                        </div>
+                        <div class="modal-body" style="display: block; margin: auto; text-align: center;">
+                            El cliente se ha eliminado correctamente
+                            <br>
+                            <br>
+                            <img src="../images/registro.png" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>`)
+            
+            </script>';
+        }
+
+        public function modalUsuarioAdminBorrado()
+        {
+
+            echo '<script>
+            
+                main = $("#main");
+
+                main.append(`<div class="modal fade show" id="modalUsuarioAdminBorrado" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="myModalLabel" style="display: block; margin: auto; text-align: center;">Usuario Eliminado</h5>
+                        </div>
+                        <div class="modal-body" style="display: block; margin: auto; text-align: center;">
+                            El usuario se ha eliminado correctamente
+                            <br>
+                            <br>
+                            <img src="../images/registro.png" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>`)
+            
+            </script>';
+        }
+
     }
 
     ?>
