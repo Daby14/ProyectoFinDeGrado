@@ -597,13 +597,30 @@
                                             <img src="../images/${response.exists[i]}" class="img-fluid rounded-start" alt="asfd">
                                         </div>
                                         <div class="col-md-7" style="display:block; margin:auto;">
-                                            <div class="card-body" id="prueba7">
-                                                <h5 class="card-title text-light">${response.exists[i + 1]}</h5>
-                                                <p class="card-text text-light">${response.exists[i + 2]}€/noche</p>
-                                                <p class="card-text text-light">${response.exists[i + 3]}</p>
-                                                <p class="card-text text-light">${response.exists[i + 4]}</p>
-                                                <a class="btn btn-light" href="https://hotelgdfree.epizy.com/?habitacionesHotel">Volver</a>
+
+                                            <h5 id="tituloMovil" class="card-title text-light mt-3">${response.exists[i + 1]}</h5>
+
+                                            <br>
+
+                                            <div class="data-div text-light">
+                                                <span>
+                                                    ${response.exists[i + 2]}€/noche
+                                                    <br>
+                                                    ${response.exists[i + 3]}
+                                                    <br>
+                                                    ${response.exists[i + 4]}
+                                                </span>
+                                                <span>
+                                                    Wifi
+                                                    <br>
+                                                    Smart TV
+                                                    <br>
+                                                    Habitación Familiar
+                                                </span>
+                                        
                                             </div>
+                                            <br>
+                                            <a id="volverMovil" class="btn btn-light mb-3" href="https://hotelgdfree.epizy.com/?habitacionesHotel">Volver</a>
                                         </div>
                                     </div>
                                 </div>
@@ -676,13 +693,31 @@
                                             <img src="../images/${response.exists[i]}" class="img-fluid rounded-start" alt="asfd">
                                         </div>
                                         <div class="col-md-7" style="display:block; margin:auto;">
-                                            <div class="card-body" id="prueba7">
-                                                <h5 class="card-title text-light">${response.exists[i + 1]}</h5>
-                                                <p class="card-text text-light">${response.exists[i + 2]}€/noche</p>
-                                                <p class="card-text text-light">${response.exists[i + 3]}</p>
-                                                <p class="card-text text-light">${response.exists[i + 4]}</p>
-                                                <a id="reservar" href="https://hotelgdfree.epizy.com/?reservaHabitacion&id=' . $id . '" class="btn btn-light" data-type=" ${response.exists[i + 5]} ">Reservar</a>
+
+                                            <h5 id="tituloMovil" class="card-title text-light mt-3">${response.exists[i + 1]}</h5>
+
+                                            <br>
+
+                                            <div class="data-div text-light">
+                                                <span>
+                                                    ${response.exists[i + 2]}€/noche
+                                                    <br>
+                                                    ${response.exists[i + 3]}
+                                                    <br>
+                                                    ${response.exists[i + 4]}
+                                                </span>
+                                                <span>
+                                                    Wifi
+                                                    <br>
+                                                    Smart TV
+                                                    <br>
+                                                    Habitación Familiar
+                                                </span>
+                                        
                                             </div>
+                                            <br>
+                                            <a id="reservar" href="https://hotelgdfree.epizy.com/?reservaHabitacion&id=' . $id . '" class="btn btn-light mb-3" data-type=" ${response.exists[i + 5]} ">Reservar</a>
+
                                         </div>
                                     </div>
                                 </div>
