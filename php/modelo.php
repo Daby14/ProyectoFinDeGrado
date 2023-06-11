@@ -335,7 +335,7 @@
                     <div class="container py-5">
 
                     <div class="card noReserva" style="width: 18rem;">
-                        <img src="../images/reserva.png" class="card-img-top" alt="...">
+                        <img src="../images/reserva.png" class="card-img-top" alt="reserva">
                         <div class="card-body">
                             <h5 class="card-title">Carrito Vacío</h5>
                             <p class="card-text">Te animamos a que reserves nuestras lujosas habitaciones.</p>
@@ -654,7 +654,7 @@
                     <div class="container py-5">
 
                     <div class="card noReserva" style="width: 18rem;">
-                        <img src="../images/noExistenReservas.jpg" class="card-img-top" alt="...">
+                        <img src="../images/noExistenReservas.jpg" class="card-img-top" alt="noExistenReservas">
                         <div class="card-body">
                             <h5 class="card-title">No existen reservas</h5>
                             <p class="card-text">Cuando existan reservas aparecerán aquí</p>
@@ -789,7 +789,7 @@
                     <div class="container py-5">
 
                     <div class="card noReserva" style="width: 18rem;">
-                        <img src="../images/noReservas.webp" class="card-img-top" alt="...">
+                        <img src="../images/noReservas.webp" class="card-img-top" alt="noReservas">
                         <div class="card-body">
                             <h5 class="card-title">No existen mensajes</h5>
                             <p class="card-text">Cuando existan mensajes aparecerán aquí</p>

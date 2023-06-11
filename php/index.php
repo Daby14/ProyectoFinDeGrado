@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description">
     <title>Hotel GD</title>
 
     <link rel="stylesheet" href="../css/estilos.css">
@@ -882,7 +883,7 @@
                                                                                 La reserva no se pudo realizar correctamente. La fecha de inicio no puede ser anterior al día de hoy y la fecha de fin debe de ser mayor que la de inicio
                                                                                 <br>
                                                                                 <br>
-                                                                                <img src="../images/reservaFallida.jpg" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
+                                                                                <img src="../images/reservaFallida.jpg" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;" alt="reservaFallida"></img>
                                                                             </div>
                                                                             <div class="modal-footer">
                                                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -913,7 +914,7 @@
                                                                             <div class="modal-body" style="display: block; margin: auto; text-align: center;">
                                                                                 Se ha reservado correctamente la habitación. Muchas gracias por confiar en nuestro hotel
                                                                                 <br>
-                                                                                <img src="../images/reservaConfirmada.jpg" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
+                                                                                <img src="../images/reservaConfirmada.jpg" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;" alt="reservaConfirmada"></img>
                                                                             </div>
                                                                             <div class="modal-footer">
                                                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -1021,7 +1022,7 @@
                                 <div class="modal-body" style="display: block; margin: auto; text-align: center;">
                                     ¿Quieres borrar la reserva?
                                     <br>
-                                    <img src="../images/duda2.png" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
+                                    <img src="../images/duda2.png" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;" alt="duda2"></img>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal" id="si">Si</button>
@@ -1085,7 +1086,7 @@
                                                 Se ha eliminado la reserva de la habitación correctamente.
                                                 <br>
                                                 <br>
-                                                <img src="../images/reservaCancelada.jpg" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
+                                                <img src="../images/reservaCancelada.jpg" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;" alt="reservaCancelada"></img>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -1199,7 +1200,7 @@
                                                             Se ha agregado la habitación correctamente
                                                             <br>
                                                             <br>
-                                                            <img src="../images/agregaHabitacion.jpg" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
+                                                            <img src="../images/agregaHabitacion.jpg" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;" alt="agregaHabitacion"></img>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -1315,7 +1316,7 @@
                                                             Se ha actualizado correctamente la habitación
                                                             <br>
                                                             <br>
-                                                            <img src="../images/registro.png" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
+                                                            <img src="../images/registro.png" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;" alt="registro"></img>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -1382,7 +1383,7 @@
                                                     Se ha borrado la habitación correctamente
                                                     <br>
                                                     <br>
-                                                    <img src="../images/borraHabitacion.jpg" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
+                                                    <img src="../images/borraHabitacion.jpg" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;" alt=""></img>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>

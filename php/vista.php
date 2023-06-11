@@ -38,7 +38,7 @@
                             <ul id="menu" class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 
                                 <li>
-                                    <strong><a id="init" class="nav-link px-2 text-light">HOTEL GD</a></strong>
+                                    <strong><a href="https://hotelgdfree.epizy.com/" id="init" class="nav-link px-2 text-light">HOTEL GD</a></strong>
                                 </li>
 
                             </ul>
@@ -254,7 +254,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="card">
-                                <img src="../images/wifi.jpg" class="card-img-top" alt="Foto de la piscina">
+                                <img src="../images/wifi.jpg" class="card-img-top" alt="Foto de la wifi">
                                 <div class="card-body">
                                     <h3 class="card-title">Wifi</h3>
                                     <p class="card-text">En nuestro hotel, nos preocupamos por hacer que su estancia sea lo
@@ -276,7 +276,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="card">
-                                <img src="../images/smart.webp" class="card-img-top" alt="Foto del gimnasio">
+                                <img src="../images/smart.webp" class="card-img-top" alt="Foto de la smart tv">
                                 <div class="card-body">
                                     <h3 class="card-title">Smart TV</h3>
                                     <p class="card-text">En nuestro hotel, nos enorgullece ofrecer servicios de alta calidad
@@ -297,7 +297,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="card">
-                                <img src="../images/familia.jpg" class="card-img-top" alt="Foto del spa">
+                                <img src="../images/familia.jpg" class="card-img-top" alt="Foto de las habitaciones familiares">
                                 <div class="card-body">
                                     <h3 class="card-title">Habitaciones Familiares</h3>
                                     <p class="card-text">En nuestro hotel, nos esforzamos por hacer que su estancia sea lo
@@ -461,7 +461,7 @@
                         <div class="modal-body" style="display: block; margin: auto; text-align: center;">
                             <p>Tu mensaje ha sido enviado correctamente</p>
                             <br>
-                            <img src="../images/mensajeCorrecto.avif" class="img-fluid w-25" style="display: block; margin: auto; text-align: center;"></img>
+                            <img src="../images/mensajeCorrecto.avif" class="img-fluid w-25" style="display: block; margin: auto; text-align: center;" alt="mensaje"></img>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -490,7 +490,7 @@
                             Debes iniciar sesión para acceder al formulario de contacto
                             <br>
                             <br>
-                            <img src="../images/contactoNoDisponible.webp" class="img-fluid w-75" style="display: block; margin: auto; text-align: center;"></img>
+                            <img src="../images/contactoNoDisponible.webp" class="img-fluid w-75" style="display: block; margin: auto; text-align: center;" alt="contactoNoDisponible"></img>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -601,7 +601,7 @@
                         <div class="modal-body">
                             <p>Has iniciado sesión correctamente</p>
                             <br>
-                            <img src="../images/sesionCorrecta.jpg" class="img-fluid w-50"></img>
+                            <img src="../images/sesionCorrecta.jpg" class="img-fluid w-50" alt="sesionCorrecta"></img>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -715,7 +715,7 @@
                         <div class="modal-body" style="display: block; margin: auto; text-align: center;">
                             Te has registrado correctamente
                             <br>
-                            <img src="../images/registro.png" class="img-fluid w-25" style="display: block; margin: auto; text-align: center;"></img>
+                            <img src="../images/registro.png" class="img-fluid w-25" style="display: block; margin: auto; text-align: center;" alt="registro"></img>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -743,7 +743,7 @@
                         <div class="modal-body" style="display: block; margin: auto; text-align: center;">
                             No te has podido registrar. El usuario ya está registrado
                             <br>
-                            <img src="../images/prueba1.jpg" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
+                            <img src="../images/prueba1.jpg" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;" alt="prueba1"></img>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -794,7 +794,7 @@
                         <div class="modal-body" style="display: block; margin: auto; text-align: center;">
                             Debes iniciar sesión para consultar tu carrito
                             <br>
-                            <img src="../images/carritoNoDisponible.webp" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
+                            <img src="../images/carritoNoDisponible.webp" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;" alt="carritoNoDisponible"></img>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -873,7 +873,7 @@
                         <div class="modal-body" style="display: block; margin: auto; text-align: center;">
                             Se ha reservado correctamente la habitación. Muchas gracias por confiar en nuestro hotel
                             <br>
-                            <img src="../images/reservaConfirmada.jpg" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
+                            <img src="../images/reservaConfirmada.jpg" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;" alt="reservaConfirmada"></img>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -902,7 +902,7 @@
                             Los datos son incorrectos
                             <br>
                             <br>
-                            <img src="../images/loginFallido.jpg" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
+                            <img src="../images/loginFallido.jpg" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;" alt="loginFallido"></img>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -939,7 +939,7 @@
 
                 let marker = L.marker([38.88979498688846, -3.710147340608609]).addTo(map);
 
-                marker.bindPopup("<strong>Hotel GD</strong>").openPopup();
+                marker.bindPopup("Hotel GD").openPopup();
 
             </script>';
         }
@@ -955,7 +955,7 @@
                     <div class="row">
                         <div class="col-md-6 mb-5">
                             <div class="card">
-                                <img src="../images/individual.jpg" class="card-img-top" alt="Foto de la piscina">
+                                <img src="../images/individual.jpg" class="card-img-top" alt="Habitacion Individual">
                                 <div class="card-body">
                                     <h3 class="card-title">Individual</h3>
                                     <p class="card-text">Habitaciones muy luminosas y silenciosas, TV LED SMART 42 pulgadas, minibar, wifi
@@ -967,7 +967,7 @@
                         </div>
                         <div class="col-md-6 mb-5">
                             <div class="card">
-                                <img src="../images/dobles.jpg" class="card-img-top" alt="Foto del gimnasio">
+                                <img src="../images/dobles.jpg" class="card-img-top" alt="Habitacion Doble">
                                 <div class="card-body">
                                     <h3 class="card-title">Doble</h3>
                                     <p class="card-text">Habitaciones muy luminosas y confortables, con smart tv 42 pulgadas, minibar y wifi gratuito. Cama de 
@@ -979,7 +979,7 @@
                         </div>
                         <div class="col-md-6 mb-5">
                             <div class="card">
-                                <img src="../images/apartamento.jpg" class="card-img-top" alt="Foto del spa">
+                                <img src="../images/apartamento.jpg" class="card-img-top" alt="Apartamento">
                                 <div class="card-body">
                                     <h3 class="card-title">Apartamento</h3>
                                     <p class="card-text">Apartamento familiar situado en la planta baja y con puerta independiente del hotel.
@@ -992,7 +992,7 @@
                         </div>
                         <div class="col-md-6 mb-5">
                             <div class="card">
-                                <img src="../images/suites.jpg" class="card-img-top" alt="Foto del spa">
+                                <img src="../images/suites.jpg" class="card-img-top" alt="Suites">
                                 <div class="card-body">
                                     <h3 class="card-title">Suite</h3>
                                     <p class="card-text">Nuestras suites disponen de cama de 1,60, baño privado con ducha, aire acondicionado,
@@ -1015,13 +1015,13 @@
             echo '<div class="card mb-5 noReserva" style="max-width: 800px; background: #ADD8E6">
                 <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="../images/usuario.png" class="img-fluid rounded-start" alt="...">
+                    <img src="../images/usuario.png" class="img-fluid rounded-start" alt="Usuario">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
                     <h5 class="card-title">Increíble estancia en un hotel excepcional</h5>
                     <p class="card-text">Increíble estancia en este hotel! El personal fue muy amable y servicial, las habitaciones eran limpias y cómodas, y la ubicación era perfecta. Definitivamente volvería a alojarme aquí.</p>
-                    <p class="card-text"><small class="text-muted">Escrito por BlueRaven87</small></p>
+                    <p class="card-text"><small >Escrito por BlueRaven87</small></p>
                     </div>
                 </div>
                 </div>
@@ -1030,13 +1030,13 @@
             <div class="card mb-5 noReserva" style="max-width: 800px; background: #ADD8E6">
                 <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="../images/usuario.png" class="img-fluid rounded-start" alt="...">
+                    <img src="../images/usuario.png" class="img-fluid rounded-start" alt="Usuario">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
                     <h5 class="card-title">Excelente hotel con una ubicación inmejorable</h5>
                     <p class="card-text">Excelente hotel, con una ubicación inmejorable en el centro de la ciudad. El personal era muy amable y servicial, y las habitaciones eran cómodas y modernas. La vista desde mi habitación era impresionante. Definitivamente volveré a alojarme aquí</p>
-                    <p class="card-text"><small class="text-muted">Escrito por SunnyDays44</small></p>
+                    <p class="card-text"><small >Escrito por SunnyDays44</small></p>
                     </div>
                 </div>
                 </div>
@@ -1045,13 +1045,13 @@
             <div class="card mb-5 noReserva" style="max-width: 800px; background: #ADD8E6">
                 <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="../images/usuario.png" class="img-fluid rounded-start" alt="...">
+                    <img src="../images/usuario.png" class="img-fluid rounded-start" alt="Usuario">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
                     <h5 class="card-title">El hotel perfecto para familias con niños</h5>
                     <p class="card-text">El hotel es agradable y tiene una buena relación calidad-precio. La habitación era cómoda y tenía todo lo que necesitaba. El personal era amable y servicial.</p>
-                    <p class="card-text"><small class="text-muted">Escrito por JazzFusion23</small></p>
+                    <p class="card-text"><small >Escrito por JazzFusion23</small></p>
                     </div>
                 </div>
                 </div>
@@ -1060,13 +1060,13 @@
             <div class="card mb-5 noReserva" style="max-width: 800px; background: #ADD8E6">
                 <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="../images/usuario.png" class="img-fluid rounded-start" alt="...">
+                    <img src="../images/usuario.png" class="img-fluid rounded-start" alt="Usuario">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
                     <h5 class="card-title">Experiencia perfecta en este hotel excepcional</h5>
                     <p class="card-text">Mi estancia en este hotel fue perfecta. La habitación era cómoda y bien equipada, el personal era extremadamente amable y servicial, y la comida en el restaurante era deliciosa. Además, la ubicación era perfecta para explorar la ciudad. Definitivamente volvería a alojarme aquí.</p>
-                    <p class="card-text"><small class="text-muted">Escrito por MountainHiker99</small></p>
+                    <p class="card-text"><small >Escrito por MountainHiker99</small></p>
                     </div>
                 </div>
                 </div>
@@ -1091,7 +1091,7 @@
                             Se ha cancelado la reserva de la habitación correctamente.
                             <br>
                             <br>
-                            <img src="../images/reservaCancelada.jpg" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
+                            <img src="../images/reservaCancelada.jpg" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;" alt="reservaCancelada"></img>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -1120,7 +1120,7 @@
                             La reserva no se pudo realizar correctamente. La fecha de inicio no puede ser anterior al día de hoy y la fecha de fin no puede ser anterior a la fecha de inicio
                             <br>
                             <br>
-                            <img src="../images/reservaFallida.jpg" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
+                            <img src="../images/reservaFallida.jpg" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;" alt="reservaFallida"></img>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -1149,7 +1149,7 @@
                             Deseas cancelar la reserva?
                             <br>
                             <br>
-                            <img src="../images/duda2.png" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
+                            <img src="../images/duda2.png" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;" alt="duda2"></img>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="si">Si</button>
@@ -1179,7 +1179,7 @@
                             Para poder acceder a las habitaciones debes iniciar sesión
                             <br>
                             <br>
-                            <img src="../images/habitacionesNoDisponibles.png" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
+                            <img src="../images/habitacionesNoDisponibles.png" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;" alt="habitacionesNoDisponibles"></img>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -1375,7 +1375,7 @@
                             El mensaje se ha eliminado correctamente
                             <br>
                             <br>
-                            <img src="../images/registro.png" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
+                            <img src="../images/registro.png" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;" alt="registro"></img>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -1404,7 +1404,7 @@
                             El cliente se ha eliminado correctamente
                             <br>
                             <br>
-                            <img src="../images/registro.png" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
+                            <img src="../images/registro.png" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;" alt="registro"></img>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
@@ -1433,7 +1433,7 @@
                             El usuario se ha eliminado correctamente
                             <br>
                             <br>
-                            <img src="../images/registro.png" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;"></img>
+                            <img src="../images/registro.png" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;" alt="registro"></img>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
