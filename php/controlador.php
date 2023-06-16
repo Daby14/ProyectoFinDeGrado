@@ -7,6 +7,8 @@ require_once 'vista.php';
 //Clase Controller
 class Controller
 {
+
+    //Definimos las variables model, view y db
     private $model;
     private $view;
     private $db;
@@ -19,21 +21,10 @@ class Controller
         $this->db = new DB("epiz_34160839_hotelgd");
     }
 
-    //Habitaciones disponibles
-    public function disponibles($db)
-    {
-        $this->model->habitacionesDisponibles($db);
-    }
-    
-    public function mostrarBoton()
-    {
-        $this->view->boton();
-    }
-
-    public function actualizar($db)
-    {
-        $this->model->actualiza($db);
-    }
+    // public function actualizar($db)
+    // {
+    //     $this->model->actualiza($db);
+    // }
 
     //Página Web
     public function mostrarCabecera()
@@ -91,10 +82,10 @@ class Controller
         $this->view->modalReserva();
     }
 
-    public function habitacionEspecifica($db, $id)
-    {
-        $this->model->habitacionEspecifica($db, $id);
-    }
+    // public function habitacionEspecifica($db, $id)
+    // {
+    //     $this->model->habitacionEspecifica($db, $id);
+    // }
 
     public function formularioSesion()
     {
@@ -116,15 +107,15 @@ class Controller
         $this->view->modalRegistro();
     }
 
-    public function existeUsuario($usuario, $password, $db)
-    {
-        $this->model->existeUsuario($usuario, $password, $db);
-    }
+    // public function existeUsuario($usuario, $password, $db)
+    // {
+    //     $this->model->existeUsuario($usuario, $password, $db);
+    // }
 
-    public function registroClienteUsuario($nombre, $apellido, $usuario, $password, $email, $telefono, $db)
-    {
-        $this->model->registroClienteUsuario($nombre, $apellido, $usuario, $password, $email, $telefono, $db);
-    }
+    // public function registroClienteUsuario($nombre, $apellido, $usuario, $password, $email, $telefono, $db)
+    // {
+    //     $this->model->registroClienteUsuario($nombre, $apellido, $usuario, $password, $email, $telefono, $db);
+    // }
 
     public function crearSesion($usuario)
     {
@@ -146,14 +137,11 @@ class Controller
         $this->model->datosUsuarioLogin($db, $usuario);
     }
 
+    
+
     public function modalCarrito()
     {
         $this->view->modalCarrito();
-    }
-
-    public function pruebaJSON($db, $type)
-    {
-        $this->model->pruebaJSON($db, $type);
     }
 
     public function formularioReserva()

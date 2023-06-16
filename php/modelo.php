@@ -28,252 +28,173 @@
     class Model
     {
 
-        public function pruebaJSON($db, $type)
-        {
+        // public function actualiza($db)
+        // {
 
-            // // Obtener los datos JSON enviados por la petición HTTP POST
-            // $data = json_decode(file_get_contents('php://input'), true);
+        //     $param = array();
+        //     $param['Estado'] = 'Ocupada';
 
-            // // Hacer lo que necesites con los datos recibidos
-            // $type = $data['type'];
+        //     $consulta = "select * from habitaciones where estado = :Estado";
 
-            // $param = array();
-            // $param['Type'] = $type;
-            // $param['Password'] = 'hola';
+        //     $db->ConsultaDatos($consulta, $param);
 
-            $param = array();
-            $param['Usuario'] = $type;
+        //     foreach ($db->filas as $fila) {
 
-            // $consulta = "insert into usuarios values (NULL, :Type, :Password)";
-            $consulta = "select id_usuario as id_usuario from usuarios where usuario=:Usuario";
+        //         $param = array();
+        //         $param['Estado'] = 'Disponible';
 
-            $db->ConsultaDatos($consulta, $param);
+        //         $consulta = "update habitaciones set estado=:Estado where id_habitacion = " . $fila['id_habitacion'] . "";
+        //         $db->ConsultaSimple($consulta, $param);
+        //     }
+        // }
 
-            $id_usuario = $db->filas[0]['id_usuario'];
+        // public function habitacionEspecifica($db, $id)
+        // {
 
-            echo $id_usuario;
-        }
+        //     $param = array();
+        //     $param['Id'] = $id;
 
-        public function habitacionesDisponibles($db)
-        {
+        //     $consulta = "select * from habitaciones where id_habitacion = :Id";
 
-            $param = array();
-            $param['Estado'] = 'Disponible';
+        //     $db->ConsultaDatos($consulta, $param);
 
-            $consulta = "select * from habitaciones where estado = :Estado";
+        //     echo '<script>
 
-            $db->ConsultaDatos($consulta, $param);
+        //     main = $("#main");
 
-            echo '<script>
-
-            main = $("#main");
-
-            main.append(`
-            <form id="formulario">
-                <div class="container py-5">
-                    <div id="habitacionesDisponibles" class="card-columns2">
+        //     main.append(`
+        //         <div class="container py-5">
+        //             <div id="habitacionEspecifica">
                 
-                    </div>
-                </div>
-            </form>`);
+        //             </div>
+        //         </div>`);
 
-            </script>';
+        //     </script>';
 
-            foreach ($db->filas as $fila) {
+        //     foreach ($db->filas as $fila) {
 
-                echo '<script>
+        //         echo '<script>
 
-                disponibles = $("#habitacionesDisponibles");
+        //         especifica = $("#habitacionEspecifica");
 
-                disponibles.append(`
+        //         especifica.append(`
 
-                    <div class="card mb-5 w-100 noReserva">
-                        <div class="row g-0">
-                            <div class="col-md-5">
-                                <img src="data:image/jpg;base64,' . base64_encode($fila['imagen']) . '" class="img-fluid rounded-start" alt="asfd">
-                            </div>
-                            <div class="col-md-7" style="display:block; margin:auto;">
-                                <div class="card-body">
-                                    <h4 class="card-title">' . htmlspecialchars($fila['tipo_habitacion']) . '</h4> 
-                                    <br>
-                                    <br>
-                                    <a href="#" class="btn btn-primary" data-type=" ' . $fila['id_habitacion'] . ' ">Ver mas</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>`);
-
-                </script>';
-            }
-        }
-
-        public function actualiza($db)
-        {
-
-            $param = array();
-            $param['Estado'] = 'Ocupada';
-
-            $consulta = "select * from habitaciones where estado = :Estado";
-
-            $db->ConsultaDatos($consulta, $param);
-
-            foreach ($db->filas as $fila) {
-
-                $param = array();
-                $param['Estado'] = 'Disponible';
-
-                $consulta = "update habitaciones set estado=:Estado where id_habitacion = " . $fila['id_habitacion'] . "";
-                $db->ConsultaSimple($consulta, $param);
-            }
-        }
-
-        public function habitacionEspecifica($db, $id)
-        {
-
-            $param = array();
-            $param['Id'] = $id;
-
-            $consulta = "select * from habitaciones where id_habitacion = :Id";
-
-            $db->ConsultaDatos($consulta, $param);
-
-            echo '<script>
-
-            main = $("#main");
-
-            main.append(`
-                <div class="container py-5">
-                    <div id="habitacionEspecifica">
-                
-                    </div>
-                </div>`);
-
-            </script>';
-
-            foreach ($db->filas as $fila) {
-
-                echo '<script>
-
-                especifica = $("#habitacionEspecifica");
-
-                especifica.append(`
-
-                    <div class="card mb-5 w-100 noReserva">
-                        <div class="row g-0">
-                            <div class="col-md-5">
-                                <img src="data:image/jpg;base64,' . base64_encode($fila['imagen']) . '" class="img-fluid rounded-start" alt="asfd">
-                            </div>
-                            <div class="col-md-7" style="display:block; margin:auto;">
-                                <div class="card-body">
-                                    <h5 class="card-title">' . $fila['tipo_habitacion'] . '</h5>
-                                    <p class="card-text">' . $fila['precio'] . '€/noche</p>
-                                    <p class="card-text">' . $fila['descripcion'] . '</p>
-                                    <p class="card-text">' . $fila['estado'] . '</p>
-                                    <button id="reservar" class="btn btn-primary">Reservar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        //             <div class="card mb-5 w-100 noReserva">
+        //                 <div class="row g-0">
+        //                     <div class="col-md-5">
+        //                         <img src="data:image/jpg;base64,' . base64_encode($fila['imagen']) . '" class="img-fluid rounded-start" alt="asfd">
+        //                     </div>
+        //                     <div class="col-md-7" style="display:block; margin:auto;">
+        //                         <div class="card-body">
+        //                             <h5 class="card-title">' . $fila['tipo_habitacion'] . '</h5>
+        //                             <p class="card-text">' . $fila['precio'] . '€/noche</p>
+        //                             <p class="card-text">' . $fila['descripcion'] . '</p>
+        //                             <p class="card-text">' . $fila['estado'] . '</p>
+        //                             <button id="reservar" class="btn btn-primary">Reservar</button>
+        //                         </div>
+        //                     </div>
+        //                 </div>
+        //             </div>
 
                     
 
-                    `);
+        //             `);
 
-                </script>';
-            }
-        }
+        //         </script>';
+        //     }
+        // }
 
-        public function existeUsuario($usuario, $password, $db)
-        {
+        // public function existeUsuario($usuario, $password, $db)
+        // {
 
-            $param = array();
-            $param['Usuario'] = $usuario;
-            $param['Password'] = $password;
+        //     $param = array();
+        //     $param['Usuario'] = $usuario;
+        //     $param['Password'] = $password;
 
-            $consulta = "select count(*) as total from usuarios where usuario = :Usuario and password = :Password";
+        //     $consulta = "select count(*) as total from usuarios where usuario = :Usuario and password = :Password";
 
-            $db->ConsultaDatos($consulta, $param);
+        //     $db->ConsultaDatos($consulta, $param);
 
-            $total = $db->filas[0]['total'];
+        //     $total = $db->filas[0]['total'];
 
-            if ($total == 0) {
+        //     if ($total == 0) {
 
-                echo '<script>
+        //         echo '<script>
 
-                    window.location.href = "https://hotelgdfree.epizy.com/?loginIncorrecto";
+        //             window.location.href = "https://hotelgdfree.epizy.com/?loginIncorrecto";
 
 
-                </script>';
-            } else {
-                echo '<script>
+        //         </script>';
+        //     } else {
+        //         echo '<script>
 
-                    window.location.href = "https://hotelgdfree.epizy.com/?usuario=' . $usuario . '";
+        //             window.location.href = "https://hotelgdfree.epizy.com/?usuario=' . $usuario . '";
 
-                </script>';
-            }
-        }
+        //         </script>';
+        //     }
+        // }
 
-        public function registroClienteUsuario($nombre, $apellido, $usuario, $password, $email, $telefono, $db)
-        {
+        // public function registroClienteUsuario($nombre, $apellido, $usuario, $password, $email, $telefono, $db)
+        // {
 
-            $param = array();
-            $param['Usuario'] = $usuario;
-            $consulta = "select count(*) as total from usuarios where usuario = :Usuario";
+        //     $param = array();
+        //     $param['Usuario'] = $usuario;
+        //     $consulta = "select count(*) as total from usuarios where usuario = :Usuario";
 
-            $db->ConsultaDatos($consulta, $param);
+        //     $db->ConsultaDatos($consulta, $param);
 
-            $total = $db->filas[0]['total'];
+        //     $total = $db->filas[0]['total'];
 
-            $esta = '';
+        //     $esta = '';
 
-            if ($total == 0) {
-                $param = array();
-                $param['Nombre'] = $nombre;
-                $param['Apellido'] = $apellido;
-                $param['Email'] = $email;
-                $param['Telefono'] = $telefono;
-                $param['Usuario'] = $usuario;
+        //     if ($total == 0) {
+        //         $param = array();
+        //         $param['Nombre'] = $nombre;
+        //         $param['Apellido'] = $apellido;
+        //         $param['Email'] = $email;
+        //         $param['Telefono'] = $telefono;
+        //         $param['Usuario'] = $usuario;
 
-                $consulta = "insert into clientes values (NULL, :Nombre, :Apellido, :Email, :Telefono, :Usuario)";
+        //         $consulta = "insert into clientes values (NULL, :Nombre, :Apellido, :Email, :Telefono, :Usuario)";
 
-                $db->ConsultaSimple($consulta, $param);
+        //         $db->ConsultaSimple($consulta, $param);
 
-                $param = array();
-                $param['Usuario'] = $usuario;
-                $param['Password'] = $password;
+        //         $param = array();
+        //         $param['Usuario'] = $usuario;
+        //         $param['Password'] = $password;
 
-                $consulta = "insert into usuarios values (NULL, :Usuario, :Password)";
+        //         $consulta = "insert into usuarios values (NULL, :Usuario, :Password)";
 
-                $db->ConsultaSimple($consulta, $param);
+        //         $db->ConsultaSimple($consulta, $param);
 
-                $esta = 'registrado';
-            } else {
-                echo "ESE USUARIO YA ESTÁ REGISTRADO";
-                $esta = 'no registrado';
-            }
+        //         $esta = 'registrado';
+        //     } else {
+        //         echo "ESE USUARIO YA ESTÁ REGISTRADO";
+        //         $esta = 'no registrado';
+        //     }
 
-            $param = array();
-            $param['Usuario'] = $usuario;
-            $consulta = "select id_usuario as id_usuario from usuarios where usuario = :Usuario";
+        //     $param = array();
+        //     $param['Usuario'] = $usuario;
+        //     $consulta = "select id_usuario as id_usuario from usuarios where usuario = :Usuario";
 
-            $db->ConsultaDatos($consulta, $param);
+        //     $db->ConsultaDatos($consulta, $param);
 
-            $id_usuario = $db->filas[0]['id_usuario'];
+        //     $id_usuario = $db->filas[0]['id_usuario'];
 
-            $param = array();
-            $param['Nombre'] = $nombre;
-            $param['Apellido'] = $apellido;
-            $param['Usuario'] = $id_usuario;
-            $consulta = "update clientes set id_usuario=:Usuario where nombre=:Nombre and apellido=:Apellido";
+        //     $param = array();
+        //     $param['Nombre'] = $nombre;
+        //     $param['Apellido'] = $apellido;
+        //     $param['Usuario'] = $id_usuario;
+        //     $consulta = "update clientes set id_usuario=:Usuario where nombre=:Nombre and apellido=:Apellido";
 
-            $db->ConsultaSimple($consulta, $param);
+        //     $db->ConsultaSimple($consulta, $param);
 
-            echo '<script>
+        //     echo '<script>
 
-                window.location.href = "https://hotelgdfree.epizy.com/?esta=' . $esta . '";
+        //         window.location.href = "https://hotelgdfree.epizy.com/?esta=' . $esta . '";
 
-            </script>';
-        }
+        //     </script>';
+        // }
 
         public function datosUsuarioLogin($db, $usuario)
         {
@@ -725,15 +646,24 @@
 
                     $imagen = $db->filas[0]['imagen'];
 
-                    //Obtenemos el nombre del cliente que ha reservado
+                    //Obtenemos el nombre del usuario que ha reservado
                     $param = array();
                     $param['Id'] = $fila['id_cliente'];
 
-                    $consulta = "select nombre as 'nombre' from clientes where id_cliente = :Id";
+                    $consulta = "select id_usuario as 'id_usuario' from clientes where id_cliente = :Id";
 
                     $db->ConsultaDatos($consulta, $param);
 
-                    $nombre = $db->filas[0]['nombre'];
+                    $id_usuario = $db->filas[0]['id_usuario'];
+
+                    $param = array();
+                    $param['Id'] = $id_usuario;
+
+                    $consulta = "select usuario as 'usuario' from usuarios where id_usuario = :Id";
+
+                    $db->ConsultaDatos($consulta, $param);
+
+                    $usuario = $db->filas[0]['usuario'];
 
                     echo '<script>
 
@@ -746,7 +676,7 @@
                             </div>
                             <div class="col-md-7" style="display:block; margin:auto;">
                                 <div class="card-body">
-                                    <h5 class="card-title">Reserva de ' . $nombre . '</h5>
+                                    <h5 class="card-title">Reserva de ' . $usuario . '</h5>
                                     <br>
                                     <p class="card-text">' . $tipo . '</p>
                                     <p class="card-text">' . $fila['fecha_inicio'] . ' --> ' . $fila['fecha_fin'] . '</p>
@@ -789,7 +719,7 @@
                     <div class="container py-5">
 
                     <div class="card noReserva" style="width: 18rem;">
-                        <img src="../images/noReservas.webp" class="card-img-top" alt="noReservas">
+                        <img src="../images/noMensajes.png" class="card-img-top" alt="noReservas">
                         <div class="card-body">
                             <h5 class="card-title">No existen mensajes</h5>
                             <p class="card-text">Cuando existan mensajes aparecerán aquí</p>
@@ -885,7 +815,6 @@
                         <div class="card-body">
                             <h5 class="card-title">Cliente ' . $fila['nombre'] . '</h5>
                             <p class="card-text">Correo: ' . $fila['email'] . '</p>
-                            <p class="card-text">Telefono: ' . $fila['telefono'] . '</p>
 
                             <p class="card-text"><a href="https://hotelgdfree.epizy.com/?borrarCliente=' . $fila['id_cliente'] . '" class="btn btn-light">Borrar</a></p>
                         </div>

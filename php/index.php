@@ -832,7 +832,8 @@
                                     <div class="ml-auto"> </div>
                                 </div> 
                                 <button type="submit" class="btn btn-block text-center my-3" id="confirmarReserva" data-toggle="modal" data-target="#exampleModal">Confirmar Reserva</button>
-                                <a href="https://hotelgdfree.epizy.com/" class="btn btn-block text-center my-3">Volver</a>
+                                <a href="https://hotelgdfree.epizy.com/?habitacionEspecificaHotel&id=' . $id . '" class="btn btn-block text-center my-3">Volver</a>
+                                
                             </form>
                         </div>`);
     
@@ -898,7 +899,7 @@
                                                 
                                                                 cerrar.addEventListener("click", function () {
                                                 
-                                                                    window.location.href = "https://hotelgdfree.epizy.com/";
+                                                                    window.location.href = "https://hotelgdfree.epizy.com/?reservaHabitacion&id=' . $id . '";
                                                 
                                                                 })
     
@@ -1253,102 +1254,200 @@
 
                 body.id = "login";
 
+                $.ajax({
+                    url: "peticiones.php?tipo=actualizarHabitacion",
+                    type: "POST",
+                    data: {
+                        id: '.$id.'
+                    },
+                    success: function (response) {
+                        //Comprobamos si se ha recibido respuesta por parte del servidor
+                        console.log(response);
+                        if (response.exists) {
+    
+                            main = $("#main");
+
+                            main.append(`<div class="wrapper bg-white">
+                            <div class="h2 text-center tituloLogin">Hotel GD</div>
+                            <div class="h4 text-muted text-center pt-2 subtituloLogin">Actualiza Habitacion</div>
+                            <form id="formActualizaHabitacion" class="needs-validation" novalidate method="POST" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    
+                                    <label for="tipoHabitacion">Nombre:</label>
+                                    <input type="text" class="form-control" id="tipoHabitacion" value="${response.exists[0]}" required>
+                                    <div class="valid-feedback">
+                                        ¡Correcto!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        El nombre es obligatorio
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+                                    
+                                    <label for="precio" class="mt-3">Precio:</label>
+                                    <input type="text" class="form-control" id="precio" value="${response.exists[1]}" required>
+                                    
+                                    <div class="valid-feedback">
+                                            ¡Correcto!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                            El precio es obligatorio
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    
+                                    <label for="imagen" class="mt-3">Foto:</label>
+                                    <input type="file" class="form-control" id="img" name="imagen" accept="image/*" placeholder="Ingrese la foto" required>
+                                    
+                                    <div class="valid-feedback">
+                                            ¡Correcto!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                            La foto es obligatoria
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    
+                                    <label for="estado" class="mt-3">Estado:</label>
+                                    <input type="text" class="form-control" id="estado" value="${response.exists[3]}" required>
+                                    
+                                    <div class="valid-feedback">
+                                            ¡Correcto!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                            El estado es obligatorio
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    
+                                    <label for="descripcion" class="mt-3">Descripcion:</label>
+                                    <input type="text" class="form-control" id="descripcion" value="${response.exists[2]}" required>
+                                    
+                                    <div class="valid-feedback">
+                                            ¡Correcto!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                            La descripcion es obligatoria
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-start">
+                                    <div class="ml-auto"> </div>
+                                </div> 
+                                <button type="submit" class="btn btn-block text-center my-3" id="iniciar" data-toggle="modal" data-target="#exampleModal">Actualizar</button>
+                                <a href="https://hotelgdfree.epizy.com/?habitacionesHotel" class="btn btn-block text-center my-3">Volver</a>
+                            </form>
+                        </div>`);
+    
+                        } else {
+                            console.log("No se ha realizado correctamente");
+                        }
+                    },
+                    error: function () {
+                    }
+                });
+
                 </script>';
 
-                $controller->formularioActualizaHabitacion();
-
                 echo '<script>
-                
-                let formActualizaHabitacion = document.getElementById("formActualizaHabitacion");
 
-                if (formActualizaHabitacion !== null) {
-                    formActualizaHabitacion.addEventListener("submit", function (event) {
-                        //Prevenimos que el formulario se envíe automáticamente
-                        event.preventDefault();
+                setTimeout(function() {
+                    let formActualizaHabitacion = document.getElementById("formActualizaHabitacion");
 
-                        //Validamos el formulario
-                        if (this.checkValidity() === false) {
-                            event.stopPropagation();
-                            this.classList.add("was-validated");
-                        } else {
+                    if (formActualizaHabitacion !== null) {
+                        formActualizaHabitacion.addEventListener("submit", function (event) {
+                            //Prevenimos que el formulario se envíe automáticamente
+                            event.preventDefault();
 
-                            //Recogemos los datos que devuelve el formulario
-                            let tipoHabitacion = document.getElementById("tipoHabitacion").value;
-                            let precio = document.getElementById("precio").value;
+                            //Validamos el formulario
+                            if (this.checkValidity() === false) {
+                                event.stopPropagation();
+                                this.classList.add("was-validated");
+                            } else {
 
-                            let imagen = document.getElementById("img").value;
-                            let nombre = imagen.substring(12);
+                                //Recogemos los datos que devuelve el formulario
+                                let tipoHabitacion = document.getElementById("tipoHabitacion").value;
+                                let precio = document.getElementById("precio").value;
 
-                            console.log(nombre);
+                                let imagen = document.getElementById("img").value;
+                                let nombre = imagen.substring(12);
 
-                            let descripcion = document.getElementById("descripcion").value;
-                            let idHabitacion = "'.$id.'";
-                            let estado = document.getElementById("estado").value;
+                                console.log(nombre);
 
-                            //Implementamos una petición ajax para enviar los datos al servidor y devolver respuesta
-                            $.ajax({
-                                url: "peticiones.php?tipo=actualizaHabitacion",
-                                type: "POST",
-                                data: {
-                                    idHabitacion: idHabitacion,
-                                    tipoHabitacion: tipoHabitacion,
-                                    precio: precio,
-                                    estado: estado,
-                                    imagen: nombre,
-                                    descripcion: descripcion
-                                },
-                                success: function (response) {
-                                    
-                                    if (response.exists) {
+                                let descripcion = document.getElementById("descripcion").value;
+                                let idHabitacion = "'.$id.'";
+                                let estado = document.getElementById("estado").value;
 
-                                        if(response.exists == "conseguido"){
+                                //Implementamos una petición ajax para enviar los datos al servidor y devolver respuesta
+                                $.ajax({
+                                    url: "peticiones.php?tipo=actualizaHabitacion",
+                                    type: "POST",
+                                    data: {
+                                        idHabitacion: idHabitacion,
+                                        tipoHabitacion: tipoHabitacion,
+                                        precio: precio,
+                                        estado: estado,
+                                        imagen: nombre,
+                                        descripcion: descripcion
+                                    },
+                                    success: function (response) {
                                         
-                                            main = $("#main");
+                                        if (response.exists) {
 
-                                            main.append(`
-                                            <div class="modal fade show" id="modalActualizacionHabitacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="myModalLabel" style="display: block; margin: auto; text-align: center;">Habitacion Actualizada</h5>
-                                                        </div>
-                                                        <div class="modal-body" style="display: block; margin: auto; text-align: center;">
-                                                            Se ha actualizado correctamente la habitación
-                                                            <br>
-                                                            <br>
-                                                            <img src="../images/registro.png" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;" alt="registro"></img>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
+                                            if(response.exists == "conseguido"){
+                                            
+                                                main = $("#main");
+
+                                                main.append(`
+                                                <div class="modal fade show" id="modalActualizacionHabitacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="myModalLabel" style="display: block; margin: auto; text-align: center;">Habitacion Actualizada</h5>
+                                                            </div>
+                                                            <div class="modal-body" style="display: block; margin: auto; text-align: center;">
+                                                                Se ha actualizado correctamente la habitación
+                                                                <br>
+                                                                <br>
+                                                                <img src="../images/registro.png" class="img-fluid w-50" style="display: block; margin: auto; text-align: center;" alt="registro"></img>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrar">Cerrar</button>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>`)
+                                                </div>`)
 
-                                            $("#modalActualizacionHabitacion").modal("show");
+                                                $("#modalActualizacionHabitacion").modal("show");
+                                                
+                                                let cerrar = document.getElementById("cerrar");
+                                                    
+                                                cerrar.addEventListener("click", function () {
+                                                    
+                                                    window.location.href = "https://hotelgdfree.epizy.com/?habitacionesHotel";
+                                                    
+                                                })
                                             
-                                            let cerrar = document.getElementById("cerrar");
-                                                
-                                            cerrar.addEventListener("click", function () {
-                                                
-                                                window.location.href = "https://hotelgdfree.epizy.com/?habitacionesHotel";
-                                                
-                                            })
-                                        
+                                            }
+
+                                        } else {
+                                            console.log("No se ha realizado correctamente")
                                         }
-
-                                    } else {
-                                        console.log("No se ha realizado correctamente")
+                                    },
+                                    error: function () {
                                     }
-                                },
-                                error: function () {
-                                }
-                            });
+                                });
 
-                        }
-                    }, false);
-                }
-
+                            }
+                        }, false);
+                    }
+                }, 500);
+                
                 </script>';
 
             }

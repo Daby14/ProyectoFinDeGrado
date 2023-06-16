@@ -71,6 +71,7 @@ function datosSesion($usuario, $password, $db)
 
     $param = array();
     $param['Usuario'] = $usuario;
+    $password = sha1($password);
     $param['Password'] = $password;
 
     $consulta = "select count(*) as total from usuarios where usuario = :Usuario and password = :Password";
@@ -90,7 +91,7 @@ function datosSesion($usuario, $password, $db)
     return $cadena;
 }
 
-function datosRegistro($nombre, $apellido, $usuario, $password, $email, $telefono, $db)
+function datosRegistro($nombre, $apellido, $usuario, $password, $email, $db)
 {
 
     $param = array();
@@ -104,19 +105,23 @@ function datosRegistro($nombre, $apellido, $usuario, $password, $email, $telefon
     $cadena = '';
 
     if ($total == 0) {
+
         $param = array();
         $param['Nombre'] = $nombre;
         $param['Apellido'] = $apellido;
         $param['Email'] = $email;
-        $param['Telefono'] = $telefono;
-        $param['Usuario'] = $usuario;
+        // $param['Telefono'] = $telefono;
+        $param['Usuario'] = '1';
 
-        $consulta = "insert into clientes values (NULL, :Nombre, :Apellido, :Email, :Telefono, :Usuario)";
+        $consulta = "insert into clientes values (NULL, :Nombre, :Apellido, :Email, :Usuario)";
 
         $db->ConsultaSimple($consulta, $param);
 
         $param = array();
         $param['Usuario'] = $usuario;
+
+        $password = sha1($password);
+
         $param['Password'] = $password;
 
         $consulta = "insert into usuarios values (NULL, :Usuario, :Password)";
@@ -403,16 +408,16 @@ function borrarCliente($id, $db)
     $id_usuario = $db->filas[0]['id_usuario'];
 
     $param = array();
-    $param['Id'] = $id_usuario;
+    $param['Id'] = $id;
 
-    $consulta = "delete from usuarios where id_usuario=:Id";
+    $consulta = "delete from clientes where id_cliente=:Id";
 
     $db->ConsultaSimple($consulta, $param);
 
     $param = array();
-    $param['Id'] = $id;
+    $param['Id'] = $id_usuario;
 
-    $consulta = "delete from clientes where id_cliente=:Id";
+    $consulta = "delete from usuarios where id_usuario=:Id";
 
     $db->ConsultaSimple($consulta, $param);
 
@@ -491,6 +496,42 @@ function borrarUsuario($id, $db)
     return $cadena;
 }
 
+function actualizarHabitacion($id, $db)
+{
+
+    $param = array();
+    $param['Id'] = $id;
+
+    $consulta = "select * from habitaciones where id_habitacion = :Id";
+
+    $db->ConsultaDatos($consulta, $param);
+
+    $arrayDatos = array();
+
+    foreach ($db->filas as $fila) {
+        $arrayDatos[] = $fila['tipo_habitacion'];
+        $arrayDatos[] = $fila['precio'];
+        $arrayDatos[] = $fila['descripcion'];
+        $arrayDatos[] = $fila['estado'];
+    }
+
+    return $arrayDatos;
+
+    // foreach ($db->filas as $fila) {
+    //     $arrayDatos[] = $fila['imagen'];
+    //     $arrayDatos[] = $fila['tipo_habitacion'];
+    //     $arrayDatos[] = $fila['precio'];
+    //     $arrayDatos[] = $fila['descripcion'];
+    //     $arrayDatos[] = $fila['estado'];
+    //     $arrayDatos[] = $fila['id_habitacion'];
+    // }
+
+    // $arrayDatos[] = $nombre;
+
+    
+
+}
+
 if ($select === "id") {
     $type = $_POST['type'];
 
@@ -534,9 +575,9 @@ if ($select === "id") {
     $usuario = $_POST['usuario'];
     $password = $_POST['password'];
     $email = $_POST['email'];
-    $telefono = $_POST['telefono'];
+    // $telefono = $_POST['telefono'];
 
-    $datosRegistro =  datosRegistro($nombre, $apellido, $usuario, $password, $email, $telefono, $db);
+    $datosRegistro =  datosRegistro($nombre, $apellido, $usuario, $password, $email, $db);
 
     $response = array('exists' => $datosRegistro);
 
@@ -648,4 +689,13 @@ if ($select === "id") {
 
     header('Content-Type: application/json');
     echo json_encode($response);
-} 
+} else if ($select === "actualizarHabitacion") {
+    $id = $_POST['id'];
+
+    $actualizarHabitacion =  actualizarHabitacion($id, $db);
+
+    $response = array('exists' => $actualizarHabitacion);
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+}

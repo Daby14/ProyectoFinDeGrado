@@ -74,16 +74,6 @@
         </div>';
         }
 
-        public function boton()
-        {
-            echo '<form method="post">
-                <!-- otros campos del formulario -->
-                <button type="submit" class="btn btn-primary" name="mostrar">Mostrar</button>
-                <button type="submit" class="btn btn-primary" name="actualizar">Actualizar</button>
-            </form>
-            ';
-        }
-
         public function footer()
         {
             echo '<!-- Footer -->
@@ -645,7 +635,19 @@
 
                     </div>
 
-                    
+                    <div class="form-group">
+                        <label for="apellido">Apellido:</label>
+                        <input type="text" class="form-control" id="apellido" placeholder="Ingrese su apellido"
+                            pattern="[A-Z]{1}[a-z]{3,12}" required>
+
+                        <div class="valid-feedback">
+                            ¡Correcto!
+                        </div>
+                        <div class="invalid-feedback">
+                            El apellido debe incluir 1 mayúscula y 3 minúsculas mínimo
+                        </div>
+
+                    </div>
 
                     <div class="form-group">
                         <label for="usuario" class="mt-1">Usuario:</label>

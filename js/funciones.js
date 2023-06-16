@@ -1,8 +1,12 @@
 //Formulario de Contacto
 let form = document.getElementById("formContacto");
 
+//Comprobamos que el formulario no es nulo
 if (form !== null) {
+
+    //Accedemos al formulario para controlar cuando se envía
     document.getElementById("formContacto").addEventListener("submit", function (event) {
+
         //Prevenimos que el formulario se envíe automáticamente
         event.preventDefault();
 
@@ -12,11 +16,13 @@ if (form !== null) {
             this.classList.add('was-validated');
         } else {
 
+            //En el caso de que el formulario cumpla con sus patrones, obtenemos sus datos
             let nombre = document.getElementById("nombre").value;
             let correo = document.getElementById("correo").value;
             let telefono = document.getElementById("telefono").value;
             let mensaje = document.getElementById("mensaje").value;
 
+            //Mandamos los datos del formulario al servidor mediante una petición AJAX
             $.ajax({
                 url: "peticiones.php?tipo=contacto",
                 type: "POST",
@@ -27,9 +33,10 @@ if (form !== null) {
                     mensaje: mensaje
                 },
                 success: function (response) {
-                    console.log(response);
+                    //Comprobamos si se ha recibido respuesta por parte del servidor
                     if (response.exists) {
 
+                        //Si se ha realizado la consulta correctamente, mostramos el modal de mensaje enviado
                         if (response.exists == "conseguido") {
                             $('#miModal').modal('show');
 
@@ -58,8 +65,10 @@ if (form !== null) {
 //Formulario de Sesión
 let formSesion = document.getElementById("formSesion");
 
+//Comprobamos que el formulario no es nulo
 if (formSesion !== null) {
 
+    //Accedemos al formulario para controlar cuando se envía
     formSesion.addEventListener("submit", function (event) {
 
         //Prevenimos que el formulario se envíe automáticamente
@@ -108,7 +117,10 @@ if (formSesion !== null) {
 //Formulario de Registro
 let formRegistro = document.getElementById("formRegistro");
 
+//Comprobamos que el formulario no es nulo
 if (formRegistro !== null) {
+
+    //Accedemos al formulario para controlar cuando se envía
     formRegistro.addEventListener("submit", function (event) {
         //Prevenimos que el formulario se envíe automáticamente
         event.preventDefault();
@@ -121,11 +133,11 @@ if (formRegistro !== null) {
 
             //Recogemos los datos que devuelve el formulario
             let nombre = document.getElementById("nombre").value;
-            let apellido = '';
+            let apellido = document.getElementById("apellido").value;
             let usuario = document.getElementById("usuario").value;
             let password = document.getElementById("password").value;
             let email = document.getElementById("email").value;
-            let telefono = '999999999';
+            // let telefono = '999999999';
 
             //Implementamos una petición ajax para enviar los datos al servidor y devolver respuesta
             $.ajax({
@@ -136,10 +148,11 @@ if (formRegistro !== null) {
                     apellido: apellido,
                     usuario: usuario,
                     password: password,
-                    email: email,
-                    telefono: telefono
+                    email: email
+                    // telefono: telefono
                 },
                 success: function (response) {
+                    console.log(response);
                     if (response.exists) {
 
                         //Comprobamos si se ha podido realizar el registro correctamente
@@ -170,14 +183,13 @@ carrito.click(() => {
 
 });
 
-//Obtenemos el id de la reserva a cancelar
+//Comprobamos si hemos pulsado en cancelar la reserva
 let cancelar = $('#reservas');
 
 cancelar.find('a').click((event) => {
 
+    //Obtenemos el id de la reserva a cancelar
     var type = $(event.target).closest($('a')).get(0).dataset.type;
-
-    console.log("se ha hecho click: " + type);
 
     main = $("#main");
 
@@ -201,13 +213,13 @@ cancelar.find('a').click((event) => {
                 </div>
             </div>`);
 
+    //Mostramos el modal
     $('#modalConfirmacionCancelacionReserva').modal('show');
 
+    //Si le damos a si, mandamos el id de la reserva al servidor para que la borre
     let si = document.getElementById('si');
 
     si.addEventListener('click', function () {
-
-        // window.location.href = 'https://hotelgdfree.epizy.com/?idReserva&confirmacion';
 
         $.ajax({
             url: "peticiones.php?tipo=cancelarReserva",
@@ -220,7 +232,6 @@ cancelar.find('a').click((event) => {
                     location.href = 'https://hotelgdfree.epizy.com/?idReserva';
 
                 } else {
-                    // $('#modalConfirmacionCancelacionReserva').modal('show');
                 }
             },
             error: function () {
@@ -229,6 +240,7 @@ cancelar.find('a').click((event) => {
 
     })
 
+    //Si le damos a no, no borramos la reserva
     let no = document.getElementById('no');
 
     no.addEventListener('click', function () {
@@ -237,73 +249,4 @@ cancelar.find('a').click((event) => {
 
     })
 
-
-
-
-
-    // $('#modalConfirmacionCancelacionReserva').modal('show');
-
 });
-
-
-
-//Formulario de agregar una habitación
-// let formAgregaHabitacion = document.getElementById("formAgregaHabitacion");
-
-// if (formAgregaHabitacion !== null) {
-//     formAgregaHabitacion.addEventListener("submit", function (event) {
-//         //Prevenimos que el formulario se envíe automáticamente
-//         event.preventDefault();
-
-//         //Validamos el formulario
-//         if (this.checkValidity() === false) {
-//             event.stopPropagation();
-//             this.classList.add('was-validated');
-//         } else {
-
-//             //Recogemos los datos que devuelve el formulario
-//             let idHabitacion = "NULL";
-//             let tipoHabitacion = document.getElementById("tipoHabitacion").value;
-//             let precio = document.getElementById("precio").value;
-//             let estado = "Disponible";
-//             let imagen = document.getElementById("imagen").value;
-
-//             let nombreImagen = imagen.split('\\').pop();
-
-//             let rutaImagen = "../images/" + nombreImagen;
-
-//             console.log(rutaImagen);
-
-//             let descripcion = document.getElementById("descripcion").value;
-
-//             // console.log(idHabitacion, tipoHabitacion, precio, estado, imagen, descripcion);
-
-//             $.ajax({
-//                 url: "peticiones.php?tipo=agregaHabitacion",
-//                 type: "POST",
-//                 data: {
-//                     idHabitacion: idHabitacion,
-//                     tipoHabitacion: tipoHabitacion,
-//                     precio: precio,
-//                     estado: estado,
-//                     imagen: rutaImagen,
-//                     descripcion: descripcion
-//                 },
-//                 success: function (response) {
-//                     console.log(response);
-//                     if (response.exists) {
-
-//                     } else {
-//                         console.log("No se ha realizado correctamente")
-//                     }
-//                 },
-//                 error: function () {
-//                 }
-//             });
-
-//         }
-//     }, false);
-// }
-
-
-
