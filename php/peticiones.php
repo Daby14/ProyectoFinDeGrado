@@ -1,8 +1,5 @@
 <?php
 
-// require_once("../Model/user.php");
-// require_once("../Model/DaoUser.php");
-
 require_once "LibreriaPDO.php";
 
 $db = new DB("epiz_34160839_hotelgd");
@@ -28,10 +25,6 @@ function habitacionEspecifica($type, $db)
         $arrayDatos[] = $fila['estado'];
         $arrayDatos[] = $fila['id_habitacion'];
     }
-
-    //itero $db
-
-    //cada elemento de $db lo añado
 
     return $arrayDatos;
 }
@@ -62,7 +55,6 @@ function habitacionesHotel($type, $db)
 
 function habitacionEspecificaReserva($type, $db)
 {
-
     return $type;
 }
 
@@ -110,8 +102,7 @@ function datosRegistro($nombre, $apellido, $usuario, $password, $email, $db)
         $param['Nombre'] = $nombre;
         $param['Apellido'] = $apellido;
         $param['Email'] = $email;
-        // $param['Telefono'] = $telefono;
-        $param['Usuario'] = '1';
+        $param['Usuario'] = '52';
 
         $consulta = "insert into clientes values (NULL, :Nombre, :Apellido, :Email, :Usuario)";
 
@@ -517,19 +508,6 @@ function actualizarHabitacion($id, $db)
 
     return $arrayDatos;
 
-    // foreach ($db->filas as $fila) {
-    //     $arrayDatos[] = $fila['imagen'];
-    //     $arrayDatos[] = $fila['tipo_habitacion'];
-    //     $arrayDatos[] = $fila['precio'];
-    //     $arrayDatos[] = $fila['descripcion'];
-    //     $arrayDatos[] = $fila['estado'];
-    //     $arrayDatos[] = $fila['id_habitacion'];
-    // }
-
-    // $arrayDatos[] = $nombre;
-
-    
-
 }
 
 if ($select === "id") {
@@ -575,7 +553,6 @@ if ($select === "id") {
     $usuario = $_POST['usuario'];
     $password = $_POST['password'];
     $email = $_POST['email'];
-    // $telefono = $_POST['telefono'];
 
     $datosRegistro =  datosRegistro($nombre, $apellido, $usuario, $password, $email, $db);
 

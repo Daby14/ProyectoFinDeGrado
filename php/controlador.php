@@ -21,11 +21,6 @@ class Controller
         $this->db = new DB("epiz_34160839_hotelgd");
     }
 
-    // public function actualizar($db)
-    // {
-    //     $this->model->actualiza($db);
-    // }
-
     //Página Web
     public function mostrarCabecera()
     {
@@ -82,11 +77,6 @@ class Controller
         $this->view->modalReserva();
     }
 
-    // public function habitacionEspecifica($db, $id)
-    // {
-    //     $this->model->habitacionEspecifica($db, $id);
-    // }
-
     public function formularioSesion()
     {
         $this->view->formularioSesion();
@@ -107,16 +97,6 @@ class Controller
         $this->view->modalRegistro();
     }
 
-    // public function existeUsuario($usuario, $password, $db)
-    // {
-    //     $this->model->existeUsuario($usuario, $password, $db);
-    // }
-
-    // public function registroClienteUsuario($nombre, $apellido, $usuario, $password, $email, $telefono, $db)
-    // {
-    //     $this->model->registroClienteUsuario($nombre, $apellido, $usuario, $password, $email, $telefono, $db);
-    // }
-
     public function crearSesion($usuario)
     {
         $this->view->crearSesion($usuario);
@@ -136,8 +116,6 @@ class Controller
     {
         $this->model->datosUsuarioLogin($db, $usuario);
     }
-
-    
 
     public function modalCarrito()
     {

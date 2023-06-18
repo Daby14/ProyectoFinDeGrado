@@ -51,7 +51,6 @@ if (form !== null) {
                         }
 
                     } else {
-                        console.log("No se ha realizado correctamente");
                     }
                 },
                 error: function () {
@@ -103,7 +102,6 @@ if (formSesion !== null) {
                         }
 
                     } else {
-                        console.log("No se ha realizado correctamente");
                     }
                 },
                 error: function () {
@@ -137,7 +135,6 @@ if (formRegistro !== null) {
             let usuario = document.getElementById("usuario").value;
             let password = document.getElementById("password").value;
             let email = document.getElementById("email").value;
-            // let telefono = '999999999';
 
             //Implementamos una petición ajax para enviar los datos al servidor y devolver respuesta
             $.ajax({
@@ -149,10 +146,9 @@ if (formRegistro !== null) {
                     usuario: usuario,
                     password: password,
                     email: email
-                    // telefono: telefono
                 },
                 success: function (response) {
-                    console.log(response);
+
                     if (response.exists) {
 
                         //Comprobamos si se ha podido realizar el registro correctamente
@@ -163,7 +159,7 @@ if (formRegistro !== null) {
                         }
 
                     } else {
-                        console.log("No se ha realizado correctamente")
+
                     }
                 },
                 error: function () {
@@ -226,7 +222,7 @@ cancelar.find('a').click((event) => {
             type: "POST",
             data: { type: type },
             success: function (response) {
-                console.log(response);
+
                 if (response.exists) {
 
                     location.href = 'https://hotelgdfree.epizy.com/?idReserva';

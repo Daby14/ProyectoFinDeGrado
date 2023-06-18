@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel GD</title>
 
-
-
     <!-- Carga los archivos CSS de Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
@@ -19,182 +17,12 @@
 
     <?php
 
-    //Operaciones con la BBDD
-
     require_once "LibreriaPDO.php";
 
     $db = new DB("epiz_34160839_hotelgd");
 
     class Model
     {
-
-        // public function actualiza($db)
-        // {
-
-        //     $param = array();
-        //     $param['Estado'] = 'Ocupada';
-
-        //     $consulta = "select * from habitaciones where estado = :Estado";
-
-        //     $db->ConsultaDatos($consulta, $param);
-
-        //     foreach ($db->filas as $fila) {
-
-        //         $param = array();
-        //         $param['Estado'] = 'Disponible';
-
-        //         $consulta = "update habitaciones set estado=:Estado where id_habitacion = " . $fila['id_habitacion'] . "";
-        //         $db->ConsultaSimple($consulta, $param);
-        //     }
-        // }
-
-        // public function habitacionEspecifica($db, $id)
-        // {
-
-        //     $param = array();
-        //     $param['Id'] = $id;
-
-        //     $consulta = "select * from habitaciones where id_habitacion = :Id";
-
-        //     $db->ConsultaDatos($consulta, $param);
-
-        //     echo '<script>
-
-        //     main = $("#main");
-
-        //     main.append(`
-        //         <div class="container py-5">
-        //             <div id="habitacionEspecifica">
-                
-        //             </div>
-        //         </div>`);
-
-        //     </script>';
-
-        //     foreach ($db->filas as $fila) {
-
-        //         echo '<script>
-
-        //         especifica = $("#habitacionEspecifica");
-
-        //         especifica.append(`
-
-        //             <div class="card mb-5 w-100 noReserva">
-        //                 <div class="row g-0">
-        //                     <div class="col-md-5">
-        //                         <img src="data:image/jpg;base64,' . base64_encode($fila['imagen']) . '" class="img-fluid rounded-start" alt="asfd">
-        //                     </div>
-        //                     <div class="col-md-7" style="display:block; margin:auto;">
-        //                         <div class="card-body">
-        //                             <h5 class="card-title">' . $fila['tipo_habitacion'] . '</h5>
-        //                             <p class="card-text">' . $fila['precio'] . '€/noche</p>
-        //                             <p class="card-text">' . $fila['descripcion'] . '</p>
-        //                             <p class="card-text">' . $fila['estado'] . '</p>
-        //                             <button id="reservar" class="btn btn-primary">Reservar</button>
-        //                         </div>
-        //                     </div>
-        //                 </div>
-        //             </div>
-
-                    
-
-        //             `);
-
-        //         </script>';
-        //     }
-        // }
-
-        // public function existeUsuario($usuario, $password, $db)
-        // {
-
-        //     $param = array();
-        //     $param['Usuario'] = $usuario;
-        //     $param['Password'] = $password;
-
-        //     $consulta = "select count(*) as total from usuarios where usuario = :Usuario and password = :Password";
-
-        //     $db->ConsultaDatos($consulta, $param);
-
-        //     $total = $db->filas[0]['total'];
-
-        //     if ($total == 0) {
-
-        //         echo '<script>
-
-        //             window.location.href = "https://hotelgdfree.epizy.com/?loginIncorrecto";
-
-
-        //         </script>';
-        //     } else {
-        //         echo '<script>
-
-        //             window.location.href = "https://hotelgdfree.epizy.com/?usuario=' . $usuario . '";
-
-        //         </script>';
-        //     }
-        // }
-
-        // public function registroClienteUsuario($nombre, $apellido, $usuario, $password, $email, $telefono, $db)
-        // {
-
-        //     $param = array();
-        //     $param['Usuario'] = $usuario;
-        //     $consulta = "select count(*) as total from usuarios where usuario = :Usuario";
-
-        //     $db->ConsultaDatos($consulta, $param);
-
-        //     $total = $db->filas[0]['total'];
-
-        //     $esta = '';
-
-        //     if ($total == 0) {
-        //         $param = array();
-        //         $param['Nombre'] = $nombre;
-        //         $param['Apellido'] = $apellido;
-        //         $param['Email'] = $email;
-        //         $param['Telefono'] = $telefono;
-        //         $param['Usuario'] = $usuario;
-
-        //         $consulta = "insert into clientes values (NULL, :Nombre, :Apellido, :Email, :Telefono, :Usuario)";
-
-        //         $db->ConsultaSimple($consulta, $param);
-
-        //         $param = array();
-        //         $param['Usuario'] = $usuario;
-        //         $param['Password'] = $password;
-
-        //         $consulta = "insert into usuarios values (NULL, :Usuario, :Password)";
-
-        //         $db->ConsultaSimple($consulta, $param);
-
-        //         $esta = 'registrado';
-        //     } else {
-        //         echo "ESE USUARIO YA ESTÁ REGISTRADO";
-        //         $esta = 'no registrado';
-        //     }
-
-        //     $param = array();
-        //     $param['Usuario'] = $usuario;
-        //     $consulta = "select id_usuario as id_usuario from usuarios where usuario = :Usuario";
-
-        //     $db->ConsultaDatos($consulta, $param);
-
-        //     $id_usuario = $db->filas[0]['id_usuario'];
-
-        //     $param = array();
-        //     $param['Nombre'] = $nombre;
-        //     $param['Apellido'] = $apellido;
-        //     $param['Usuario'] = $id_usuario;
-        //     $consulta = "update clientes set id_usuario=:Usuario where nombre=:Nombre and apellido=:Apellido";
-
-        //     $db->ConsultaSimple($consulta, $param);
-
-        //     echo '<script>
-
-        //         window.location.href = "https://hotelgdfree.epizy.com/?esta=' . $esta . '";
-
-        //     </script>';
-        // }
 
         public function datosUsuarioLogin($db, $usuario)
         {
@@ -445,8 +273,6 @@
         public function reservaHabitacion($db, $fechaInicio, $fechaFin, $usuario, $id_habitacion)
         {
 
-            //Necesito el id del usuario, con ese id del usuario saco el id del cliente, y con el id del cliente saco las habitaciones que tiene reservadas
-
             $param = array();
             $param['Usuario'] = $usuario;
 
@@ -456,8 +282,6 @@
 
             $id_usuario = $db->filas[0]['id_usuario'];
 
-            // echo $id_usuario;
-
             $param = array();
             $param['Usuario'] = $id_usuario;
 
@@ -466,8 +290,6 @@
             $db->ConsultaDatos($consulta, $param);
 
             $id_cliente = $db->filas[0]['id_cliente'];
-
-            // echo $id_cliente;
 
             $param = array();
             $param['Habitacion'] = $id_habitacion;

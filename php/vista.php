@@ -8,7 +8,6 @@
 
     <?php
 
-    //Página Web
     class View
     {
 

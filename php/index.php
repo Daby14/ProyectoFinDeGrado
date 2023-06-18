@@ -90,101 +90,6 @@
         </script>";
     }
 
-    // if (isset($_GET['reservar']) && isset($_GET['id_habitacion'])) {
-
-    //     $id = $_GET['id_habitacion'];
-
-    //     $controller->borrarHeader();
-    //     $controller->borrarFooter();
-    //     $controller->borrarMain();
-
-    //     $controller->formularioReserva();
-
-    //     echo "<script>
-
-    //         main = $('#main');
-
-    //         main.append(`<input id='id' type='hidden' name='id' value='$id'></input>`);
-
-    //     </script>";
-    // }
-
-    // if (isset($_GET['fechaInicio']) && isset($_GET['fechaFin']) && isset($_GET['id_habitacion'])) {
-
-    //     $fechaInicio = $_GET['fechaInicio'];
-    //     $fechaFin = $_GET['fechaFin'];
-    //     $id_habitacion = $_GET['id_habitacion'];
-    //     $usuario = $_SESSION['cliente']['usuario'];
-
-    //     //En el caso de que la fecha de inicio sea menor que la actual, se repite el proceso de reserva
-    //     date_default_timezone_set('Europe/Madrid');
-
-    //     $fecha = date('Y-m-d');
-
-    //     //En el caso de que la fecha de fin sea menor o igual que la de inicio se repite el proceso de reserva
-
-    //     //Si la fecha es menor, repetimos el proceso de reserva
-    //     if (($fechaInicio < $fecha) || ($fechaFin <= $fechaInicio)) {
-
-    //         $controller->modalFalloReserva();
-
-    //         echo "<script>
-
-    //             $(document).ready(function () {
-    //                 $('#modalFalloReserva').modal('show');
-
-    //                 let cerrar = document.getElementById('cerrar');
-
-    //                 cerrar.addEventListener('click', function () {
-
-    //                     window.location.href = 'https://hotelgdfree.epizy.com/';
-
-    //                 })
-    //             });
-
-    //         </script>";
-    //     } else {
-    //         $controller->reservaHabitacion($db, $fechaInicio, $fechaFin, $usuario, $id_habitacion);
-
-    //         $controller->modalReservaConfirmacion();
-
-    //         echo "<script>
-
-    //             $(document).ready(function () {
-    //                 $('#modalReservaConfirmacion').modal('show');
-
-    //                 let cerrar = document.getElementById('cerrar');
-
-    //                 cerrar.addEventListener('click', function () {
-
-    //                     window.location.href = 'https://hotelgdfree.epizy.com/';
-
-    //                 })
-    //             });
-
-    //         </script>";
-    //     }
-    // }
-
-    // if (isset($_GET['idReserva']) && isset($_GET['confirmacion'])) {
-
-    //     $controller->modalCancelarReserva();
-
-    //     echo "<script>
-
-    //         $(document).ready(function() {
-    //             $('#modalCancelarReserva').modal('show');
-
-    //             let cerrar = document.getElementById('cerrar');
-
-    //             cerrar.addEventListener('click', function () {
-
-    //             window.location.href = 'https://hotelgdfree.epizy.com/';
-
-    //             })
-    //         });
-
-    //     </script>";
     if (isset($_GET['idReserva'])) {
 
         $controller->modalCancelarReserva();
@@ -432,7 +337,7 @@
                             
     
                         } else {
-                            console.log("esta mal")
+                            
                         }
                     },
                     error: function () {
@@ -509,7 +414,7 @@
                             
     
                         } else {
-                            console.log("esta mal")
+                            
                         }
                     },
                     error: function () {
@@ -517,13 +422,8 @@
                 });
             }, 1000);
 
-
-            
-
             </script>';
         }
-
-        //Si se recibe la sesión hago la petición de habitaciones para mostrar las habitaciones disponibles
 
 
     } else if (isset($_GET['habitacionesHotel'])) {
@@ -566,15 +466,11 @@
 
             setTimeout(function() {
                 $.ajax({
-                    url: "peticiones.php?tipo=id", // Ruta del archivo en el servidor que verifica la disponibilidad del correo electrónico
+                    url: "peticiones.php?tipo=id",
                     type: "POST",
                     data: { type: ' . $id . ' },
                     success: function (response) {
-                        // console.log(response)
                         if (response.exists) {
-                            // console.log("el correo ya existe")
-                            // El correo electrónico ya está en uso
-                            // showFeedBack($(form.email), false, "El correo electrónico ya está en uso");
     
                             $("#main").empty();
     
@@ -586,7 +482,6 @@
                             </div>`);
     
                             for (let i = 0; i < response.exists.length; i += 6) {
-                                // console.log(response.exists[i]);
     
                                 let especifica = $("#habitacionEspecifica");
     
@@ -631,7 +526,6 @@
                             }
     
                         } else {
-                            console.log("esta mal")
                         }
                     },
                     error: function () {
@@ -639,10 +533,6 @@
                 });
             }, 1000);
 
-        
-            
-
-            
             </script>';
 
         }else{
@@ -659,17 +549,11 @@
             setTimeout(function() {
                 
                 $.ajax({
-                    url: "peticiones.php?tipo=id", // Ruta del archivo en el servidor que verifica la disponibilidad del correo electrónico
+                    url: "peticiones.php?tipo=id",
                     type: "POST",
                     data: { type: ' . $id . ' },
                     success: function (response) {
-                        // console.log(response)
                         if (response.exists) {
-                            // console.log("el correo ya existe")
-                            // El correo electrónico ya está en uso
-                            // showFeedBack($(form.email), false, "El correo electrónico ya está en uso");
-    
-                            // $("#main").empty();
     
                             $("#tituloHabitacionSeleccionada").hide();
                             $("#loader").hide();
@@ -682,7 +566,6 @@
                             </div>`);
     
                             for (let i = 0; i < response.exists.length; i += 6) {
-                                // console.log(response.exists[i]);
     
                                 let especifica = $("#habitacionEspecifica");
     
@@ -728,7 +611,6 @@
                             }
     
                         } else {
-                            console.log("esta mal")
                         }
                     },
                     error: function () {
@@ -736,8 +618,6 @@
                 });
 
             }, 1000);
-            
-
             
             </script>';
         }
@@ -753,16 +633,6 @@
         $usuario = "\"$usuario\"";
 
         echo '<script>
-        
-        // let boton = $("#habitacionEspecifica");
-
-        // boton.find("a").click(function (event) {
-
-        //     var type = $(event.target).closest($("a")).get(0).dataset.type;
-
-        //     console.log(type);
-
-            //window.location.href = `https://hotelgdfree.epizy.com/?reservar&id_habitacion=${response.exists[i + 5]}`;
 
             $("#main").empty();
 
@@ -774,11 +644,10 @@
 
             setTimeout(function() {
                 $.ajax({
-                    url: "peticiones.php?tipo=idEspecifico", // Ruta del archivo en el servidor que verifica la disponibilidad del correo electrónico
+                    url: "peticiones.php?tipo=idEspecifico", 
                     type: "POST",
                     data: { type: ' . $id . ' },
                     success: function (response) {
-                        console.log(response)
                         if (response.exists) {
     
                             let body = document.body;
@@ -841,25 +710,20 @@
     
                             if (formReserva !== null) {
                                 formReserva.addEventListener("submit", function (event) {
-                                    // Prevenir que el formulario se envíe automáticamente
+
                                     event.preventDefault();
     
-                                    // Validar el formulario
                                     if (this.checkValidity() === false) {
                                         event.stopPropagation();
                                         this.classList.add("was-validated");
                                     } else {
-    
-                                        // let usuario = ' . $usuario . ';
-    
-                                        // console.log(usuario);
     
                                         let fechaInicio = document.getElementById("fechaInicio").value;
     
                                         let fechaFin = document.getElementById("fechaFin").value;
     
                                                 $.ajax({
-                                                    url: "peticiones.php?tipo=reserva", // Ruta del archivo en el servidor que verifica la disponibilidad del correo electrónico
+                                                    url: "peticiones.php?tipo=reserva", 
                                                     type: "POST",
                                                     data: {fechaInicio: fechaInicio, 
                                                         fechaFin: fechaFin,
@@ -867,7 +731,6 @@
                                                         usuario: ' . $usuario . '
                                                     },
                                                     success: function (response) {
-                                                        // console.log(response)
                                                         if (response.exists) {
                                                 
                                                             if (response.exists === "fallo"){
@@ -936,7 +799,6 @@
                                                             }
                                     
                                                         } else {
-                                                            console.log("esta mal")
                                                         }
                                                     },
                                                     error: function () {
@@ -948,16 +810,12 @@
                             }
     
                         } else {
-                            console.log("esta mal")
                         }
                     },
                     error: function () {
                     }
                 });
             }, 1000);
-
-
-            
 
         </script>';
     }
@@ -1060,8 +918,6 @@
             if (isset($_GET['borradoReservaConfirmado'])) {
 
                 $id = $_GET['borradoReservaConfirmado'];
-
-                // $controller->cancelarReserva($db, $id);
                 
                 echo '<script>
 
@@ -1111,7 +967,7 @@
                             }
     
                         } else {
-                            console.log("No se ha realizado correctamente")
+                            
                         }
                     },
                     error: function () {
@@ -1149,29 +1005,24 @@
 
                 if (formAgregaHabitacion !== null) {
                     formAgregaHabitacion.addEventListener("submit", function (event) {
-                        //Prevenimos que el formulario se envíe automáticamente
+
                         event.preventDefault();
 
-                        //Validamos el formulario
                         if (this.checkValidity() === false) {
                             event.stopPropagation();
                             this.classList.add("was-validated");
                         } else {
 
-                            //Recogemos los datos que devuelve el formulario
                             let tipoHabitacion = document.getElementById("tipoHabitacion").value;
                             let precio = document.getElementById("precio").value;
 
                             let imagen = document.getElementById("img").value;
                             let nombre = imagen.substring(12);
 
-                            console.log(nombre);
-
                             let descripcion = document.getElementById("descripcion").value;
                             let idHabitacion = "NULL";
                             let estado = "Disponible";
 
-                            //Implementamos una petición ajax para enviar los datos al servidor y devolver respuesta
                             $.ajax({
                                 url: "peticiones.php?tipo=agregaHabitacion",
                                 type: "POST",
@@ -1184,7 +1035,6 @@
                                     descripcion: descripcion
                                 },
                                 success: function (response) {
-                                    console.log(response);
                                     if (response.exists) {
 
                                         if(response.exists == "conseguido"){
@@ -1223,7 +1073,6 @@
                                         }
 
                                     } else {
-                                        console.log("No se ha realizado correctamente")
                                     }
                                 },
                                 error: function () {
@@ -1261,8 +1110,7 @@
                         id: '.$id.'
                     },
                     success: function (response) {
-                        //Comprobamos si se ha recibido respuesta por parte del servidor
-                        console.log(response);
+
                         if (response.exists) {
     
                             main = $("#main");
@@ -1345,7 +1193,6 @@
                         </div>`);
     
                         } else {
-                            console.log("No se ha realizado correctamente");
                         }
                     },
                     error: function () {
@@ -1361,29 +1208,24 @@
 
                     if (formActualizaHabitacion !== null) {
                         formActualizaHabitacion.addEventListener("submit", function (event) {
-                            //Prevenimos que el formulario se envíe automáticamente
+
                             event.preventDefault();
 
-                            //Validamos el formulario
                             if (this.checkValidity() === false) {
                                 event.stopPropagation();
                                 this.classList.add("was-validated");
                             } else {
 
-                                //Recogemos los datos que devuelve el formulario
                                 let tipoHabitacion = document.getElementById("tipoHabitacion").value;
                                 let precio = document.getElementById("precio").value;
 
                                 let imagen = document.getElementById("img").value;
                                 let nombre = imagen.substring(12);
 
-                                console.log(nombre);
-
                                 let descripcion = document.getElementById("descripcion").value;
                                 let idHabitacion = "'.$id.'";
                                 let estado = document.getElementById("estado").value;
 
-                                //Implementamos una petición ajax para enviar los datos al servidor y devolver respuesta
                                 $.ajax({
                                     url: "peticiones.php?tipo=actualizaHabitacion",
                                     type: "POST",
@@ -1436,7 +1278,6 @@
                                             }
 
                                         } else {
-                                            console.log("No se ha realizado correctamente")
                                         }
                                     },
                                     error: function () {
@@ -1465,7 +1306,7 @@
                             id: '.$id.'
                         },
                         success: function (response) {
-                            console.log(response);
+
                             if (response.exists) {
         
                                 if(response.exists == "conseguido"){
@@ -1504,7 +1345,6 @@
                                 }
         
                             } else {
-                                console.log("No se ha realizado correctamente")
                             }
                         },
                         error: function () {
@@ -1540,7 +1380,7 @@
                         id: '.$id_contacto.'
                     },
                     success: function (response) {
-                        console.log(response);
+
                         if (response.exists) {
     
                             
@@ -1559,7 +1399,6 @@
                             }
     
                         } else {
-                            console.log("No se ha realizado correctamente");
                         }
                     },
                     error: function () {
@@ -1596,7 +1435,7 @@
                         id: '.$id_cliente.'
                     },
                     success: function (response) {
-                        console.log(response);
+
                         if (response.exists) {
     
                             $("#modalClienteAdminBorrado").modal("show");
@@ -1610,7 +1449,6 @@
                             })
     
                         } else {
-                            console.log("No se ha realizado correctamente");
                         }
                     },
                     error: function () {
@@ -1647,7 +1485,7 @@
                         id: '.$id_usuario.'
                     },
                     success: function (response) {
-                        console.log(response);
+
                         if (response.exists) {
     
                             $("#modalUsuarioAdminBorrado").modal("show");
@@ -1661,7 +1499,7 @@
                             })
     
                         } else {
-                            console.log("No se ha realizado correctamente");
+
                         }
                     },
                     error: function () {

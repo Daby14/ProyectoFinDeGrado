@@ -51,13 +51,6 @@ class DB
 
         if (!$sta->execute($param)) {
 
-            // echo "<script>
-            
-            //     console.log()
-
-            // </script>";
-
-            // echo "<b>Error en la consulta</b>";
         }
 
         $this->Cerrar();
